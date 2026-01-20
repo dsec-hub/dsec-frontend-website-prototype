@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import "./globals.css";
+
 import PageTransition from "@/components/PageTransition";
+
+import type { Metadata } from "next";
+
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,16 +24,16 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-	title: "DSEC - Deakin Software Engineering Club",
-	description:
-		"Deakin's Home for Software Engineers. Join the Deakin Software Engineering Club to design, build, and ship real projects.",
+  title: "DSEC - Deakin Software Engineering Club",
+  description:
+    "Deakin's Home for Software Engineers. Join the Deakin Software Engineering Club to design, build, and ship real projects.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children: ReactNode;
+}>): React.ReactElement {
   return (
     <html lang="en">
       <body

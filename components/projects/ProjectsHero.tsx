@@ -60,7 +60,7 @@ export default function ProjectsHero() {
         {'{ }'}
       </div>
       <div className="absolute top-1/2 right-12 text-4xl text-lime/10 font-mono animate-float" style={{ animationDelay: '1s' }}>
-        {'[ ]'}
+        [ ]
       </div>
     </section>
   );

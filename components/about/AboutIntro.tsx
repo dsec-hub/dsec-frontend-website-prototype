@@ -126,7 +126,7 @@ function FloatingShapes() {
         className="absolute top-1/2 right-16 text-4xl text-lime/20 font-mono animate-float"
         style={{ animationDelay: '1s' }}
       >
-        {'[ ]'}
+        [ ]
       </div>
     </div>
   );

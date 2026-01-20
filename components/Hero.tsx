@@ -1,6 +1,4 @@
-'use client';
-
-export default function Hero() {
+export default function Hero(): React.ReactElement {
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
       {/* Halftone dot pattern background */}

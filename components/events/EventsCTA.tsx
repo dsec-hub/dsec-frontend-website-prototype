@@ -161,15 +161,15 @@ function FloatingShapes() {
   return (
     <>
       {/* Floating code symbols */}
-      <div className="absolute top-20 left-[15%] text-5xl text-coral/10 font-mono animate-float">{'@'}</div>
+      <div className="absolute top-20 left-[15%] text-5xl text-coral/10 font-mono animate-float">@</div>
       <div className="absolute top-40 right-[10%] text-6xl text-accent/10 font-mono animate-float" style={{ animationDelay: '1s' }}>
-        {'#'}
+        #
       </div>
       <div className="absolute bottom-32 left-[20%] text-4xl text-secondary/10 font-mono animate-float" style={{ animationDelay: '2s' }}>
-        {'&'}
+        &
       </div>
       <div className="absolute bottom-48 right-[25%] text-5xl text-lime/10 font-mono animate-float" style={{ animationDelay: '1.5s' }}>
-        {'*'}
+        *
       </div>
 
       {/* Geometric shapes */}

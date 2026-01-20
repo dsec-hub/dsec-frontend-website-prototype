@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
-import EventsHero from '@/components/events/EventsHero';
-import EventCardsGrid from '@/components/events/EventCardsGrid';
 import AccessibilitySection from '@/components/events/AccessibilitySection';
+import EventCardsGrid from '@/components/events/EventCardsGrid';
 import EventsCTA from '@/components/events/EventsCTA';
+import EventsHero from '@/components/events/EventsHero';
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Tech Events at Deakin Burwood | Deakin Software Engineering Club (DSEC)',

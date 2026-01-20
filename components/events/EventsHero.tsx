@@ -95,7 +95,7 @@ export default function EventsHero() {
       </div>
 
       {/* Decorative floating elements */}
-      <div className="absolute top-20 right-20 text-6xl text-coral/10 font-mono animate-float">{'📅'}</div>
+      <div className="absolute top-20 right-20 text-6xl text-coral/10 font-mono animate-float">📅</div>
       <div className="absolute bottom-40 left-16 text-5xl text-secondary/10 font-mono animate-float" style={{ animationDelay: '2s' }}>
         {'{ }'}
       </div>
@@ -144,7 +144,7 @@ function FloatingShapes() {
         className="absolute top-1/2 right-16 text-4xl text-primary/20 font-mono animate-float"
         style={{ animationDelay: '1s' }}
       >
-        {'[ ]'}
+        [ ]
       </div>
     </div>
   );

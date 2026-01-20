@@ -89,9 +89,9 @@ export default function SuggestionForm() {
         />
 
         {/* Floating decorative elements */}
-        <div className="absolute top-20 right-[15%] text-5xl text-lime/10 font-mono animate-float">{'*'}</div>
+        <div className="absolute top-20 right-[15%] text-5xl text-lime/10 font-mono animate-float">*</div>
         <div className="absolute bottom-32 left-[10%] text-6xl text-secondary/10 font-mono animate-float" style={{ animationDelay: '1s' }}>
-          {'?'}
+          ?
         </div>
       </div>
 

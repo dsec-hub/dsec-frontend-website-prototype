@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
 import ContactHero from '@/components/contact/ContactHero';
 import GeneralContactForm from '@/components/contact/GeneralContactForm';
-import SuggestionForm from '@/components/contact/SuggestionForm';
-import WorkWithUs from '@/components/contact/WorkWithUs';
 import MembershipInfo from '@/components/contact/MembershipInfo';
 import OtherContactMethods from '@/components/contact/OtherContactMethods';
+import SuggestionForm from '@/components/contact/SuggestionForm';
+import WorkWithUs from '@/components/contact/WorkWithUs';
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact DSEC | Deakin Software Engineering Club at Burwood',

@@ -103,10 +103,10 @@ function FloatingShapes() {
         {'>'}
       </div>
       <div className="absolute bottom-32 left-[20%] text-4xl text-lime/10 font-mono animate-float" style={{ animationDelay: '2s' }}>
-        {'/'}
+        /
       </div>
       <div className="absolute bottom-48 right-[25%] text-5xl text-accent/10 font-mono animate-float" style={{ animationDelay: '1.5s' }}>
-        {'*'}
+        *
       </div>
 
       {/* Geometric shapes */}
