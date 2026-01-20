@@ -1,14 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  /* Custom Colors */
-  --color-foundation-black: #0A0A0A;
-  --color-clarity-white: #FFFFFF;
-  --color-action-pink: #FF006B;
-  --color-tech-glow-cyan: #00F0FF;
-  --color-creative-violet: #9333EA;
-  --color-energy-coral: #FF6B4A;
-  --color-signal-lime: #CCFF00;
+  /* DSEC Brand Colors */
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-card: #111111;
+  --color-card-foreground: #ffffff;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a0a0a0;
+  --color-border: #222222;
+
+  /* Action Pink - CTAs, highlights */
+  --color-primary: #e91e63;
+  --color-primary-foreground: #ffffff;
+
+  /* Tech Glow Cyan */
+  --color-secondary: #00bcd4;
+  --color-secondary-foreground: #0a0a0a;
+
+  /* Creative Violet */
+  --color-accent: #9c27b0;
+  --color-accent-foreground: #ffffff;
+
+  /* Signal Lime */
+  --color-lime: #c6ff00;
+  --color-lime-foreground: #0a0a0a;
+
+  /* Energy Coral */
+  --color-coral: #ff6b6b;
+  --color-coral-foreground: #0a0a0a;
+
+  /* Tech Cyan */
+  --color-cyan: #00bcd4;
+  --color-cyan-foreground: #0a0a0a;
 
   /* Custom Fonts */
   --font-grotesk: "Space Grotesk", sans-serif;
@@ -17,9 +41,70 @@
 }
 
 body {
-  background: var(--color-foundation-black);
-  color: var(--color-clarity-white);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-inter);
+}
+
+/* Custom keyframes for DSEC animations */
+@keyframes dsec-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes dsec-marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes dsec-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes dsec-pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes dsec-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Custom utility classes */
+.animate-marquee {
+  animation: dsec-marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: dsec-marquee-reverse 30s linear infinite;
+}
+
+.animate-float {
+  animation: dsec-float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: dsec-pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: dsec-spin-slow 20s linear infinite;
+}
+
+/* Halftone pattern effect */
+.halftone-pattern {
+  background-image: radial-gradient(circle, var(--color-primary) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Transition Grid Container */
@@ -37,6 +122,6 @@ body {
 /* Individual Transition Blocks */
 .transition-block {
   position: absolute;
-  background-color: var(--color-action-pink);
+  background-color: var(--color-primary);
   opacity: 0;
 }

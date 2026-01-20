@@ -8,9 +8,10 @@ interface TransitionLinkProps {
   href: string;
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-export default function TransitionLink({ href, children, className }: TransitionLinkProps) {
+export default function TransitionLink({ href, children, className, onClick }: TransitionLinkProps) {
   const router = useRouter();
   const isTransitioning = useRef(false);
 
@@ -75,6 +76,9 @@ export default function TransitionLink({ href, children, className }: Transition
 
     // Small delay to ensure animation is visible
     await new Promise(r => setTimeout(r, 50));
+
+    // Call optional onClick callback
+    onClick?.();
 
     // Navigate
     router.push(href);
