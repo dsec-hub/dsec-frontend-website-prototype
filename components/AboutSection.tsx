@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import SectionLabel from "./SectionLabel";
 import Folder from "./Folder";
@@ -7,12 +7,12 @@ import { SparklesText } from "./ui/sparkles-text";
 import TransitionLink from "./TransitionLink";
 
 export default function AboutSection() {
-  return (
+	return (
 		<section className="relative bg-background py-20 md:py-32 overflow-hidden">
 			<div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+				<div className="flex flex-col-reverse mt-36 md:flex-row items-center gap-12 lg:gap-20">
 					{/* Left Content */}
-					<div>
+					<div className="w-full md:w-1/2">
 						<SectionLabel>Why DSEC Exists</SectionLabel>
 						<h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8">
 							More Than a <SparklesText>Coding Club</SparklesText>
@@ -42,9 +42,12 @@ export default function AboutSection() {
 									talks. Prepare for internships with practical experience.
 								</p>
 
-                <div className="mt-10"></div>
+								<div className="mt-10"></div>
 
-								<TransitionLink href="/auth/join" className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all">
+								<TransitionLink
+									href="/auth/join"
+									className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all text-nowrap"
+								>
 									Become a Member
 								</TransitionLink>
 							</div>
@@ -66,9 +69,12 @@ export default function AboutSection() {
 									and problem statements for student projects.
 								</p>
 
-                <div className="mt-10"></div>
+								<div className="mt-10"></div>
 
-								<TransitionLink href="/partner" className="px-8 py-3 border border-lime text-lime hover:bg-lime hover:text-black rounded-full font-semibold transition-all">
+								<TransitionLink
+									href="/partner"
+									className="px-8 py-3 border border-lime text-lime hover:bg-lime hover:text-black rounded-full font-semibold transition-all text-nowrap"
+								>
 									Become a Partner
 								</TransitionLink>
 							</div>
@@ -76,7 +82,7 @@ export default function AboutSection() {
 					</div>
 
 					{/* Right Side - Interactive Folder */}
-					<div className="relative flex flex-col items-center justify-center md:pt-36 gap-4">
+					<div className="relative flex flex-col items-center justify-center md:pt-36 gap-4 w-full md:w-1/2">
 						<Folder
 							color="#e91e63"
 							size={3}
@@ -124,42 +130,37 @@ export default function AboutSection() {
 	);
 }
 
-
 function PartnerMarquee() {
-  const partners = [
-    { name: 'DEAKIN', subtitle: 'UNIVERSITY', hasIcon: true },
-    { name: 'DUSA', subtitle: null, hasIcon: false },
-  ];
+	const partners = [
+		{ src: "/dusa.png", height: 75, width: 75, url: "https://www.dusa.org.au/" },
+		{ src: "/deakin.png", height: 54, width: 160, url: "https://www.deakin.edu.au/" },
+	];
 
-  return (
-    <div className="overflow-hidden">
-      <div className="flex animate-marquee">
-        {Array.from({ length: 8 }).map((_, setIndex) => (
-          <div key={setIndex} className="flex items-center">
-            {partners.map((partner, index) => (
-              <div
-                key={`${setIndex}-${index}`}
-                className="flex items-center gap-2 mx-8 opacity-60 hover:opacity-100 transition-opacity"
-              >
-                {partner.hasIcon && (
-                  <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M6 10h8M10 6v8" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                  </div>
-                )}
-                <div className="flex flex-col">
-                  <span className="font-grotesk font-bold text-lg text-foreground tracking-wide">{partner.name}</span>
-                  {partner.subtitle && (
-                    <span className="text-xs text-muted-foreground tracking-wider">{partner.subtitle}</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+	return (
+		<div className="overflow-hidden">
+			<div className="flex animate-marquee items-center gap-16">
+				{Array.from({ length: 8 }).map((_, setIndex) => (
+					<>
+						{partners.map((partner, index) => (
+							<a
+								key={`${setIndex}-${index}`}
+								href={partner.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex-shrink-0"
+							>
+								<img
+									src={partner.src}
+									alt="partner logo"
+									height={partner.height}
+									width={partner.width}
+									className="object-contain opacity-60 hover:opacity-100 transition-opacity"
+								/>
+							</a>
+						))}
+					</>
+				))}
+			</div>
+		</div>
+	);
 }
