@@ -1,15 +1,26 @@
+import PixelBlast from './PixelBlast';
+
 export default function Hero(): React.ReactElement {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
-      {/* Halftone dot pattern background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[80%] h-[80%] opacity-60">
-          <HalftonePattern />
-        </div>
+    <section className="relative min-h-[70vh] overflow-hidden bg-background">
+      {/* PixelBlast background */}
+      <div className="absolute inset-0 w-full h-full opacity-70">
+        <PixelBlast
+          variant="square"
+          pixelSize={4}
+          color="#E91E63"
+          patternScale={2}
+          patternDensity={1}
+          pixelSizeJitter={0}
+          liquid={false}
+          speed={0.5}
+          edgeFade={0.25}
+          transparent
+        />
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 px-6 md:px-12 pt-12 md:pt-20 pb-32">
+      <div className="relative z-10 px-6 md:px-12 pt-12 md:pt-20 pb-32 max-w-7xl mx-auto">
         <div className="max-w-4xl">
           <p className="mb-4 font-mono text-sm tracking-wider text-primary">
             JOIN US FOR T1 STALL
@@ -44,51 +55,5 @@ export default function Hero(): React.ReactElement {
         </div>
       </div>
     </section>
-  );
-}
-
-function HalftonePattern() {
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 400 400"
-      preserveAspectRatio="xMidYMid slice"
-      className="absolute inset-0"
-    >
-      <defs>
-        <radialGradient id="dotGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="1" />
-          <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* Generate halftone dots with varying sizes based on position */}
-      {Array.from({ length: 40 }).map((_, row) =>
-        Array.from({ length: 40 }).map((_, col) => {
-          const x = col * 10 + 5;
-          const y = row * 10 + 5;
-          const distFromCenter = Math.sqrt(Math.pow(x - 200, 2) + Math.pow(y - 200, 2));
-          const wave = Math.sin(distFromCenter * 0.05) * 0.5 + 0.5;
-          const baseSize = 2 + wave * 3;
-          const fadeX = 1 - Math.abs(x - 200) / 200;
-          const fadeY = 1 - Math.abs(y - 200) / 200;
-          const fade = fadeX * fadeY;
-          const size = baseSize * fade;
-
-          if (size < 0.5) return null;
-
-          return (
-            <circle
-              key={`${row}-${col}`}
-              cx={x}
-              cy={y}
-              r={size}
-              fill="var(--color-primary)"
-              opacity={0.6 + wave * 0.4}
-            />
-          );
-        })
-      )}
-    </svg>
   );
 }
