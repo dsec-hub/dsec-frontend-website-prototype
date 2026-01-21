@@ -43,17 +43,22 @@ export default function Navbar(): React.ReactElement {
                   {link.label}
                 </TransitionLink>
               ))}
-              <TransitionLink
-                href="/community"
-                className="ml-1 rounded-full bg-foreground/10 px-4 py-1.5 text-sm text-foreground/70 transition-colors hover:bg-foreground/15"
-              >
-                Community
-              </TransitionLink>
             </div>
 
-            <button className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 md:block">
-              Join Now
-            </button>
+            <div className="hidden items-center gap-3 md:flex">
+              <TransitionLink
+                href="/auth/login"
+                className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Login
+              </TransitionLink>
+              <TransitionLink
+                href="/auth/join"
+                className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90"
+              >
+                Join Now
+              </TransitionLink>
+            </div>
 
             <button
               className="rounded-md p-2 text-foreground transition-colors hover:bg-muted md:hidden"
@@ -79,15 +84,19 @@ export default function Navbar(): React.ReactElement {
                 </TransitionLink>
               ))}
               <TransitionLink
-                href="/community"
+                href="/auth/login"
                 onClick={() => setIsOpen(false)}
                 className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
-                Community
+                Login
               </TransitionLink>
-              <button className="w-full rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:bg-primary/90">
+              <TransitionLink
+                href="/auth/join"
+                onClick={() => setIsOpen(false)}
+                className="w-full rounded-full bg-primary px-6 py-3 text-center font-medium text-primary-foreground transition-all hover:bg-primary/90"
+              >
                 Join Now
-              </button>
+              </TransitionLink>
             </div>
           </div>
         )}
