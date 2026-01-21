@@ -32,7 +32,7 @@ export default function TransitionLink({
       }
 
       transitionGrid.style.pointerEvents = "auto";
-      transitionGrid.style.zIndex = "1000";
+      transitionGrid.style.zIndex = "10000";
 
       gsap.killTweensOf(blocks);
       gsap.set(blocks, { opacity: 0 });
@@ -79,7 +79,7 @@ export default function TransitionLink({
 
     await new Promise((r) => setTimeout(r, 50));
 
-    onClick?.();
+    onClick?.(e);
 
     router.push(href);
 

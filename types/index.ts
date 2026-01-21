@@ -179,5 +179,5 @@ export interface WithChildrenAndClassName extends WithChildren, WithClassName {}
 // Transition link props
 export interface TransitionLinkProps extends WithChildrenAndClassName {
   href: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }

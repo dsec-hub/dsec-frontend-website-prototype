@@ -117,5 +117,5 @@ export default function PageTransition() {
     }
   }, [pathname]);
 
-  return <div ref={gridRef} className="transition-grid" />;
+  return <div ref={gridRef} className="transition-grid z-10000" />;
 }
