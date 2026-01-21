@@ -3,6 +3,8 @@
 import SectionLabel from "./SectionLabel";
 import Folder from "./Folder";
 import Image from "next/image";
+import { SparklesText } from "./ui/sparkles-text";
+import TransitionLink from "./TransitionLink";
 
 export default function AboutSection() {
   return (
@@ -13,7 +15,7 @@ export default function AboutSection() {
 					<div>
 						<SectionLabel>Why DSEC Exists</SectionLabel>
 						<h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8">
-							More Than a Coding Club
+							More Than a <SparklesText>Coding Club</SparklesText>
 						</h2>
 						<p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-lg">
 							DSEC brings together Deakin students at Burwood to build real
@@ -39,6 +41,12 @@ export default function AboutSection() {
 									and agile workflows. Join coding nights, workshops, and guest
 									talks. Prepare for internships with practical experience.
 								</p>
+
+                <div className="mt-10"></div>
+
+								<TransitionLink href="/auth/join" className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all">
+									Become a Member
+								</TransitionLink>
 							</div>
 
 							{/* For Industry & Deakin Staff */}
@@ -57,12 +65,14 @@ export default function AboutSection() {
 									Partner on hackathons and sponsored challenges. Share tools
 									and problem statements for student projects.
 								</p>
+
+                <div className="mt-10"></div>
+
+								<TransitionLink href="/partner" className="px-8 py-3 border border-lime text-lime hover:bg-lime hover:text-black rounded-full font-semibold transition-all">
+									Become a Partner
+								</TransitionLink>
 							</div>
 						</div>
-
-						<button className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all">
-							Become a Partner
-						</button>
 					</div>
 
 					{/* Right Side - Interactive Folder */}
