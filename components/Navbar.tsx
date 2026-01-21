@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
-
-import { CloseIcon, MenuIcon } from "@/components/icons";
+import { MenuIcon } from "@/components/icons";
 import TransitionLink from "@/components/TransitionLink";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { useState } from "react";
 import type { NavLink } from "@/types";
 
 const navLinks: NavLink[] = [
@@ -60,46 +66,56 @@ export default function Navbar(): React.ReactElement {
               </TransitionLink>
             </div>
 
-            <button
-              className="rounded-md p-2 text-foreground transition-colors hover:bg-muted md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <CloseIcon /> : <MenuIcon />}
-            </button>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <button
+                className="rounded-md p-2 text-foreground transition-colors hover:bg-muted md:hidden"
+                onClick={() => setIsOpen(true)}
+                aria-label="Open menu"
+              >
+                <MenuIcon />
+              </button>
+              <SheetContent
+                side="right"
+                className="w-75 border-border bg-background p-0"
+              >
+                <SheetHeader className="border-b border-border px-6 py-4">
+                  <SheetTitle className="text-left">
+                    <DSECLogo />
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col p-4">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.href}>
+                      <TransitionLink
+                        href={link.href}
+                        className="rounded-lg px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      >
+                        {link.label}
+                      </TransitionLink>
+                    </SheetClose>
+                  ))}
+                  <div className="my-4 border-t border-border" />
+                  <SheetClose asChild>
+                    <TransitionLink
+                      href="/auth/login"
+                      className="rounded-lg px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      Login
+                    </TransitionLink>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <TransitionLink
+                      href="/auth/join"
+                      className="mt-2 rounded-full bg-primary px-6 py-3 text-center text-base font-medium text-primary-foreground transition-all hover:bg-primary/90"
+                    >
+                      Join Now
+                    </TransitionLink>
+                  </SheetClose>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-
-        {isOpen && (
-          <div className="absolute left-0 right-0 top-full border-b border-border bg-background md:hidden">
-            <div className="flex flex-col space-y-2 p-4">
-              {navLinks.map((link) => (
-                <TransitionLink
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  {link.label}
-                </TransitionLink>
-              ))}
-              <TransitionLink
-                href="/auth/login"
-                onClick={() => setIsOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                Login
-              </TransitionLink>
-              <TransitionLink
-                href="/auth/join"
-                onClick={() => setIsOpen(false)}
-                className="w-full rounded-full bg-primary px-6 py-3 text-center font-medium text-primary-foreground transition-all hover:bg-primary/90"
-              >
-                Join Now
-              </TransitionLink>
-            </div>
-          </div>
-        )}
       </nav>
     </>
   );
