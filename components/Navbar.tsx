@@ -51,7 +51,7 @@ export default function Navbar(): React.ReactElement {
               <img src="/logo.svg" alt="DSEC" width={63} height={40} />
             </TransitionLink>
 
-            <div className="hidden items-center rounded-full border border-foreground/10 bg-foreground/5 px-2 py-1.5 md:flex">
+            <div className="hidden items-center rounded-full border border-foreground/10 bg-neutral-900/20 px-2 py-1.5 md:flex">
               {navLinks.map((link) => (
                 <TransitionLink
                   key={link.href}
