@@ -1,5 +1,8 @@
 'use client';
 
+import GradientText from '@/components/GradientText';
+import SectionLabel from './SectionLabel';
+
 interface PartnerBenefitProps {
   number: string;
   title: string;
@@ -58,9 +61,10 @@ export default function PartnersSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <div>
-            <p className="mb-4 font-mono text-sm tracking-wider text-secondary uppercase">
+            <SectionLabel
+            >
               Work with DSEC and Deakin students
-            </p>
+            </SectionLabel>
             <h2 className="font-grotesk text-4xl md:text-5xl font-bold leading-tight text-foreground mb-6">
               Partner with Deakin&apos;s software engineering community
             </h2>

@@ -1,5 +1,7 @@
 'use client';
 
+import GradientText from '@/components/GradientText';
+
 export default function MembershipInfo() {
   const steps = [
     {
@@ -49,7 +51,14 @@ export default function MembershipInfo() {
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12 max-w-3xl">
-          <p className="mb-4 font-mono text-sm tracking-wider text-secondary uppercase">Join DSEC</p>
+          <GradientText
+            colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+            animationSpeed={8}
+            showBorder={false}
+            className="mb-4 font-mono text-sm tracking-wider uppercase"
+          >
+            Join DSEC
+          </GradientText>
           <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-4">
             How to join the Deakin Software Engineering Club
           </h2>

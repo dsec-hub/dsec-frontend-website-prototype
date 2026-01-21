@@ -1,5 +1,8 @@
 'use client';
 
+import GradientText from '@/components/GradientText';
+import SectionLabel from '../SectionLabel';
+
 interface ObjectiveItemProps {
   icon: React.ReactNode;
   text: string;
@@ -22,9 +25,10 @@ export default function VisionSection() {
 
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="mb-16">
-          <p className="mb-4 font-mono text-sm tracking-wider text-primary uppercase">
+          <SectionLabel
+          >
             Where we&apos;re going next
-          </p>
+          </SectionLabel>
           <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
             Our vision for DSEC at Deakin
           </h2>

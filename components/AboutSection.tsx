@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from "./SectionLabel";
+
 export default function AboutSection() {
   return (
     <section className="relative bg-background py-20 md:py-32 overflow-hidden">
@@ -7,9 +9,9 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Content */}
           <div>
-            <p className="mb-4 font-mono text-sm tracking-wider text-primary uppercase">
+            <SectionLabel>
               Why DSEC Exists
-            </p>
+            </SectionLabel>
             <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-8">
               More Than a Coding Club
             </h2>

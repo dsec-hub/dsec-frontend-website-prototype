@@ -1,5 +1,8 @@
 'use client';
 
+import GradientText from '@/components/GradientText';
+import SectionLabel from '../SectionLabel';
+
 interface ExpectationItemProps {
   icon: React.ReactNode;
   text: string;
@@ -12,9 +15,10 @@ export default function CultureSection() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-12">
-            <p className="mb-4 font-mono text-sm tracking-wider text-primary uppercase">
+            <SectionLabel
+            >
               How we behave as a community
-            </p>
+            </SectionLabel>
             <h2 className="font-grotesk text-4xl md:text-5xl font-bold leading-tight text-foreground mb-6">
               Safe, inclusive, and DUSA-affiliated
             </h2>

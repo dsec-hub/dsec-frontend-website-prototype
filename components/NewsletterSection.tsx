@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 
+import GradientText from "@/components/GradientText";
 import {
   ArrowRightIcon,
   LoadingSpinner,
@@ -63,8 +64,10 @@ export default function NewsletterSection(): React.ReactElement {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-12">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
-          <MailSmallIcon className="text-primary" />
-          <span className="font-mono text-sm text-primary">Stay in the loop</span>
+          <MailSmallIcon className="text-primary w-4 h-4" />
+          <p className="font-mono text-sm text-nowrap text-primary">
+            Stay in the loop
+          </p>
         </div>
 
         <h2 className="mb-6 font-grotesk text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">

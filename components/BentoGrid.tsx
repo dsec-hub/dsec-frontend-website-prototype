@@ -10,6 +10,7 @@ import {
 import TransitionLink from "@/components/TransitionLink";
 import { bentoColorClasses, themeColors } from "@/lib/theme";
 import type { BaseColor, BentoCardProps } from "@/types";
+import SectionLabel from "./SectionLabel";
 
 export default function BentoGrid(): React.ReactElement {
   return (
@@ -22,9 +23,9 @@ export default function BentoGrid(): React.ReactElement {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
         <div className="mb-12 md:mb-16">
-          <p className="mb-4 font-mono text-sm uppercase tracking-wider text-primary">
+          <SectionLabel>
             Choose how you want to get involved
-          </p>
+          </SectionLabel>
           <h2 className="mb-6 max-w-3xl font-grotesk text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
             Your starting point
           </h2>

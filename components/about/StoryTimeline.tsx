@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from "../SectionLabel";
+
 type ColorType = 'primary' | 'secondary' | 'coral' | 'lime';
 
 interface StoryPanel {
@@ -99,9 +101,9 @@ export default function StoryTimeline() {
   return (
     <section className="relative bg-card py-20 md:py-32 overflow-hidden">
       <div className="px-6 md:px-12 max-w-7xl mx-auto mb-12">
-        <p className="mb-4 font-mono text-sm tracking-wider text-primary uppercase">
+        <SectionLabel>
           Our story at Deakin
-        </p>
+        </SectionLabel>
         <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
           Our journey so far
         </h2>

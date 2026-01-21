@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import PageTransition from "@/components/PageTransition";
+import ClickSpark from "@/components/ClickSpark";
 
 import type { Metadata } from "next";
 
@@ -40,7 +41,15 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <PageTransition />
-        {children}
+        <ClickSpark 
+          sparkColor="#fff" 
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          {children}
+        </ClickSpark>
       </body>
     </html>
   );

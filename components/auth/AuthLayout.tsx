@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Shield } from "lucide-react";
-import Link from "next/link";
+import { Shield } from "lucide-react";
 import { type ReactNode } from "react";
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -11,7 +13,7 @@ interface AuthLayoutProps {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-background">
+    <div className="min-h-screen relative flex flex-col bg-background">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient Orbs */}
@@ -88,22 +90,13 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         ))}
       </div>
 
-      {/* Back to Home */}
-      <div className="absolute top-6 left-6 z-10">
-        <Link href="/">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card/80 backdrop-blur-sm border border-border hover:border-primary/50 transition-colors text-foreground"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
-          </motion.button>
-        </Link>
+      {/* Navbar */}
+      <div className="relative z-20">
+        <Navbar />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,7 +108,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
       </div>
 
       {/* Trust Badges */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+      <div className="relative z-10 flex justify-center py-6">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -135,6 +128,9 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
           </div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

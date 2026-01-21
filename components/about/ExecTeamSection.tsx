@@ -1,5 +1,8 @@
 'use client';
 
+import GradientText from '@/components/GradientText';
+import SectionLabel from '../SectionLabel';
+
 type ColorType = 'primary' | 'secondary' | 'lime' | 'accent' | 'coral';
 
 interface ExecRole {
@@ -78,9 +81,10 @@ export default function ExecTeamSection() {
 
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="mb-12 md:mb-16">
-          <p className="mb-4 font-mono text-sm tracking-wider text-primary uppercase">
+          <SectionLabel
+          >
             Who runs DSEC
-          </p>
+          </SectionLabel>
           <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
             Meet the DSEC executive team
           </h2>

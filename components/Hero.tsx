@@ -1,4 +1,5 @@
 import PixelBlast from './PixelBlast';
+import SectionLabel from './SectionLabel';
 
 export default function Hero(): React.ReactElement {
   return (
@@ -22,9 +23,7 @@ export default function Hero(): React.ReactElement {
       {/* Hero Content */}
       <div className="relative z-10 px-6 md:px-12 pt-12 md:pt-20 pb-32 max-w-7xl mx-auto">
         <div className="max-w-4xl">
-          <p className="mb-4 font-mono text-sm tracking-wider text-primary">
-            JOIN US FOR T1 STALL
-          </p>
+          <SectionLabel>JOIN US FOR T1 STALL</SectionLabel>
           <h1 className="font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-foreground mb-6">
             Deakin&apos;s Home
             <br />
