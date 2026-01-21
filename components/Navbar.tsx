@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetClose,
 } from "@/components/ui/sheet";
+import { FloatingNav } from "@/components/ui/floating-navbar";
 import { useState } from "react";
 import type { NavLink } from "@/types";
 
@@ -20,11 +21,22 @@ const navLinks: NavLink[] = [
   { href: "/contact", label: "Contact" },
 ];
 
+const floatingNavItems = navLinks.map((link) => ({
+  name: link.label,
+  link: link.href,
+}));
+
 export default function Navbar(): React.ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+      <FloatingNav
+        navItems={floatingNavItems}
+        className="border-white/20 bg-background/80 backdrop-blur-md"
+        onMenuClick={() => setIsOpen(true)}
+      />
+
       <div className="relative z-20 bg-primary py-2 text-center">
         <p className="px-4 text-sm font-medium text-primary-foreground">
           Join us in T1 during the O-week stall to play games, win prizes, and
