@@ -8,10 +8,34 @@ import {
   NewspaperIcon,
 } from "@/components/icons";
 import TransitionLink from "@/components/TransitionLink";
+import { Globe } from "@/components/ui/globe";
 import { bentoColorClasses, themeColors } from "@/lib/theme";
 import type { BaseColor, BentoCardProps } from "@/types";
+import type { COBEOptions } from "cobe";
 import SectionLabel from "./SectionLabel";
 import GradientText from "./GradientText";
+
+const EVENTS_GLOBE_CONFIG: COBEOptions = {
+  width: 800,
+  height: 800,
+  onRender: () => {},
+  devicePixelRatio: 2,
+  phi: 0,
+  theta: 0.3,
+  dark: 1,
+  diffuse: 0.4,
+  mapSamples: 16000,
+  mapBrightness: 6,
+  baseColor: [0.91, 0.12, 0.39], // primary color #e91e63 converted to RGB 0-1
+  markerColor: [1, 0.42, 0.42], // coral color for markers
+  glowColor: [0.91, 0.12, 0.39], // primary glow
+  markers: [
+    { location: [-37.8136, 144.9631], size: 0.1 }, // Melbourne
+    { location: [-37.8497, 145.1153], size: 0.08 }, // Burwood (Deakin)
+    { location: [-33.8688, 151.2093], size: 0.06 }, // Sydney
+    { location: [-27.4698, 153.0251], size: 0.05 }, // Brisbane
+  ],
+};
 
 export default function BentoGrid(): React.ReactElement {
   return (
@@ -52,6 +76,12 @@ export default function BentoGrid(): React.ReactElement {
 						color="primary"
 						className="lg:col-span-2 lg:row-span-2"
 						large
+						backgroundComponent={
+							<Globe
+								config={EVENTS_GLOBE_CONFIG}
+								className="inset-auto! absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 size-125 opacity-50 md:size-162.5"
+							/>
+						}
 					/>
 
 					<BentoCard
@@ -92,6 +122,7 @@ function BentoCard({
   color,
   className = "",
   large,
+  backgroundComponent,
 }: BentoCardProps): React.ReactElement {
   const styles = bentoColorClasses[color];
 
@@ -103,6 +134,12 @@ function BentoCard({
       <div className="absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <GridPattern color={color} />
       </div>
+
+      {backgroundComponent && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+          {backgroundComponent}
+        </div>
+      )}
 
       <div className="relative z-10">
         <div
@@ -129,33 +166,6 @@ function BentoCard({
           <ArrowRightIcon />
         </div>
       </div>
-
-      {large && (
-        <div className="pointer-events-none absolute bottom-0 right-0 h-48 w-48 opacity-20">
-          <svg viewBox="0 0 100 100" className="h-full w-full">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <circle
-                key={i}
-                cx="100"
-                cy="100"
-                r={20 + i * 15}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.5"
-                className={
-                  color === "primary"
-                    ? "text-primary"
-                    : color === "secondary"
-                      ? "text-secondary"
-                      : color === "lime"
-                        ? "text-lime"
-                        : "text-accent"
-                }
-              />
-            ))}
-          </svg>
-        </div>
-      )}
     </TransitionLink>
   );
 }

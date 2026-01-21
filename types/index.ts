@@ -71,6 +71,7 @@ export interface BentoCardProps {
   color: BaseColor;
   className?: string;
   large?: boolean;
+  backgroundComponent?: ReactNode;
 }
 
 // Project interfaces
