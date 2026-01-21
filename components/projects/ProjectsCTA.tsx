@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
+
 export default function ProjectsCTA() {
   return (
     <section className="relative bg-background py-20 md:py-32 overflow-hidden">
@@ -21,8 +23,8 @@ export default function ProjectsCTA() {
       </div>
 
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-accent uppercase">Want to Build Something?</p>
+        <div className="text-center mb-12 flex flex-col items-center">
+          <SectionLabel>Want to Build Something?</SectionLabel>
           <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6 max-w-3xl mx-auto">
             Build your own project with DSEC
           </h2>

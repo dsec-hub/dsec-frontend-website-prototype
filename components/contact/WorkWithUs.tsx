@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import SectionLabel from '@/components/SectionLabel';
 
 type CollaborationType = 'guest-talk' | 'workshop' | 'project-brief' | 'hackathon' | 'sponsorship' | 'other';
 
@@ -94,7 +95,7 @@ export default function WorkWithUs() {
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-coral uppercase">Partnerships & Collaborations</p>
+          <SectionLabel>Partnerships & Collaborations</SectionLabel>
           <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-4 max-w-2xl">
             Work with Deakin software engineering students
           </h2>

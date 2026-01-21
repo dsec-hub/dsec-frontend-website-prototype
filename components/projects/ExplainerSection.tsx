@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
+
 type ColorType = 'primary' | 'secondary' | 'lime';
 
 interface LookForItemProps {
@@ -28,7 +30,7 @@ export default function ExplainerSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left side - Main content */}
           <div>
-            <p className="mb-4 font-mono text-sm tracking-wider text-lime uppercase">How to Read These Projects</p>
+            <SectionLabel>How to Read These Projects</SectionLabel>
             <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-6">
               What these projects say about our members
             </h2>

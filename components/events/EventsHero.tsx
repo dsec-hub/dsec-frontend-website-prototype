@@ -1,6 +1,7 @@
 'use client';
 
 import GradientText from '@/components/GradientText';
+import SectionLabel from '@/components/SectionLabel';
 import TransitionLink from '../TransitionLink';
 
 export default function EventsHero() {
@@ -33,14 +34,7 @@ export default function EventsHero() {
               <span className="text-sm text-muted-foreground">Events registered through Humanitix</span>
             </div>
 
-            <GradientText
-              colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-              animationSpeed={8}
-              showBorder={false}
-              className="mb-4 font-mono text-sm tracking-wider uppercase"
-            >
-              DSEC Events
-            </GradientText>
+            <SectionLabel>DSEC Events</SectionLabel>
 
             <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
               Tech events for Deakin students at Burwood and online

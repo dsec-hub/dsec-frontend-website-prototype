@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
+
 export default function AccessibilitySection() {
   return (
     <section className="relative bg-card py-16 md:py-24 overflow-hidden">
@@ -18,7 +20,7 @@ export default function AccessibilitySection() {
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-secondary uppercase">Accessibility and Catering</p>
+          <SectionLabel>Accessibility and Catering</SectionLabel>
           <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-4 max-w-2xl">
             Accessibility and event details
           </h2>

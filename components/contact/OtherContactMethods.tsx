@@ -1,5 +1,6 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
 import TransitionLink from '../TransitionLink';
 
 export default function OtherContactMethods() {
@@ -58,8 +59,8 @@ export default function OtherContactMethods() {
       </div>
 
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-secondary uppercase">Stay Connected</p>
+        <div className="text-center mb-12 flex flex-col items-center">
+          <SectionLabel>Stay Connected</SectionLabel>
           <h2 className="font-grotesk text-4xl md:text-5xl font-bold leading-tight text-foreground mb-6 max-w-3xl mx-auto">
             Other ways to connect with DSEC
           </h2>

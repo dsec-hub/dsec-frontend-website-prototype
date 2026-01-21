@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import SectionLabel from '@/components/SectionLabel';
 
 type SuggestionTopic = 'events' | 'projects' | 'community' | 'discord' | 'other';
 
@@ -98,7 +99,7 @@ export default function SuggestionForm() {
       <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-lime uppercase">Feedback & Ideas</p>
+          <SectionLabel>Feedback & Ideas</SectionLabel>
           <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-4 max-w-2xl">
             Share an idea or suggestion
           </h2>

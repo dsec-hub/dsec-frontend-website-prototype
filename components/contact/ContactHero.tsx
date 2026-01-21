@@ -1,5 +1,6 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
 import TransitionLink from '../TransitionLink';
 
 export default function ContactHero() {
@@ -32,7 +33,7 @@ export default function ContactHero() {
               <span className="text-sm text-muted-foreground">DUSA affiliated student club</span>
             </div>
 
-            <p className="mb-4 font-mono text-sm tracking-wider text-accent uppercase">Contact DSEC</p>
+            <SectionLabel>Contact DSEC</SectionLabel>
 
             <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
               Contact DSEC and join the Deakin software engineering community

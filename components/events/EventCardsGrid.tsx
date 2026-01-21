@@ -1,5 +1,7 @@
 'use client';
 
+import SectionLabel from '@/components/SectionLabel';
+
 type EventType = 'workshop' | 'hackathon' | 'talk' | 'social' | 'coding';
 type LocationType = 'burwood' | 'online';
 
@@ -80,7 +82,7 @@ export default function EventCardsGrid() {
       <div className="px-6 md:px-12 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm tracking-wider text-coral uppercase">Upcoming DSEC Events</p>
+          <SectionLabel>Upcoming DSEC Events</SectionLabel>
           <h2 className="font-grotesk text-3xl md:text-4xl font-bold leading-tight text-foreground mb-4 max-w-2xl">
             Browse upcoming tech events for Deakin students
           </h2>

@@ -1,6 +1,7 @@
 'use client';
 
 import GradientText from '@/components/GradientText';
+import SectionLabel from '@/components/SectionLabel';
 
 export default function ProjectsHero() {
   return (
@@ -25,14 +26,7 @@ export default function ProjectsHero() {
           <span className="text-sm text-muted-foreground">All projects shown here link directly to GitHub</span>
         </div>
 
-        <GradientText
-          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-          animationSpeed={8}
-          showBorder={false}
-          className="mb-4 font-mono text-sm tracking-wider uppercase"
-        >
-          Student Software Projects
-        </GradientText>
+        <SectionLabel>Student Software Projects</SectionLabel>
 
         <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6 max-w-4xl">
           Student software projects from the Deakin Software Engineering Club

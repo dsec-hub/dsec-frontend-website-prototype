@@ -10,6 +10,7 @@ import {
   UsersIcon,
   XIcon,
 } from "@/components/icons";
+import SectionLabel from "@/components/SectionLabel";
 import {
   accentColorClasses,
   getColorFromIndex,
@@ -172,9 +173,7 @@ export default function ProjectCardsGrid(): React.ReactElement {
     <section className="relative bg-background py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm uppercase tracking-wider text-secondary">
-            Explore DSEC Projects
-          </p>
+          <SectionLabel>Explore DSEC Projects</SectionLabel>
           <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
             These projects are built by Deakin students from software
             engineering, computer science, IT, and related courses. Most were

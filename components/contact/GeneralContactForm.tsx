@@ -11,6 +11,7 @@ import {
   SendIcon,
   ShieldIcon,
 } from "@/components/icons";
+import SectionLabel from "@/components/SectionLabel";
 import type { ContactFormData } from "@/types";
 
 export default function GeneralContactForm(): React.ReactElement {
@@ -112,9 +113,7 @@ export default function GeneralContactForm(): React.ReactElement {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
         <div className="mb-12">
-          <p className="mb-4 font-mono text-sm uppercase tracking-wider text-accent">
-            General Enquiries
-          </p>
+          <SectionLabel>General Enquiries</SectionLabel>
           <h2 className="mb-4 max-w-2xl font-grotesk text-3xl font-bold leading-tight text-foreground md:text-4xl">
             Contact the DSEC team
           </h2>
