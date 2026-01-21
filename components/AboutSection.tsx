@@ -72,7 +72,7 @@ export default function AboutSection() {
 								<div className="mt-10"></div>
 
 								<TransitionLink
-									href="/partner"
+									href="/partnership"
 									className="px-8 py-3 border border-lime text-lime hover:bg-lime hover:text-black rounded-full font-semibold transition-all text-nowrap"
 								>
 									Become a Partner
