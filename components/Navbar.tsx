@@ -36,7 +36,7 @@ export default function Navbar(): React.ReactElement {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <TransitionLink href="/" className="flex items-center">
-              <DSECLogo />
+              <img src="/logo.svg" alt="DSEC" width={63} height={40} />
             </TransitionLink>
 
             <div className="hidden items-center rounded-full border border-foreground/10 bg-foreground/5 px-2 py-1.5 md:flex">
@@ -80,7 +80,7 @@ export default function Navbar(): React.ReactElement {
               >
                 <SheetHeader className="border-b border-border px-6 py-4">
                   <SheetTitle className="text-left">
-                    <DSECLogo />
+                    <img src="/logo.svg" alt="DSEC" width={76} height={48} />
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col p-4">
@@ -121,40 +121,3 @@ export default function Navbar(): React.ReactElement {
   );
 }
 
-function DSECLogo(): React.ReactElement {
-  return (
-    <svg
-      width="60"
-      height="40"
-      viewBox="0 0 60 40"
-      fill="none"
-      className="text-foreground"
-    >
-      <text
-        x="0"
-        y="28"
-        className="fill-current font-grotesk text-2xl font-bold"
-        style={{ fontFamily: "var(--font-grotesk)" }}
-      >
-        D
-      </text>
-      <text
-        x="15"
-        y="28"
-        className="fill-primary font-grotesk text-2xl font-bold"
-        style={{ fontFamily: "var(--font-grotesk)" }}
-      >
-        S
-      </text>
-      <text
-        x="30"
-        y="28"
-        className="fill-current font-grotesk text-2xl font-bold"
-        style={{ fontFamily: "var(--font-grotesk)" }}
-      >
-        EC
-      </text>
-      <polygon points="16,32 20,40 24,32" className="fill-primary" />
-    </svg>
-  );
-}

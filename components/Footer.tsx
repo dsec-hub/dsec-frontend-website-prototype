@@ -36,7 +36,17 @@ export default function Footer(): React.ReactElement {
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-2">
-            <DSECLogoFull />
+            <div className="flex items-center gap-2">
+              <img src="/logo-s.svg" alt="DSEC" width={14.4} height={3} />
+              <div>
+                <span className="font-grotesk text-xl font-bold text-foreground">
+                  DSEC
+                </span>
+                <p className="text-xs text-muted-foreground">
+                  Deakin Software Engineering Club
+                </p>
+              </div>
+            </div>
             <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
               The Deakin Software Engineering Club is a student led club
               affiliated with the Deakin University Student Association. We are
@@ -155,54 +165,3 @@ export default function Footer(): React.ReactElement {
   );
 }
 
-function DSECLogoFull(): React.ReactElement {
-  return (
-    <div className="flex items-center gap-3">
-      <svg
-        width="48"
-        height="48"
-        viewBox="0 0 48 48"
-        fill="none"
-        className="text-foreground"
-      >
-        <rect
-          x="4"
-          y="4"
-          width="40"
-          height="40"
-          rx="8"
-          className="fill-primary/20"
-        />
-        <text
-          x="8"
-          y="32"
-          className="fill-foreground text-xl font-bold"
-          style={{ fontFamily: "var(--font-grotesk)" }}
-        >
-          D
-        </text>
-        <text
-          x="20"
-          y="32"
-          className="fill-primary text-xl font-bold"
-          style={{ fontFamily: "var(--font-grotesk)" }}
-        >
-          S
-        </text>
-        <polygon
-          points="24,36 28,44 32,36"
-          className="fill-primary"
-          transform="translate(-4, -8)"
-        />
-      </svg>
-      <div>
-        <span className="font-grotesk text-xl font-bold text-foreground">
-          DSEC
-        </span>
-        <p className="text-xs text-muted-foreground">
-          Deakin Software Engineering Club
-        </p>
-      </div>
-    </div>
-  );
-}
