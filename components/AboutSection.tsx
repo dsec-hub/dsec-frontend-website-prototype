@@ -8,9 +8,9 @@ import TransitionLink from "./TransitionLink";
 
 export default function AboutSection() {
 	return (
-		<section className="relative bg-background py-20 md:py-32 overflow-hidden">
+		<section className="relative bg-background py-20 overflow-hidden">
 			<div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-				<div className="flex flex-col-reverse mt-36 md:flex-row items-center gap-12 lg:gap-20">
+				<div className="flex flex-col-reverse mt-36 md:mt-0 md:flex-row items-center gap-12 lg:gap-20">
 					{/* Left Content */}
 					<div className="w-full md:w-1/2">
 						<SectionLabel>Why DSEC Exists</SectionLabel>
@@ -123,7 +123,7 @@ export default function AboutSection() {
 			</div>
 
 			{/* Partner Logos Marquee */}
-			<div className="mt-20 border-t border-border pt-8">
+			<div className="mt-10 pt-8">
 				<PartnerMarquee />
 			</div>
 		</section>
