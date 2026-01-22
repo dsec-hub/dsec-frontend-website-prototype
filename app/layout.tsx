@@ -4,6 +4,8 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import PageTransition from "@/components/PageTransition";
 import ClickSpark from "@/components/ClickSpark";
+import PreLoader from "@/components/PreLoader";
+import { LoaderProvider } from "@/app/loader-context";
 
 import type { Metadata } from "next";
 
@@ -40,16 +42,19 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <PageTransition />
-        <ClickSpark 
-          sparkColor="#fff" 
-          sparkSize={10}
-          sparkRadius={15}
-          sparkCount={8}
-          duration={400}
-        >
-          {children}
-        </ClickSpark>
+        <LoaderProvider>
+          <PreLoader />
+          <PageTransition />
+          <ClickSpark 
+            sparkColor="#fff" 
+            sparkSize={10}
+            sparkRadius={15}
+            sparkCount={8}
+            duration={400}
+          >
+            {children}
+          </ClickSpark>
+        </LoaderProvider>
       </body>
     </html>
   );
