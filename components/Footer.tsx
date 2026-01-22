@@ -16,6 +16,7 @@ const quickLinks: NavLink[] = [
   { label: "Projects", href: "/projects" },
   { label: "Events", href: "/events" },
   { label: "Blog", href: "/blog" },
+  { label: "Partner with us", href: "/partner" },
   { label: "Contact and join", href: "/contact" },
 ];
 
