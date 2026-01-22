@@ -77,7 +77,7 @@ export default function AboutIntro() {
 									enableBlur
 									baseRotation={3}
 									blurStrength={4}
-									containerClassName="text-white text-4xl md:text-5xl lg:text-7xl font-grotesk text-left"
+									containerClassName="text-white text-5xl lg:text-7xl font-grotesk text-left"
 								>
 									Deakin&apos;s home for students who want to build real
 									software, not just pass assignments.
