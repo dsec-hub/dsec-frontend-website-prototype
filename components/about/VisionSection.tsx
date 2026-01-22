@@ -2,6 +2,7 @@
 
 import GradientText from '@/components/GradientText';
 import SectionLabel from '../SectionLabel';
+import { Highlighter } from '../ui/highlighter';
 
 interface ObjectiveItemProps {
   icon: React.ReactNode;
@@ -16,118 +17,174 @@ const colorClasses: Record<string, string> = {
 
 export default function VisionSection() {
   return (
-    <section className="relative bg-background py-20 md:py-32 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
-      </div>
+		<section className="relative bg-background py-20 md:py-32 overflow-hidden">
+			{/* Background decoration */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
+			</div>
 
-      <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="mb-16">
-          <SectionLabel
-          >
-            Where we&apos;re going next
-          </SectionLabel>
-          <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
-            Our vision for DSEC at Deakin
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
-            Our vision is for every Deakin student who is serious about software engineering to have a clear path from first-year curiosity to job-ready confidence, supported by a club that feels like a real dev team and a real community.
-          </p>
-        </div>
+			<div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
+				<div className="mb-16">
+					<SectionLabel>Where we&apos;re going next</SectionLabel>
+					<h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
+						Our vision for DSEC at Deakin
+					</h2>
+					<p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+						Our vision is for every Deakin student who is serious about software
+						engineering to have a clear path from first-year curiosity to
+						job-ready confidence, supported by a club that feels like a real dev
+						team and a real community.
+					</p>
+				</div>
 
-        {/* Two column objectives */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* For Members */}
-          <div className="relative p-8 md:p-10 rounded-2xl border border-primary/20 bg-primary/5">
-            {/* Decorative corner */}
-            <div className="absolute top-0 right-0 w-32 h-32 overflow-hidden rounded-tr-2xl">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <circle cx="100" cy="0" r="80" fill="none" stroke="var(--color-primary)" strokeWidth="1" opacity="0.2" />
-                <circle cx="100" cy="0" r="60" fill="none" stroke="var(--color-primary)" strokeWidth="1" opacity="0.15" />
-                <circle cx="100" cy="0" r="40" fill="none" stroke="var(--color-primary)" strokeWidth="1" opacity="0.1" />
-              </svg>
-            </div>
+				{/* Two column objectives */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+					{/* For Members */}
+					<div className="relative p-8 md:p-10 rounded-2xl border border-primary/20 bg-primary/5">
+						{/* Decorative corner */}
+						<div className="absolute top-0 right-0 w-32 h-32 overflow-hidden rounded-tr-2xl">
+							<svg viewBox="0 0 100 100" className="w-full h-full">
+								<circle
+									cx="100"
+									cy="0"
+									r="80"
+									fill="none"
+									stroke="var(--color-primary)"
+									strokeWidth="1"
+									opacity="0.2"
+								/>
+								<circle
+									cx="100"
+									cy="0"
+									r="60"
+									fill="none"
+									stroke="var(--color-primary)"
+									strokeWidth="1"
+									opacity="0.15"
+								/>
+								<circle
+									cx="100"
+									cy="0"
+									r="40"
+									fill="none"
+									stroke="var(--color-primary)"
+									strokeWidth="1"
+									opacity="0.1"
+								/>
+							</svg>
+						</div>
 
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-primary/20 text-primary">
-                <UsersIcon />
-              </div>
-              <h3 className="font-grotesk text-2xl font-bold text-foreground">Core objectives for members</h3>
-            </div>
+						<div className="flex items-center gap-3 mb-6">
+							<div className="p-3 rounded-xl bg-primary/20 text-primary">
+								<UsersIcon />
+							</div>
+							<h3 className="font-grotesk text-2xl font-bold text-foreground">
+								Core objectives for members
+							</h3>
+						</div>
 
-            <ul className="space-y-4">
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Help students ship at least one hackathon-level project before graduation"
-                color="primary"
-              />
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Teach modern software practices — Git, agile, reviews, collaboration — alongside technical skills"
-                color="primary"
-              />
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Make it easier to meet peers, mentors, and industry contacts at Deakin"
-                color="primary"
-              />
-              <ObjectiveItem
-                icon={<HeartIcon />}
-                text="Support students from all backgrounds to feel welcome in tech and stay in the pipeline"
-                color="primary"
-              />
-            </ul>
-          </div>
+						<ul className="space-y-4">
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Help students ship at least one hackathon-level project before graduation"
+								color="primary"
+							/>
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Teach modern software practices — Git, agile, reviews, collaboration — alongside technical skills"
+								color="primary"
+							/>
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Make it easier to meet peers, mentors, and industry contacts at Deakin"
+								color="primary"
+							/>
+							<ObjectiveItem
+								icon={<HeartIcon />}
+								text="Support students from all backgrounds to feel welcome in tech and stay in the pipeline"
+								color="primary"
+							/>
+						</ul>
+					</div>
 
-          {/* For Partners and Deakin */}
-          <div className="relative p-8 md:p-10 rounded-2xl border border-secondary/20 bg-secondary/5">
-            {/* Decorative corner */}
-            <div className="absolute top-0 right-0 w-32 h-32 overflow-hidden rounded-tr-2xl">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <circle cx="100" cy="0" r="80" fill="none" stroke="var(--color-secondary)" strokeWidth="1" opacity="0.2" />
-                <circle cx="100" cy="0" r="60" fill="none" stroke="var(--color-secondary)" strokeWidth="1" opacity="0.15" />
-                <circle cx="100" cy="0" r="40" fill="none" stroke="var(--color-secondary)" strokeWidth="1" opacity="0.1" />
-              </svg>
-            </div>
+					{/* For Partners and Deakin */}
+					<div className="relative p-8 md:p-10 rounded-2xl border border-secondary/20 bg-secondary/5">
+						{/* Decorative corner */}
+						<div className="absolute top-0 right-0 w-32 h-32 overflow-hidden rounded-tr-2xl">
+							<svg viewBox="0 0 100 100" className="w-full h-full">
+								<circle
+									cx="100"
+									cy="0"
+									r="80"
+									fill="none"
+									stroke="var(--color-secondary)"
+									strokeWidth="1"
+									opacity="0.2"
+								/>
+								<circle
+									cx="100"
+									cy="0"
+									r="60"
+									fill="none"
+									stroke="var(--color-secondary)"
+									strokeWidth="1"
+									opacity="0.15"
+								/>
+								<circle
+									cx="100"
+									cy="0"
+									r="40"
+									fill="none"
+									stroke="var(--color-secondary)"
+									strokeWidth="1"
+									opacity="0.1"
+								/>
+							</svg>
+						</div>
 
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-secondary/20 text-secondary">
-                <BriefcaseIcon />
-              </div>
-              <h3 className="font-grotesk text-2xl font-bold text-foreground">Core objectives for partners</h3>
-            </div>
+						<div className="flex items-center gap-3 mb-6">
+							<div className="p-3 rounded-xl bg-secondary/20 text-secondary">
+								<BriefcaseIcon />
+							</div>
+							<h3 className="font-grotesk text-2xl font-bold text-foreground">
+								Core objectives for partners
+							</h3>
+						</div>
 
-            <ul className="space-y-4">
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Offer a simple way for companies and staff to meet motivated student developers"
-                color="secondary"
-              />
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Co-create events that are genuinely useful for both student learning and recruitment"
-                color="secondary"
-              />
-              <ObjectiveItem
-                icon={<TargetIcon />}
-                text="Showcase student projects and success stories to highlight Deakin's software talent"
-                color="secondary"
-              />
-            </ul>
-          </div>
-        </div>
+						<ul className="space-y-4">
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Offer a simple way for companies and staff to meet motivated student developers"
+								color="secondary"
+							/>
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Co-create events that are genuinely useful for both student learning and recruitment"
+								color="secondary"
+							/>
+							<ObjectiveItem
+								icon={<TargetIcon />}
+								text="Showcase student projects and success stories to highlight Deakin's software talent"
+								color="secondary"
+							/>
+						</ul>
+					</div>
+				</div>
 
-        {/* Bottom tagline */}
-        <div className="mt-16 text-center">
-          <p className="font-grotesk text-xl md:text-2xl text-foreground font-medium max-w-2xl mx-auto">
-            We want DSEC to be known as the place where Deakin students actually build things, not just talk about them.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
+				{/* Bottom tagline */}
+				<div className="mt-16 text-center">
+					<p className="font-grotesk text-xl md:text-2xl text-foreground font-medium max-w-2xl mx-auto">
+						We want DSEC to be known as the place where Deakin students{" "}
+						<Highlighter action="underline" isView={true} color="#e91e63">
+							actually build things
+						</Highlighter>
+						, not just talk about them.
+					</p>
+				</div>
+			</div>
+		</section>
+	);
 }
 
 function ObjectiveItem({ icon, text, color }: ObjectiveItemProps) {

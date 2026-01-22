@@ -127,19 +127,19 @@ export default function AboutIntro() {
 
 							<p className="text-foreground font-medium mb-8 text-xl lg:text-2xl text-center leading-loose">
 								If you care about{" "}
-								<Highlighter action="box" color="#00bcd4">
+								<Highlighter action="box" color="#00bcd4" isView={true}>
 									building things
 								</Highlighter>
 								,{" "}
-								<Highlighter action="circle" color="#00bcd4">
+								<Highlighter action="circle" color="#00bcd4" isView={true}>
 									learning from peers
 								</Highlighter>
 								, and getting closer to{" "}
-								<Highlighter action="underline" color="#00bcd4">
+								<Highlighter action="underline" color="#00bcd4" isView={true}>
 									tech careers
 								</Highlighter>
 								,{" "}
-								<Highlighter action="highlight" color="#e91e63">
+								<Highlighter action="highlight" color="#e91e63" isView={true}>
 									this is your club.
 								</Highlighter>
 							</p>
