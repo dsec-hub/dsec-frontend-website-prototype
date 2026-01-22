@@ -1,104 +1,146 @@
 'use client';
 
-import GradientText from '@/components/GradientText';
 import SectionLabel from '@/components/SectionLabel';
+import ScrollReveal from '@/components/ScrollReveal';
+import CardSwap, { Card } from '@/components/CardSwap';
 
 export default function ProjectsHero() {
   return (
-    <section className="relative min-h-[70vh] overflow-hidden bg-background">
-      {/* Animated code background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <CodeRainBackground />
-      </div>
+    <>
+      {/* Hero Section - 2 Column Layout */}
+      <section className="relative min-h-screen overflow-hidden bg-background">
+        {/* Two Column Hero Content */}
+        <div className="relative z-10 w-full px-6 md:px-12 pt-32 pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] max-w-7xl mx-auto">
+            {/* Left Column - Title and Labels */}
+            <div className="flex flex-col justify-center max-w-xl">
+              {/* Small note */}
+              <div className="inline-flex items-center gap-2 bg-muted/50 border border-border/50 rounded-full px-4 py-2 mb-8 w-fit">
+                <GitHubIcon />
+                <span className="text-sm text-muted-foreground">All projects shown here link directly to GitHub</span>
+              </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div
-        className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse-glow"
-        style={{ animationDelay: '1.5s' }}
-      />
+              <SectionLabel>Student Software Projects</SectionLabel>
 
-      {/* Content */}
-      <div className="relative z-10 px-6 md:px-12 pt-32 pb-20 max-w-7xl mx-auto">
-        {/* Small note */}
-        <div className="inline-flex items-center gap-2 bg-muted/50 border border-border/50 rounded-full px-4 py-2 mb-8">
-          <GitHubIcon />
-          <span className="text-sm text-muted-foreground">All projects shown here link directly to GitHub</span>
+              <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
+                Student software projects from the Deakin Software Engineering Club
+              </h1>
+
+              <p className="text-xl text-secondary font-medium mb-8">
+                Real software engineering projects built by Deakin students at the Melbourne Burwood campus, with links to the GitHub repos behind the code.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <button className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center transition-all">
+                  <SparklesIcon />
+                  Join a project through DSEC
+                </button>
+                <button className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center transition-all">
+                  <CodeIcon />
+                  Talk to us about student projects
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column - CardSwap */}
+            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
+              <CardSwap
+                width={340}
+                height={420}
+                cardDistance={50}
+                verticalDistance={60}
+                delay={4000}
+                pauseOnHover={true}
+                easing="elastic"
+              >
+                <Card className="flex flex-col overflow-hidden !p-0 !bg-black/80 !border-white/20">
+                  {/* Card Header */}
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/50">
+                    <CodeBracketIcon />
+                    <span className="text-white font-medium">Reliable</span>
+                  </div>
+                  {/* Card Body with gradient background */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-violet-800/30 to-cyan-600/20" />
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-purple-600/40 to-transparent" />
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-8xl font-bold text-purple-500/60 font-grotesk">2</div>
+                  </div>
+                </Card>
+                <Card className="flex flex-col overflow-hidden !p-0 !bg-black/80 !border-white/20">
+                  {/* Card Header */}
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/50">
+                    <SlidersIcon />
+                    <span className="text-white font-medium">Customizable</span>
+                  </div>
+                  {/* Card Body with gradient background */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 via-purple-800/30 to-pink-600/20" />
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-indigo-600/40 to-transparent" />
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-8xl font-bold text-indigo-500/60 font-grotesk">1</div>
+                  </div>
+                </Card>
+                <Card className="flex flex-col overflow-hidden !p-0 !bg-black/80 !border-white/20">
+                  {/* Card Header */}
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/50">
+                    <CircleIcon />
+                    <span className="text-white font-medium">Smooth</span>
+                  </div>
+                  {/* Card Body with gradient background */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-violet-900/50 via-fuchsia-800/30 to-rose-600/20" />
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-violet-600/40 to-transparent" />
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-8xl font-bold text-violet-500/60 font-grotesk">3</div>
+                  </div>
+                </Card>
+              </CardSwap>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <SectionLabel>Student Software Projects</SectionLabel>
+      {/* Content Section - Centered with ScrollReveal */}
+      <section className="relative bg-background py-20">
+        <div className="relative z-10 px-6 md:px-12 max-w-4xl mx-auto flex flex-col items-center">
+          {/* Scroll Down Indicator */}
+          <div className="mb-12 flex flex-col items-center animate-bounce bg-white/10 rounded-full p-2">
+            <svg
+              className="w-6 h-6 text-muted-foreground"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </div>
 
-        <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6 max-w-4xl">
-          Student software projects from the Deakin Software Engineering Club
-        </h1>
+          <div className="mb-10 text-center">
+            <ScrollReveal
+              baseOpacity={0.1}
+              enableBlur
+              baseRotation={3}
+              blurStrength={4}
+              containerClassName="text-white text-4xl lg:text-6xl font-grotesk text-center"
+            >
+              What Deakin students are building, what technologies they use, and how they collaborate in real software teams.
+            </ScrollReveal>
+          </div>
 
-        <p className="text-xl text-secondary font-medium mb-6 max-w-2xl">
-          Real software engineering projects built by Deakin students at the Melbourne Burwood campus, with links to the GitHub repos behind the code.
-        </p>
-
-        <div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-10 max-w-3xl">
-          <p>
-            This page showcases projects created by members of the Deakin Software Engineering Club (DSEC). Every project started as an idea in a workshop, hackathon, development session, or late night Discord chat. Here you can see what Deakin students are building, what technologies they use, and how they collaborate in real software teams.
-          </p>
-          <p>
-            Whether you are a first year student looking for inspiration, a current member choosing your next team, or a recruiter curious about what Deakin students can actually ship, this is the best place to start.
-          </p>
+          <div className="space-y-4 text-muted-foreground text-lg leading-relaxed text-center mb-10">
+            <p>
+              This page showcases projects created by members of the Deakin Software Engineering Club (DSEC). Every project started as an idea in a workshop, hackathon, development session, or late night Discord chat. Here you can see what Deakin students are building, what technologies they use, and how they collaborate in real software teams.
+            </p>
+            <p>
+              Whether you are a first year student looking for inspiration, a current member choosing your next team, or a recruiter curious about what Deakin students can actually ship, this is the best place to start.
+            </p>
+          </div>
         </div>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <button className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center transition-all">
-            <SparklesIcon />
-            Join a project through DSEC
-          </button>
-          <button className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center transition-all">
-            <CodeIcon />
-            Talk to us about student projects
-          </button>
-        </div>
-      </div>
-
-      {/* Decorative floating elements */}
-      <div className="absolute top-20 right-20 text-6xl text-primary/10 font-mono animate-float">{'<>'}</div>
-      <div className="absolute bottom-40 left-16 text-5xl text-secondary/10 font-mono animate-float" style={{ animationDelay: '2s' }}>
-        {'{ }'}
-      </div>
-      <div className="absolute top-1/2 right-12 text-4xl text-lime/10 font-mono animate-float" style={{ animationDelay: '1s' }}>
-        [ ]
-      </div>
-    </section>
-  );
-}
-
-function CodeRainBackground() {
-  const codeSnippets = [
-    'const project = await build()',
-    'git push origin main',
-    'npm run dev',
-    'export default function()',
-    'import { useState }',
-    'async function deploy()',
-    'return <Component />',
-    'interface Project {}',
-    'type Status = "active"',
-    '.then(res => res.json())',
-  ];
-
-  return (
-    <div className="absolute inset-0 opacity-[0.03]">
-      {codeSnippets.map((snippet, i) => (
-        <div
-          key={i}
-          className="absolute font-mono text-xs whitespace-nowrap text-foreground"
-          style={{
-            left: `${(i * 10) % 100}%`,
-            top: `${(i * 8) % 100}%`,
-            transform: `rotate(${-5 + (i % 3) * 5}deg)`,
-          }}
-        >
-          {snippet}
-        </div>
-      ))}
-    </div>
+      </section>
+    </>
   );
 }
 
@@ -128,6 +170,30 @@ function CodeIcon() {
   return (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+    </svg>
+  );
+}
+
+function CodeBracketIcon() {
+  return (
+    <svg className="w-4 h-4 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+    </svg>
+  );
+}
+
+function SlidersIcon() {
+  return (
+    <svg className="w-4 h-4 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+    </svg>
+  );
+}
+
+function CircleIcon() {
+  return (
+    <svg className="w-4 h-4 text-white/70" fill="currentColor" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="6" />
     </svg>
   );
 }
