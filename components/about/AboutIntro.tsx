@@ -5,6 +5,7 @@ import SectionLabel from "../SectionLabel";
 import DarkVeil from "@/components/DarkVeil";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Highlighter } from "@/components/ui/highlighter";
+import Link from "next/link";
 
 interface WhatWeDoItemProps {
 	icon: React.ReactNode;
@@ -45,12 +46,15 @@ export default function AboutIntro() {
 
 						{/* CTA Buttons */}
 						<div className="flex flex-wrap items-center justify-center gap-4">
-							<button className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold transition-all">
+							<Link
+								href="https://www.dusa.org.au/clubs/deakin-software-engineering-club-dsec"
+								className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold transition-all"
+							>
 								Join DSEC via DUSA
-							</button>
-							<button className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold transition-all">
+							</Link>
+							<Link href="#exec-team" className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold transition-all">
 								Meet the exec team
-							</button>
+							</Link>
 						</div>
 
 						{/* Scroll Down Indicator */}

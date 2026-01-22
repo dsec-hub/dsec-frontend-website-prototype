@@ -3,6 +3,7 @@
 import GradientText from '@/components/GradientText';
 import SectionLabel from '../SectionLabel';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type ColorType = 'primary' | 'secondary' | 'lime' | 'accent' | 'coral';
 
@@ -69,57 +70,76 @@ const execRoles: ExecRole[] = [
 
 export default function ExecTeamSection() {
   return (
-    <section className="relative bg-card py-20 md:py-32 overflow-hidden">
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-        <svg className="absolute inset-0 w-full h-full">
-          <defs>
-            <pattern id="execGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-foreground" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#execGrid)" />
-        </svg>
-      </div>
+		<section className="relative bg-card py-20 md:py-32 overflow-hidden" id="exec-team">
+			{/* Background grid pattern */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
+				<svg className="absolute inset-0 w-full h-full">
+					<defs>
+						<pattern
+							id="execGrid"
+							width="40"
+							height="40"
+							patternUnits="userSpaceOnUse"
+						>
+							<path
+								d="M 40 0 L 0 0 0 40"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="1"
+								className="text-foreground"
+							/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#execGrid)" />
+				</svg>
+			</div>
 
-      <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="mb-12 md:mb-16">
-          <SectionLabel
-          >
-            Who runs DSEC
-          </SectionLabel>
-          <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
-            Meet the DSEC executive team
-          </h2>
-          <div className="max-w-3xl space-y-4">
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              DSEC is led by a volunteer executive committee of Deakin students who handle everything from event planning and sponsorship to Discord moderation and code review nights. Executives are elected at our Annual General Meeting each year, following DUSA club rules and requirements.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Below you&apos;ll find our executive roles. The exact people change every year, but the responsibilities stay consistent so the club can grow sustainably.
-            </p>
-          </div>
-        </div>
+			<div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
+				<div className="mb-12 md:mb-16">
+					<SectionLabel>Who runs DSEC</SectionLabel>
+					<h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
+						Meet the DSEC executive team
+					</h2>
+					<div className="max-w-3xl space-y-4">
+						<p className="text-muted-foreground text-lg leading-relaxed">
+							DSEC is led by a volunteer executive committee of Deakin students
+							who handle everything from event planning and sponsorship to
+							Discord moderation and code review nights. Executives are elected
+							at our Annual General Meeting each year, following DUSA club rules
+							and requirements.
+						</p>
+						<p className="text-muted-foreground leading-relaxed">
+							Below you&apos;ll find our executive roles. The exact people
+							change every year, but the responsibilities stay consistent so the
+							club can grow sustainably.
+						</p>
+					</div>
+				</div>
 
-        {/* Role cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {execRoles.map((role) => (
-            <RoleCard key={role.id} role={role} />
-          ))}
-        </div>
+				{/* Role cards grid */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+					{execRoles.map((role) => (
+						<RoleCard key={role.id} role={role} />
+					))}
+				</div>
 
-        {/* Closing CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground text-lg mb-6 max-w-2xl mx-auto">
-            If you are a Deakin student who cares about building communities, this is one of the best ways to grow your leadership and project skills while you study.
-          </p>
-          <button className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all">
-            See open volunteer roles
-          </button>
-        </div>
-      </div>
-    </section>
-  );
+				{/* Closing CTA */}
+				<div className="mt-16 text-center">
+					<p className="text-muted-foreground text-lg mb-6 max-w-2xl mx-auto">
+						If you are a Deakin student who cares about building communities,
+						this is one of the best ways to grow your leadership and project
+						skills while you study.
+					</p>
+					<Link
+						href="https://dsec.notion.site/dsec-committee-hiring-2026?source=copy_link"
+						className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-semibold transition-all"
+					>
+						See open volunteer roles
+					</Link>
+				</div>
+			</div>
+		</section>
+	);
 }
 
 function RoleCard({ role }: { role: ExecRole }) {
