@@ -3,6 +3,7 @@
 import GradientText from '@/components/GradientText';
 import SectionLabel from '../SectionLabel';
 import DarkVeil from '@/components/DarkVeil';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface WhatWeDoItemProps {
   icon: React.ReactNode;
@@ -19,92 +20,169 @@ const colorClasses: Record<string, string> = {
 
 export default function AboutIntro() {
   return (
-    <>
-      {/* Hero Section with DarkVeil */}
-      <section className="relative min-h-screen overflow-hidden bg-background">
-        {/* DarkVeil Background - Extended down */}
-        <div className="absolute inset-0 w-full h-[60vh] opacity-60">
-          <DarkVeil
-            hueShift={264}
-            noiseIntensity={0.05}
-            scanlineIntensity={0.5}
-            speed={0.5}
-            scanlineFrequency={1}
-          />
-        </div>
+		<>
+			{/* Hero Section with DarkVeil */}
+			<section className="relative min-h-screen overflow-hidden bg-background">
+				{/* DarkVeil Background - Extended down */}
+				<div className="absolute inset-0 w-full h-[60vh] opacity-60">
+					<DarkVeil
+						hueShift={264}
+						noiseIntensity={0.05}
+						scanlineIntensity={0.5}
+						speed={0.5}
+						scanlineFrequency={1}
+					/>
+				</div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 px-6 md:px-12 pt-20 pb-20 max-w-4xl mx-auto min-h-screen flex flex-col items-center justify-start">
-          <div className="mt-32 flex flex-col items-center">
-            <SectionLabel>
-              What is DSEC
-            </SectionLabel>
-            <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8 text-center">
-              About the Deakin Software Engineering Club
-            </h1>
+				{/* Hero Content */}
+				<div className="relative z-10 px-6 md:px-12 pt-20 pb-20 max-w-4xl mx-auto min-h-screen flex flex-col items-center justify-start">
+					<div className="mt-32 flex flex-col items-center">
+						<SectionLabel>What is DSEC</SectionLabel>
+						<h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8 text-center">
+							About the Deakin Software Engineering Club
+						</h1>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <button className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold transition-all">
-                Join DSEC via DUSA
-              </button>
-              <button className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold transition-all">
-                Meet the exec team
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+						{/* CTA Buttons */}
+						<div className="flex flex-wrap items-center justify-center gap-4">
+							<button className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold transition-all">
+								Join DSEC via DUSA
+							</button>
+							<button className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold transition-all">
+								Meet the exec team
+							</button>
+						</div>
 
-      {/* Content Section */}
-      <section className="relative overflow-hidden bg-background">
-        <div className="relative z-10 px-6 md:px-12 py-20 max-w-4xl mx-auto">
-          <div className="flex flex-col items-center">
-            <p className="text-xl text-secondary font-medium mb-6 text-center">
-              Deakin&apos;s home for students who want to build real software, not just pass assignments.
-            </p>
+						<div className="flex flex-col items-center mt-36">
+							<div className="mb-6 text-center">
+								<ScrollReveal
+									baseOpacity={0.1}
+									enableBlur
+									baseRotation={3}
+									blurStrength={4}
+									containerClassName="text-white text-4xl md:text-5xl lg:text-7xl font-grotesk text-left"
+								>
+									Deakin&apos;s home for students who want to build real
+									software, not just pass assignments.
+								</ScrollReveal>
+							</div>
 
-            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
-            <p>
-              The Deakin Software Engineering Club (DSEC) is an academic and professional student club based at the Melbourne Burwood campus. We bring together software engineering, computer science, IT, and design students who want to learn modern development, work in real project teams, and connect with industry while they study.
-            </p>
-            <p>
-              DSEC is affiliated with the Deakin University Student Association (DUSA) and operates as the official software engineering club at Burwood. Our events and projects are run by students, for students, with support from Deakin and DUSA.
-            </p>
-          </div>
+							<div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
+								<p>
+									The Deakin Software Engineering Club (DSEC) is an academic and
+									professional student club based at the Melbourne Burwood
+									campus. We bring together software engineering, computer
+									science, IT, and design students who want to learn modern
+									development, work in real project teams, and connect with
+									industry while they study.
+								</p>
+								<p>
+									DSEC is affiliated with the Deakin University Student
+									Association (DUSA) and operates as the official software
+									engineering club at Burwood. Our events and projects are run
+									by students, for students, with support from Deakin and DUSA.
+								</p>
+							</div>
 
-          {/* What we do list */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 w-full">
-            <WhatWeDoItem
-              icon={<CodeIcon />}
-              text="Ship portfolio-ready software in small teams"
-              color="primary"
-            />
-            <WhatWeDoItem
-              icon={<CalendarIcon />}
-              text="Host workshops, coding nights, and hackathons"
-              color="secondary"
-            />
-            <WhatWeDoItem
-              icon={<UsersIcon />}
-              text="Invite industry guests and alumni speakers"
-              color="lime"
-            />
-            <WhatWeDoItem
-              icon={<SparklesIcon />}
-              text="Create a friendly community to grow together"
-              color="accent"
-            />
-          </div>
+							{/* What we do list */}
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 w-full">
+								<WhatWeDoItem
+									icon={<CodeIcon />}
+									text="Ship portfolio-ready software in small teams"
+									color="primary"
+								/>
+								<WhatWeDoItem
+									icon={<CalendarIcon />}
+									text="Host workshops, coding nights, and hackathons"
+									color="secondary"
+								/>
+								<WhatWeDoItem
+									icon={<UsersIcon />}
+									text="Invite industry guests and alumni speakers"
+									color="lime"
+								/>
+								<WhatWeDoItem
+									icon={<SparklesIcon />}
+									text="Create a friendly community to grow together"
+									color="accent"
+								/>
+							</div>
 
-          <p className="text-foreground font-medium mb-8 text-lg text-center">
-            If you care about building things, learning from peers, and getting closer to tech careers, this is your club.
-          </p>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+							<p className="text-foreground font-medium mb-8 text-lg text-center">
+								If you care about building things, learning from peers, and
+								getting closer to tech careers, this is your club.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Content Section */}
+			<section className="relative overflow-hidden bg-background">
+				<div className="relative z-10 px-6 md:px-12 py-20 max-w-4xl mx-auto">
+					<div className="flex flex-col items-center">
+						<div className="mb-6 text-center">
+							<ScrollReveal
+								baseOpacity={0.1}
+								enableBlur
+								baseRotation={3}
+								blurStrength={4}
+								containerClassName="text-white text-4xl md:text-5xl lg:text-6xl font-grotesk"
+							>
+								Deakin&apos;s home for students who want to build real software,
+								not just pass assignments.
+							</ScrollReveal>
+						</div>
+
+						<div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
+							<p>
+								The Deakin Software Engineering Club (DSEC) is an academic and
+								professional student club based at the Melbourne Burwood campus.
+								We bring together software engineering, computer science, IT,
+								and design students who want to learn modern development, work
+								in real project teams, and connect with industry while they
+								study.
+							</p>
+							<p>
+								DSEC is affiliated with the Deakin University Student
+								Association (DUSA) and operates as the official software
+								engineering club at Burwood. Our events and projects are run by
+								students, for students, with support from Deakin and DUSA.
+							</p>
+						</div>
+
+						{/* What we do list */}
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 w-full">
+							<WhatWeDoItem
+								icon={<CodeIcon />}
+								text="Ship portfolio-ready software in small teams"
+								color="primary"
+							/>
+							<WhatWeDoItem
+								icon={<CalendarIcon />}
+								text="Host workshops, coding nights, and hackathons"
+								color="secondary"
+							/>
+							<WhatWeDoItem
+								icon={<UsersIcon />}
+								text="Invite industry guests and alumni speakers"
+								color="lime"
+							/>
+							<WhatWeDoItem
+								icon={<SparklesIcon />}
+								text="Create a friendly community to grow together"
+								color="accent"
+							/>
+						</div>
+
+						<p className="text-foreground font-medium mb-8 text-lg text-center">
+							If you care about building things, learning from peers, and
+							getting closer to tech careers, this is your club.
+						</p>
+					</div>
+				</div>
+			</section>
+		</>
+	);
 }
 
 function WhatWeDoItem({ icon, text, color }: WhatWeDoItemProps) {

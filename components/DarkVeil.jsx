@@ -72,6 +72,12 @@ void main(){
     float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
     col.rgb*=1.-(scanline_val*scanline_val)*uScan;
     col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
+
+    // Blend with site background color #0a0a0a (10/255 = 0.039)
+    // vec3 bgColor = vec3(0.039, 0.039, 0.039);
+    vec3 bgColor = vec3(0.2, 0.2, 0.2);
+    col.rgb = mix(bgColor, col.rgb, 0.8); // Blend 80% pattern, 20% background
+
     gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
 }
 `;
