@@ -1,25 +1,26 @@
-'use client';
+"use client";
 
-import GradientText from '@/components/GradientText';
-import SectionLabel from '../SectionLabel';
-import DarkVeil from '@/components/DarkVeil';
-import ScrollReveal from '@/components/ScrollReveal';
+import GradientText from "@/components/GradientText";
+import SectionLabel from "../SectionLabel";
+import DarkVeil from "@/components/DarkVeil";
+import ScrollReveal from "@/components/ScrollReveal";
+import { Highlighter } from "@/components/ui/highlighter";
 
 interface WhatWeDoItemProps {
-  icon: React.ReactNode;
-  text: string;
-  color: 'primary' | 'secondary' | 'lime' | 'accent';
+	icon: React.ReactNode;
+	text: string;
+	color: "primary" | "secondary" | "lime" | "accent";
 }
 
 const colorClasses: Record<string, string> = {
-  primary: 'bg-primary/20 text-primary',
-  secondary: 'bg-secondary/20 text-secondary',
-  lime: 'bg-lime/20 text-lime',
-  accent: 'bg-accent/20 text-accent',
+	primary: "bg-primary/20 text-primary",
+	secondary: "bg-secondary/20 text-secondary",
+	lime: "bg-lime/20 text-lime",
+	accent: "bg-accent/20 text-accent",
 };
 
 export default function AboutIntro() {
-  return (
+	return (
 		<>
 			{/* Hero Section with DarkVeil */}
 			<section className="relative min-h-screen overflow-hidden bg-background">
@@ -124,9 +125,23 @@ export default function AboutIntro() {
 								/>
 							</div>
 
-							<p className="text-foreground font-medium mb-8 text-lg text-center">
-								If you care about building things, learning from peers, and
-								getting closer to tech careers, this is your club.
+							<p className="text-foreground font-medium mb-8 text-xl lg:text-2xl text-center leading-loose">
+								If you care about{" "}
+								<Highlighter action="box" color="#00bcd4">
+									building things
+								</Highlighter>
+								,{" "}
+								<Highlighter action="circle" color="#00bcd4">
+									learning from peers
+								</Highlighter>
+								, and getting closer to{" "}
+								<Highlighter action="underline" color="#00bcd4">
+									tech careers
+								</Highlighter>
+								,{" "}
+								<Highlighter action="highlight" color="#e91e63">
+									this is your club.
+								</Highlighter>
 							</p>
 						</div>
 					</div>
@@ -137,60 +152,87 @@ export default function AboutIntro() {
 }
 
 function WhatWeDoItem({ icon, text, color }: WhatWeDoItemProps) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className={`p-2 rounded-lg ${colorClasses[color]} shrink-0`}>
-        {icon}
-      </div>
-      <span className="text-muted-foreground text-sm leading-relaxed">{text}</span>
-    </div>
-  );
+	return (
+		<div className="flex items-start gap-3">
+			<div className={`p-2 rounded-lg ${colorClasses[color]} shrink-0`}>
+				{icon}
+			</div>
+			<span className="text-muted-foreground text-sm leading-relaxed">
+				{text}
+			</span>
+		</div>
+	);
 }
 
 // Icons
 function CodeIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-    </svg>
-  );
+	return (
+		<svg
+			className="w-5 h-5"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke="currentColor"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+			/>
+		</svg>
+	);
 }
 
 function CalendarIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-      />
-    </svg>
-  );
+	return (
+		<svg
+			className="w-5 h-5"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke="currentColor"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+			/>
+		</svg>
+	);
 }
 
 function UsersIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-      />
-    </svg>
-  );
+	return (
+		<svg
+			className="w-5 h-5"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke="currentColor"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+			/>
+		</svg>
+	);
 }
 
 function SparklesIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-      />
-    </svg>
-  );
+	return (
+		<svg
+			className="w-5 h-5"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke="currentColor"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+			/>
+		</svg>
+	);
 }
