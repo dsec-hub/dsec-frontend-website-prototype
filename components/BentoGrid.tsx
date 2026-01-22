@@ -79,7 +79,7 @@ export default function BentoGrid(): React.ReactElement {
 						backgroundComponent={
 							<Globe
 								config={EVENTS_GLOBE_CONFIG}
-								className="inset-auto! absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 size-125 opacity-50 md:size-162.5"
+								className="hidden md:block inset-auto! absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 size-125 opacity-50 md:size-162.5"
 							/>
 						}
 					/>
