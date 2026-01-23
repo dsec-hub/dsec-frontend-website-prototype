@@ -9,25 +9,25 @@ import LightRays from '@/components/LightRays';
 
 export default function ProjectsHero() {
   return (
-		<>
-			{/* Hero Section - 2 Column Layout */}
-			<section className="relative min-h-[50vh] overflow-hidden bg-background">
-				{/* LightRays Background */}
-				<div className="absolute inset-0 w-full h-[70vh] opacity-50">
-					<LightRays
-						raysOrigin="top-center"
-						raysColor="#8b5cf6"
-						raysSpeed={0.8}
-						lightSpread={1.2}
-						rayLength={2.5}
-						pulsating={false}
-						fadeDistance={1.2}
-						saturation={0.8}
-						followMouse={true}
-						mouseInfluence={0.15}
-					/>
-				</div>
+		<div className="relative">
+			{/* LightRays Background */}
+			<div className="absolute inset-0 w-full min-h-[70vh] opacity-50">
+				<LightRays
+					raysOrigin="top-center"
+					raysColor="#8b5cf6"
+					raysSpeed={0.8}
+					lightSpread={1.2}
+					rayLength={2.5}
+					pulsating={false}
+					fadeDistance={1.2}
+					saturation={0.8}
+					followMouse={true}
+					mouseInfluence={0.15}
+				/>
+			</div>
 
+			{/* Hero Section - 2 Column Layout */}
+			<section className="relative min-h-[50vh] overflow-hidden">
 				{/* Two Column Hero Content */}
 				<div className="relative z-10 w-full px-6 md:px-12 pb-20">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] max-w-7xl mx-auto">
@@ -48,11 +48,17 @@ export default function ProjectsHero() {
 							</h1>
 
 							<div className="flex flex-wrap items-center gap-4">
-								<Link href="https://basecamp.dsec.club/" className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center transition-all">
+								<Link
+									href="https://basecamp.dsec.club/"
+									className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center transition-all"
+								>
 									<SparklesIcon />
 									Join a project
 								</Link>
-								<TransitionLink href="/partnership" className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center transition-all">
+								<TransitionLink
+									href="/partnership"
+									className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center transition-all"
+								>
 									<CodeIcon />
 									Talk to us about student projects
 								</TransitionLink>
@@ -242,7 +248,7 @@ export default function ProjectsHero() {
 			</section>
 
 			{/* Content Section - Centered with ScrollReveal */}
-			<section className="relative bg-background pt-10 pb-20">
+			<section className="relative pt-10 pb-20">
 				<div className="relative z-10 px-6 md:px-12 max-w-4xl mx-auto flex flex-col items-center">
 					{/* Scroll Down Indicator */}
 					<div className="mb-12 flex flex-col items-center animate-bounce bg-white/10 rounded-full p-2 text-left">
@@ -293,7 +299,7 @@ export default function ProjectsHero() {
 					</div>
 				</div>
 			</section>
-		</>
+		</div>
 	);
 }
 
