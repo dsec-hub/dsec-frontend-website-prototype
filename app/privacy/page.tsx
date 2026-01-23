@@ -43,8 +43,32 @@ export default function PrivacyPage() {
           </p>
         </div>
 
+        {/* Table of Contents */}
+        <div className="mb-12 rounded-lg border border-border bg-card p-6">
+          <h2 className="mb-4 font-grotesk text-xl font-bold text-foreground">
+            Table of Contents
+          </h2>
+          <nav className="grid gap-2 md:grid-cols-2">
+            <a href="#introduction" className="text-sm text-primary hover:underline">Introduction</a>
+            <a href="#information-collected" className="text-sm text-primary hover:underline">1. Information We Collect</a>
+            <a href="#how-we-use" className="text-sm text-primary hover:underline">2. How We Use Your Information</a>
+            <a href="#legal-basis" className="text-sm text-primary hover:underline">3. Legal Basis for Processing</a>
+            <a href="#how-we-share" className="text-sm text-primary hover:underline">4. How We Share Your Information</a>
+            <a href="#protection-measures" className="text-sm text-primary hover:underline">5. Privacy Protection Measures</a>
+            <a href="#your-rights" className="text-sm text-primary hover:underline">6. Your Rights and Choices</a>
+            <a href="#cookies" className="text-sm text-primary hover:underline">7. Cookies and Tracking Technologies</a>
+            <a href="#data-retention" className="text-sm text-primary hover:underline">8. Data Retention</a>
+            <a href="#children" className="text-sm text-primary hover:underline">9. Children's Privacy</a>
+            <a href="#international" className="text-sm text-primary hover:underline">10. International Users</a>
+            <a href="#changes" className="text-sm text-primary hover:underline">11. Changes to This Privacy Policy</a>
+            <a href="#third-party" className="text-sm text-primary hover:underline">12. Third-Party Links</a>
+            <a href="#contact" className="text-sm text-primary hover:underline">13. Contact Us About Privacy</a>
+            <a href="#consent" className="text-sm text-primary hover:underline">14. Consent</a>
+          </nav>
+        </div>
+
         <div className="prose prose-invert prose-neutral max-w-none space-y-8">
-          <section>
+          <section id="introduction">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               Introduction
             </h2>
@@ -53,7 +77,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section>
+          <section id="information-collected">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               1. Information We Collect
             </h2>
@@ -119,7 +143,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="how-we-use">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               2. How We Use Your Information
             </h2>
@@ -178,7 +202,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="legal-basis">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               3. Legal Basis for Processing
             </h2>
@@ -193,7 +217,7 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section>
+          <section id="how-we-share">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               4. How We Share Your Information
             </h2>
@@ -283,7 +307,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="protection-measures">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               5. Privacy Protection Measures
             </h2>
@@ -333,7 +357,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="your-rights">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               6. Your Rights and Choices
             </h2>
@@ -406,7 +430,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="cookies">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               7. Cookies and Tracking Technologies
             </h2>
@@ -443,7 +467,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="data-retention">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               8. Data Retention
             </h2>
@@ -456,7 +480,7 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section>
+          <section id="children">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               9. Children's Privacy
             </h2>
@@ -465,7 +489,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section>
+          <section id="international">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               10. International Users
             </h2>
@@ -474,7 +498,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section>
+          <section id="changes">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               11. Changes to This Privacy Policy
             </h2>
@@ -491,7 +515,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section>
+          <section id="third-party">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               12. Third-Party Links
             </h2>
@@ -500,7 +524,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section>
+          <section id="contact">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               13. Contact Us About Privacy
             </h2>
@@ -536,7 +560,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section>
+          <section id="consent">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               14. Consent
             </h2>
