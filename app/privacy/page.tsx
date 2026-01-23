@@ -1,17 +1,39 @@
+'use client';
+
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy | DSEC Portal - How We Protect Your Data',
-  description: 'Learn how the Deakin Software Engineering Club (DSEC) collects, uses, and protects your personal information in compliance with Australian privacy laws and DUSA policies.',
-};
+import { ArrowUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function PrivacyPage() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
       <div className="mx-auto max-w-4xl px-6 py-24 md:px-12">
+        {/* Breadcrumb */}
+        <nav className="mb-6 text-sm text-muted-foreground" aria-label="Breadcrumb">
+          <ol className="flex items-center gap-2">
+            <li><a href="/" className="hover:text-foreground">Home</a></li>
+            <li>/</li>
+            <li><span className="text-foreground">Privacy Policy</span></li>
+          </ol>
+        </nav>
+
         <div className="mb-8">
           <h1 className="mb-4 font-grotesk text-4xl font-bold text-foreground md:text-5xl">
             DSEC Portal Privacy Policy
@@ -522,8 +544,35 @@ export default function PrivacyPage() {
               By using the DSEC Portal, you consent to the collection, use, and disclosure of your information as described in this Privacy Policy. You may withdraw consent at any time by contacting us, though this may affect your ability to use certain Portal features.
             </p>
           </section>
+
+          {/* DUSA Affiliation Footer */}
+          <div className="mt-12 rounded-lg border border-primary/20 bg-primary/5 p-6">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              This Privacy Policy is part of the DSEC Portal Terms of Service. For questions, contact <a href="mailto:contact@dsec.club" className="text-primary hover:underline">contact@dsec.club</a>
+            </p>
+            <div className="mt-4 border-t border-primary/20 pt-4">
+              <p className="text-sm text-muted-foreground">
+                DSEC is affiliated with DUSA | Deakin University Student Association
+              </p>
+              <p className="text-xs text-muted-foreground">
+                ABN 95 022 653 791 | Reg. No. A0040625Y
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 print:hidden"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
+
       <Footer />
     </main>
   );
