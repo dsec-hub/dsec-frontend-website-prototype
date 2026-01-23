@@ -43,8 +43,33 @@ export default function TermsPage() {
           </p>
         </div>
 
+        {/* Table of Contents */}
+        <div className="mb-12 rounded-lg border border-border bg-card p-6">
+          <h2 className="mb-4 font-grotesk text-xl font-bold text-foreground">
+            Table of Contents
+          </h2>
+          <nav className="grid gap-2 md:grid-cols-2">
+            <a href="#introduction" className="text-sm text-primary hover:underline">Introduction</a>
+            <a href="#acceptance" className="text-sm text-primary hover:underline">1. Acceptance of Terms</a>
+            <a href="#dusa-affiliation" className="text-sm text-primary hover:underline">2. DUSA Affiliation and Governance</a>
+            <a href="#eligibility" className="text-sm text-primary hover:underline">3. Eligibility and Account Registration</a>
+            <a href="#portal-usage" className="text-sm text-primary hover:underline">4. Portal Usage</a>
+            <a href="#privacy" className="text-sm text-primary hover:underline">5. Member Data and Privacy</a>
+            <a href="#intellectual-property" className="text-sm text-primary hover:underline">6. Intellectual Property</a>
+            <a href="#events" className="text-sm text-primary hover:underline">7. Events and Activities</a>
+            <a href="#financial" className="text-sm text-primary hover:underline">8. Financial Matters</a>
+            <a href="#termination" className="text-sm text-primary hover:underline">9. Termination and Suspension</a>
+            <a href="#disclaimers" className="text-sm text-primary hover:underline">10. Disclaimers</a>
+            <a href="#liability" className="text-sm text-primary hover:underline">11. Limitation of Liability</a>
+            <a href="#changes" className="text-sm text-primary hover:underline">12. Changes to Terms</a>
+            <a href="#governing-law" className="text-sm text-primary hover:underline">13. Governing Law</a>
+            <a href="#general" className="text-sm text-primary hover:underline">14. General Provisions</a>
+            <a href="#contact" className="text-sm text-primary hover:underline">15. Contact Information</a>
+          </nav>
+        </div>
+
         <div className="prose prose-invert prose-neutral max-w-none space-y-8">
-          <section>
+          <section id="introduction">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               Introduction
             </h2>
@@ -53,7 +78,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section>
+          <section id="acceptance">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               1. Acceptance of Terms
             </h2>
@@ -62,7 +87,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section>
+          <section id="dusa-affiliation">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               2. DUSA Affiliation and Governance
             </h2>
@@ -86,7 +111,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="eligibility">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               3. Eligibility and Account Registration
             </h2>
@@ -109,7 +134,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="portal-usage">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               4. Portal Usage
             </h2>
@@ -144,7 +169,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="privacy">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               5. Member Data and Privacy
             </h2>
@@ -169,7 +194,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="intellectual-property">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               6. Intellectual Property
             </h2>
@@ -186,7 +211,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="events">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               7. Events and Activities
             </h2>
@@ -209,7 +234,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="financial">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               8. Financial Matters
             </h2>
@@ -226,7 +251,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="termination">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               9. Termination and Suspension
             </h2>
@@ -249,7 +274,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="disclaimers">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               10. Disclaimers
             </h2>
@@ -272,7 +297,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="liability">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               11. Limitation of Liability
             </h2>
@@ -291,7 +316,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="changes">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               12. Changes to Terms
             </h2>
@@ -308,7 +333,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="governing-law">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               13. Governing Law
             </h2>
@@ -325,7 +350,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="general">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               14. General Provisions
             </h2>
@@ -345,7 +370,7 @@ export default function TermsPage() {
             </div>
           </section>
 
-          <section>
+          <section id="contact">
             <h2 className="mb-4 font-grotesk text-2xl font-bold text-foreground">
               15. Contact Information
             </h2>
