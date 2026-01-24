@@ -24,11 +24,13 @@ export default function MaintenancePage() {
         {/* DarkVeil Background */}
         <div className="absolute inset-0">
           <DarkVeil
-            particleCount={50}
-            particleColor="#9c27b0"
-            gridColor="#9c27b0"
-            gridOpacity={0.15}
-            backgroundColor="#0a0a0a"
+            hueShift={280}
+            noiseIntensity={0.02}
+            scanlineIntensity={0.1}
+            speed={0.3}
+            scanlineFrequency={0.5}
+            warpAmount={0.5}
+            resolutionScale={1}
           />
         </div>
 
