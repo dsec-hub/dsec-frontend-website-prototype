@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ import {
 } from "@/lib/auth-client";
 import { loginSchema, type LoginFormData } from "@/lib/auth-schemas";
 
-export default function LoginPage() {
+function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -248,5 +248,19 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </AuthLayout>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <AuthLayout>
+        <div className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl p-8 flex items-center justify-center min-h-[400px]">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </AuthLayout>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
