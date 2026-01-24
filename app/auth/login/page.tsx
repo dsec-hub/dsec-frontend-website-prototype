@@ -3,29 +3,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { motion } from "framer-motion";
-import { Mail, Loader2, CheckCircle2 } from "lucide-react";
+import { Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import AuthLayout from "@/components/auth/AuthLayout";
 import FormInput from "@/components/auth/FormInput";
 import PasswordInput from "@/components/auth/PasswordInput";
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
-
-// Validation Schema
-const loginSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-  rememberMe: z.boolean().optional(),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import {
+  signInWithEmail,
+  signInWithGoogle,
+  signInWithGitHub,
+} from "@/lib/auth-client";
+import { loginSchema, type LoginFormData } from "@/lib/auth-schemas";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [socialLoading, setSocialLoading] = useState<"google" | "github" | null>(null);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
   const {
     register,
@@ -33,35 +35,51 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      rememberMe: false,
+    },
   });
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
+    setError(null);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const result = await signInWithEmail(data.email, data.password, data.rememberMe);
 
-    console.log("Login data:", data);
+      if (result.error) {
+        setError(result.error.message || "Failed to sign in. Please check your credentials.");
+        setIsLoading(false);
+        return;
+      }
 
-    // Show success state
-    setIsSuccess(true);
+      // Show success state
+      setIsSuccess(true);
 
-    // Simulate redirect
-    setTimeout(() => {
-      // In a real app: router.push('/dashboard')
+      // Redirect after success
+      setTimeout(() => {
+        router.push(callbackUrl);
+      }, 1000);
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
       setIsLoading(false);
-      setIsSuccess(false);
-    }, 1500);
+    }
   };
 
   const handleSocialLogin = async (provider: "google" | "github") => {
     setSocialLoading(provider);
+    setError(null);
 
-    // Simulate OAuth flow
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    console.log(`${provider} login initiated`);
-    setSocialLoading(null);
+    try {
+      if (provider === "google") {
+        await signInWithGoogle();
+      } else {
+        await signInWithGitHub();
+      }
+    } catch (err) {
+      setError(`Failed to sign in with ${provider}. Please try again.`);
+      setSocialLoading(null);
+    }
   };
 
   return (
@@ -94,6 +112,18 @@ export default function LoginPage() {
             Sign in to access your portal and continue building
           </p>
         </div>
+
+        {/* Error Alert */}
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 flex items-start gap-3"
+          >
+            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-red-500">{error}</p>
+          </motion.div>
+        )}
 
         {/* Social Login */}
         <div className="space-y-3 mb-6">
@@ -131,6 +161,7 @@ export default function LoginPage() {
             error={errors.email?.message}
             {...register("email")}
             required
+            autoComplete="email"
           />
 
           <PasswordInput
@@ -139,6 +170,7 @@ export default function LoginPage() {
             error={errors.password?.message}
             {...register("password")}
             required
+            autoComplete="current-password"
           />
 
           {/* Remember Me & Forgot Password */}
@@ -163,7 +195,7 @@ export default function LoginPage() {
           {/* Submit Button */}
           <motion.button
             type="submit"
-            disabled={isLoading || isSuccess}
+            disabled={isLoading || isSuccess || socialLoading !== null}
             whileHover={{ scale: isLoading || isSuccess ? 1 : 1.02 }}
             whileTap={{ scale: isLoading || isSuccess ? 1 : 0.98 }}
             className={`
@@ -201,7 +233,7 @@ export default function LoginPage() {
             href="/auth/join"
             className="text-primary hover:text-primary/80 transition-colors font-medium"
           >
-            Join DSEC →
+            Join DSEC &rarr;
           </Link>
         </div>
 

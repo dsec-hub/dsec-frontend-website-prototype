@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, Suspense, lazy } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -20,13 +19,26 @@ import {
   Check,
   ChevronDown,
   Sparkles,
+  AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 import Stepper, { Step } from "@/components/ui/Stepper/Stepper";
 import FormInput from "@/components/auth/FormInput";
+import PasswordInput from "@/components/auth/PasswordInput";
+import PasswordStrengthIndicator from "@/components/auth/PasswordStrengthIndicator";
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
+import {
+  signUpWithEmail,
+  signInWithGoogle,
+  signInWithGitHub,
+} from "@/lib/auth-client";
+import {
+  profileSchema,
+  type ProfileFormData,
+} from "@/lib/auth-schemas";
 
 // Dynamically import Lanyard to avoid SSR issues with Three.js
 const Lanyard = dynamic(() => import("@/components/ui/Lanyard/Lanyard"), {
@@ -37,25 +49,6 @@ const Lanyard = dynamic(() => import("@/components/ui/Lanyard/Lanyard"), {
     </div>
   ),
 });
-
-// Form Schemas
-const profileSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, "Full name must be at least 2 characters")
-    .max(100, "Full name must be less than 100 characters"),
-  preferredName: z.string().optional(),
-  email: z.string().email("Please enter a valid email"),
-  studentId: z.string().optional(),
-  degree: z.string().optional(),
-  yearLevel: z.string().optional(),
-  linkedinUrl: z.string().url().optional().or(z.literal("")),
-  githubUsername: z.string().optional(),
-  wantUpdates: z.boolean().optional(),
-  wantProjectTeam: z.boolean().optional(),
-});
-
-type ProfileFormData = z.infer<typeof profileSchema>;
 
 type StudentStatus = "deakin" | "external" | null;
 type Campus = "burwood" | "waurn-ponds" | "waterfront" | "online" | null;
@@ -70,7 +63,13 @@ export default function JoinPage() {
   const [signUpMethod, setSignUpMethod] = useState<SignUpMethod>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [socialLoading, setSocialLoading] = useState<"google" | "github" | null>(null);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+
+  const router = useRouter();
 
   const {
     register,
@@ -78,6 +77,10 @@ export default function JoinPage() {
     formState: { errors },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
+    defaultValues: {
+      wantUpdates: true,
+      wantProjectTeam: false,
+    },
   });
 
   const handleNextStep = () => {
@@ -94,42 +97,102 @@ export default function JoinPage() {
 
   const handleSocialAuth = async (provider: "google" | "github") => {
     setSocialLoading(provider);
+    setError(null);
     setSignUpMethod(provider);
 
-    // Simulate OAuth flow
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setSocialLoading(null);
+    try {
+      if (provider === "google") {
+        await signInWithGoogle();
+      } else {
+        await signInWithGitHub();
+      }
+    } catch (err) {
+      setError(`Failed to sign up with ${provider}. Please try again.`);
+      setSocialLoading(null);
+    }
+  };
 
-    // Move to profile completion
-    setCurrentStep(4);
+  const validatePassword = () => {
+    if (signUpMethod !== "email") return true;
+
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters");
+      return false;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setPasswordError("Password must contain at least one uppercase letter");
+      return false;
+    }
+    if (!/[a-z]/.test(password)) {
+      setPasswordError("Password must contain at least one lowercase letter");
+      return false;
+    }
+    if (!/[0-9]/.test(password)) {
+      setPasswordError("Password must contain at least one number");
+      return false;
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setPasswordError("Password must contain at least one special character");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords don't match");
+      return false;
+    }
+
+    setPasswordError(null);
+    return true;
   };
 
   const onSubmit = async (data: ProfileFormData) => {
+    // Validate password for email signup
+    if (signUpMethod === "email" && !validatePassword()) {
+      return;
+    }
+
     setIsLoading(true);
+    setError(null);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const result = await signUpWithEmail(
+        data.email,
+        password,
+        data.fullName,
+        {
+          studentStatus: studentStatus || undefined,
+          campus: campus || undefined,
+          membershipType: membershipType || undefined,
+          preferredName: data.preferredName || undefined,
+          studentId: data.studentId || undefined,
+          degree: data.degree || undefined,
+          yearLevel: data.yearLevel || undefined,
+          linkedinUrl: data.linkedinUrl || undefined,
+          githubUsername: data.githubUsername || undefined,
+          wantUpdates: data.wantUpdates,
+          wantProjectTeam: data.wantProjectTeam,
+        }
+      );
 
-    console.log("Signup data:", {
-      ...data,
-      studentStatus,
-      campus,
-      membershipType,
-      signUpMethod,
-    });
+      if (result.error) {
+        setError(result.error.message || "Failed to create account. Please try again.");
+        setIsLoading(false);
+        return;
+      }
 
-    setIsSuccess(true);
+      setIsSuccess(true);
 
-    // Redirect after success
-    setTimeout(() => {
-      // In a real app: router.push('/dashboard')
+      // Redirect after success
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1500);
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const canProceedStep1 = studentStatus !== null && (studentStatus === "external" || campus !== null);
   const canProceedStep2 = membershipType !== null;
-  const canProceedStep3 = signUpMethod !== null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -229,6 +292,18 @@ export default function JoinPage() {
                   ))}
                 </div>
               </motion.div>
+
+              {/* Error Alert */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 flex items-start gap-3"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-500">{error}</p>
+                </motion.div>
+              )}
 
               {/* Multi-Step Form */}
               <motion.div
@@ -524,6 +599,7 @@ export default function JoinPage() {
                           error={errors.fullName?.message}
                           {...register("fullName")}
                           required
+                          autoComplete="name"
                         />
 
                         <FormInput
@@ -532,6 +608,7 @@ export default function JoinPage() {
                           placeholder="What should we call you?"
                           icon={<User className="w-4 h-4" />}
                           {...register("preferredName")}
+                          autoComplete="nickname"
                         />
 
                         <FormInput
@@ -542,7 +619,40 @@ export default function JoinPage() {
                           error={errors.email?.message}
                           {...register("email")}
                           required
+                          autoComplete="email"
                         />
+
+                        {/* Password fields for email signup */}
+                        {signUpMethod === "email" && (
+                          <>
+                            <div className="space-y-2">
+                              <PasswordInput
+                                label="Password"
+                                placeholder="Create a strong password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                error={passwordError || undefined}
+                                required
+                                autoComplete="new-password"
+                              />
+                              <PasswordStrengthIndicator password={password} />
+                            </div>
+
+                            <PasswordInput
+                              label="Confirm Password"
+                              placeholder="Confirm your password"
+                              value={confirmPassword}
+                              onChange={(e) => setConfirmPassword(e.target.value)}
+                              error={
+                                confirmPassword && password !== confirmPassword
+                                  ? "Passwords don't match"
+                                  : undefined
+                              }
+                              required
+                              autoComplete="new-password"
+                            />
+                          </>
+                        )}
 
                         {studentStatus === "deakin" && (
                           <FormInput
@@ -550,6 +660,7 @@ export default function JoinPage() {
                             type="text"
                             placeholder="Optional - for verification"
                             icon={<GraduationCap className="w-4 h-4" />}
+                            error={errors.studentId?.message}
                             {...register("studentId")}
                           />
                         )}
@@ -583,6 +694,7 @@ export default function JoinPage() {
                           type="url"
                           placeholder="https://linkedin.com/in/username"
                           icon={<Linkedin className="w-4 h-4" />}
+                          error={errors.linkedinUrl?.message}
                           {...register("linkedinUrl")}
                         />
 
@@ -591,6 +703,7 @@ export default function JoinPage() {
                           type="text"
                           placeholder="username (recommended)"
                           icon={<Github className="w-4 h-4" />}
+                          error={errors.githubUsername?.message}
                           {...register("githubUsername")}
                         />
 
