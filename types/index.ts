@@ -182,3 +182,71 @@ export interface TransitionLinkProps extends WithChildrenAndClassName {
   href: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
+
+// Blog types
+export type BlogCategory =
+  | "tutorials"
+  | "career"
+  | "security"
+  | "web-development"
+  | "ai-ml"
+  | "cloud"
+  | "mobile"
+  | "devops"
+  | "news"
+  | "community";
+
+export interface BlogAuthor {
+  id: string;
+  name: string;
+  avatar?: string;
+  role?: string;
+  bio?: string;
+  socials?: {
+    linkedin?: string;
+    github?: string;
+    twitter?: string;
+    website?: string;
+  };
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  coverImage?: string;
+  category: BlogCategory;
+  tags: string[];
+  authors: BlogAuthor[];
+  publishedAt: string;
+  updatedAt?: string;
+  readingTime: number;
+  featured?: boolean;
+  views?: number;
+}
+
+export interface BlogListResponse {
+  posts: BlogPost[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+export interface BlogSearchParams {
+  query?: string;
+  category?: BlogCategory;
+  tag?: string;
+  page?: number;
+  pageSize?: number;
+  featured?: boolean;
+}
+
+export interface BlogCategoryInfo {
+  id: BlogCategory;
+  label: string;
+  description: string;
+  color: ThemeColor;
+}
