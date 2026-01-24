@@ -6,7 +6,7 @@ import { Eye, EyeOff, AlertCircle, Lock } from "lucide-react";
 
 interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  name: string;
+  name?: string;
   error?: string;
   helperText?: string;
   showStrength?: boolean;

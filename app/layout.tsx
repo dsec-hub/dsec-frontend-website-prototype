@@ -6,6 +6,7 @@ import PageTransition from "@/components/PageTransition";
 import ClickSpark from "@/components/ClickSpark";
 import PreLoader from "@/components/PreLoader";
 import { LoaderProvider } from "@/app/loader-context";
+import { AuthProvider } from "@/context/auth-context";
 
 import type { Metadata } from "next";
 
@@ -42,19 +43,21 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <LoaderProvider>
-          <PreLoader />
-          <PageTransition />
-          <ClickSpark 
-            sparkColor="#fff" 
-            sparkSize={10}
-            sparkRadius={15}
-            sparkCount={8}
-            duration={400}
-          >
-            {children}
-          </ClickSpark>
-        </LoaderProvider>
+        <AuthProvider>
+          <LoaderProvider>
+            <PreLoader />
+            <PageTransition />
+            <ClickSpark
+              sparkColor="#fff"
+              sparkSize={10}
+              sparkRadius={15}
+              sparkCount={8}
+              duration={400}
+            >
+              {children}
+            </ClickSpark>
+          </LoaderProvider>
+        </AuthProvider>
       </body>
     </html>
   );
