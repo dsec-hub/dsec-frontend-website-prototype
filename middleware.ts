@@ -37,11 +37,12 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
   // Redirect unauthenticated users from protected routes to login
-  if (isProtectedRoute && !isAuthenticated) {
-    const loginUrl = new URL("/auth/login", request.url);
-    loginUrl.searchParams.set("callbackUrl", pathname);
-    return NextResponse.redirect(loginUrl);
-  }
+  // TEMPORARILY DISABLED - Allow access without authentication
+  // if (isProtectedRoute && !isAuthenticated) {
+  //   const loginUrl = new URL("/auth/login", request.url);
+  //   loginUrl.searchParams.set("callbackUrl", pathname);
+  //   return NextResponse.redirect(loginUrl);
+  // }
 
   // Redirect authenticated users from auth routes to dashboard
   if (isAuthRoute && isAuthenticated) {

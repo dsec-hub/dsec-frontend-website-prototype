@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { useAuth, useRequireAuth } from "@/context/auth-context";
+import { useAuth } from "@/context/auth-context";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -38,9 +38,8 @@ import Footer from "@/components/Footer";
  * - Quick actions
  */
 export default function DashboardPage() {
-  // Ensure user is authenticated
-  const { user, isLoading, isAuthenticated } = useRequireAuth();
-  const { signOut } = useAuth();
+  // TEMPORARILY DISABLED - Authentication check removed
+  const { user, isLoading, isAuthenticated, signOut } = useAuth();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -48,22 +47,21 @@ export default function DashboardPage() {
     await signOut();
   };
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-          <p className="text-muted-foreground">Loading your dashboard...</p>
-        </div>
-      </div>
-    );
-  }
+  // TEMPORARILY DISABLED - Loading and authentication checks removed
+  // if (isLoading) {
+  //   return (
+  //     <div className="min-h-screen bg-background flex items-center justify-center">
+  //       <div className="flex flex-col items-center gap-4">
+  //         <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+  //         <p className="text-muted-foreground">Loading your dashboard...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  // Don't render if not authenticated (will redirect)
-  if (!isAuthenticated || !user) {
-    return null;
-  }
+  // if (!isAuthenticated || !user) {
+  //   return null;
+  // }
 
   // Mock data for dashboard (replace with actual API calls)
   const stats = [
@@ -166,7 +164,7 @@ export default function DashboardPage() {
     },
   ];
 
-  const displayName = user.preferredName || user.name?.split(" ")[0] || "Member";
+  const displayName = user?.preferredName || user?.name?.split(" ")[0] || "Guest";
 
   return (
     <div className="min-h-screen bg-background">
@@ -499,14 +497,14 @@ export default function DashboardPage() {
 
               <div className="text-center sm:text-left flex-1">
                 <h3 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
-                  {user.name}
+                  {user?.name || "Guest User"}
                 </h3>
-                <p className="text-muted-foreground">{user.email}</p>
+                <p className="text-muted-foreground">{user?.email || "Not logged in"}</p>
                 <div className="flex items-center justify-center sm:justify-start gap-4 mt-2">
                   <span className="text-sm px-3 py-1 rounded-full bg-secondary/20 text-secondary">
-                    {user.membershipType === "member" ? "Club Member" : "Browser"}
+                    {user?.membershipType === "member" ? "Club Member" : "Browser"}
                   </span>
-                  {user.studentStatus === "deakin" && (
+                  {user?.studentStatus === "deakin" && (
                     <span className="text-sm px-3 py-1 rounded-full bg-primary/20 text-primary">
                       Deakin Student
                     </span>
