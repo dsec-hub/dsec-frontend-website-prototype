@@ -3,7 +3,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
-import type { Metadata } from 'next';
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
