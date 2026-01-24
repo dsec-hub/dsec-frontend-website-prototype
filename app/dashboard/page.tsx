@@ -20,6 +20,18 @@ import {
   Github,
   ExternalLink,
   Coins,
+  Video,
+  FileText,
+  Newspaper,
+  Image,
+  MapPin,
+  GraduationCap,
+  Lightbulb,
+  HandHelping,
+  FolderOpen,
+  PlayCircle,
+  Lock,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -164,6 +176,163 @@ export default function DashboardPage() {
     },
   ];
 
+  // Request Services options (member-only)
+  const requestServices = [
+    {
+      id: "workshop",
+      title: "Request a Workshop",
+      description: "Request a specific topic for our next workshop",
+      icon: GraduationCap,
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+    },
+    {
+      id: "guide",
+      title: "Request a Guide",
+      description: "Ask for a detailed guide on a technical topic",
+      icon: BookOpen,
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
+    },
+    {
+      id: "sponsorship",
+      title: "Project Sponsorship",
+      description: "Get support for your project from DSEC",
+      icon: HandHelping,
+      color: "text-lime",
+      bgColor: "bg-lime/10",
+    },
+    {
+      id: "course-help",
+      title: "Course Help",
+      description: "Get assistance with your university courses",
+      icon: Lightbulb,
+      color: "text-accent",
+      bgColor: "bg-accent/10",
+    },
+  ];
+
+  // Workshop Recordings / Courses (member-only)
+  const workshopRecordings = [
+    {
+      id: "1",
+      title: "Introduction to React",
+      committee: "Web Development",
+      duration: "2h 15m",
+      thumbnail: "/workshops/react-intro.jpg",
+      date: "Jan 15, 2025",
+    },
+    {
+      id: "2",
+      title: "Python for Data Science",
+      committee: "Data Science",
+      duration: "1h 45m",
+      thumbnail: "/workshops/python-ds.jpg",
+      date: "Jan 10, 2025",
+    },
+    {
+      id: "3",
+      title: "Cybersecurity Fundamentals",
+      committee: "Cybersecurity",
+      duration: "2h 30m",
+      thumbnail: "/workshops/cybersec.jpg",
+      date: "Jan 5, 2025",
+    },
+  ];
+
+  // Resources
+  const resources = [
+    {
+      id: "1",
+      title: "Git & GitHub Cheat Sheet",
+      type: "PDF",
+      category: "Development",
+      downloads: 234,
+    },
+    {
+      id: "2",
+      title: "Interview Prep Guide",
+      type: "Document",
+      category: "Career",
+      downloads: 189,
+    },
+    {
+      id: "3",
+      title: "AWS Cloud Basics Slides",
+      type: "Slides",
+      category: "Cloud",
+      downloads: 156,
+    },
+    {
+      id: "4",
+      title: "Design Patterns in JavaScript",
+      type: "Code",
+      category: "Development",
+      downloads: 142,
+    },
+  ];
+
+  // Recommended News Articles
+  const newsArticles = [
+    {
+      id: "1",
+      title: "The Rise of AI in Software Development",
+      source: "TechCrunch",
+      readTime: "5 min read",
+      category: "AI",
+    },
+    {
+      id: "2",
+      title: "Understanding Zero-Trust Security",
+      source: "Wired",
+      readTime: "8 min read",
+      category: "Security",
+    },
+    {
+      id: "3",
+      title: "Web Development Trends for 2025",
+      source: "Dev.to",
+      readTime: "6 min read",
+      category: "Web Dev",
+    },
+  ];
+
+  // Gallery Images
+  const galleryImages = [
+    { id: "1", title: "Hackathon 2024", thumbnail: "/gallery/hackathon.jpg" },
+    { id: "2", title: "Workshop Night", thumbnail: "/gallery/workshop.jpg" },
+    { id: "3", title: "Industry Panel", thumbnail: "/gallery/panel.jpg" },
+    { id: "4", title: "Team Building", thumbnail: "/gallery/team.jpg" },
+    { id: "5", title: "Awards Night", thumbnail: "/gallery/awards.jpg" },
+    { id: "6", title: "Networking Event", thumbnail: "/gallery/networking.jpg" },
+  ];
+
+  // Melbourne Tech Events
+  const melbourneEvents = [
+    {
+      id: "1",
+      title: "Melbourne Tech Meetup",
+      date: "Feb 5, 2025",
+      location: "Federation Square",
+      organizer: "Tech Melbourne",
+    },
+    {
+      id: "2",
+      title: "AWS User Group Melbourne",
+      date: "Feb 12, 2025",
+      location: "Docklands",
+      organizer: "AWS Community",
+    },
+    {
+      id: "3",
+      title: "StartupVic Pitch Night",
+      date: "Feb 20, 2025",
+      location: "CBD",
+      organizer: "StartupVic",
+    },
+  ];
+
+  const isMember = user?.membershipType === "member";
   const displayName = user?.preferredName || user?.name?.split(" ")[0] || "Guest";
 
   return (
@@ -526,6 +695,330 @@ export default function DashboardPage() {
                   View Member Card
                 </Link>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Request Services Section - Member Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="mt-8 bg-card border border-border rounded-xl p-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                  Request Services
+                </h2>
+                <span className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
+                  <Lock className="w-3 h-3" />
+                  Members Only
+                </span>
+              </div>
+            </div>
+
+            {isMember ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {requestServices.map((service) => (
+                  <Link
+                    key={service.id}
+                    href={`/dashboard/request/${service.id}`}
+                    className="p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors group"
+                  >
+                    <div className={`p-3 rounded-lg ${service.bgColor} w-fit mb-3`}>
+                      <service.icon className={`w-6 h-6 ${service.color}`} />
+                    </div>
+                    <h3 className="font-medium mb-1 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {service.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 bg-muted/20 rounded-lg border border-dashed border-border">
+                <Lock className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">
+                  Become a member to request workshops, guides, sponsorships, and course help
+                </p>
+                <Link
+                  href="/join"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Become a Member
+                </Link>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Workshop Recordings & Courses - Member Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mt-8 bg-card border border-border rounded-xl p-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                  Workshop Recordings & Courses
+                </h2>
+                <span className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
+                  <Lock className="w-3 h-3" />
+                  Members Only
+                </span>
+              </div>
+              {isMember && (
+                <Link
+                  href="/dashboard/recordings"
+                  className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                >
+                  View all <ChevronRight className="w-4 h-4" />
+                </Link>
+              )}
+            </div>
+
+            {isMember ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {workshopRecordings.map((recording) => (
+                  <Link
+                    key={recording.id}
+                    href={`/dashboard/recordings/${recording.id}`}
+                    className="group rounded-lg overflow-hidden bg-muted/30 hover:bg-muted/50 transition-colors"
+                  >
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center relative">
+                      <PlayCircle className="w-12 h-12 text-white/80 group-hover:text-white group-hover:scale-110 transition-all" />
+                      <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded">
+                        {recording.duration}
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-medium mb-1 group-hover:text-primary transition-colors">
+                        {recording.title}
+                      </h3>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>{recording.committee}</span>
+                        <span>{recording.date}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 bg-muted/20 rounded-lg border border-dashed border-border">
+                <Video className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">
+                  Access workshop recordings from all our committees as a member
+                </p>
+                <Link
+                  href="/join"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Become a Member
+                </Link>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Resources Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            className="mt-8 bg-card border border-border rounded-xl p-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                Resources
+              </h2>
+              <Link
+                href="/resources"
+                className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+              >
+                Browse all <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {resources.map((resource) => (
+                <Link
+                  key={resource.id}
+                  href={`/resources/${resource.id}`}
+                  className="flex items-start gap-3 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors group"
+                >
+                  <div className="p-2 rounded-lg bg-secondary/10 flex-shrink-0">
+                    <FolderOpen className="w-5 h-5 text-secondary" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-medium text-sm mb-1 truncate group-hover:text-primary transition-colors">
+                      {resource.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <span className="px-2 py-0.5 rounded bg-muted">
+                        {resource.type}
+                      </span>
+                      <span>{resource.downloads} downloads</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Two Column Section: News Articles & Melbourne Events */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Recommended News Articles */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+              className="bg-card border border-border rounded-xl p-6"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                  Recommended Reading
+                </h2>
+                <Link
+                  href="/news"
+                  className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                >
+                  More articles <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                {newsArticles.map((article) => (
+                  <Link
+                    key={article.id}
+                    href={`/news/${article.id}`}
+                    className="flex items-start gap-4 p-3 rounded-lg hover:bg-muted/50 transition-colors group"
+                  >
+                    <div className="p-2 rounded-lg bg-coral/10 flex-shrink-0">
+                      <Newspaper className="w-5 h-5 text-coral" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-sm mb-1 group-hover:text-primary transition-colors">
+                        {article.title}
+                      </h3>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>{article.source}</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {article.readTime}
+                        </span>
+                        <span className="px-2 py-0.5 rounded bg-muted">
+                          {article.category}
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0" />
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Melbourne Events */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 }}
+              className="bg-card border border-border rounded-xl p-6"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                    Events in Melbourne
+                  </h2>
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <Link
+                  href="/melbourne-events"
+                  className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                >
+                  View all <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <div className="space-y-4">
+                {melbourneEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className="flex items-start gap-4 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                  >
+                    <div className="p-2 rounded-lg bg-lime/10 flex-shrink-0">
+                      <Calendar className="w-5 h-5 text-lime" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-sm mb-1">{event.title}</h3>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {event.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          {event.location}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        by {event.organizer}
+                      </p>
+                    </div>
+                    <Link
+                      href={`/melbourne-events/${event.id}`}
+                      className="p-2 rounded-lg hover:bg-muted transition-colors flex-shrink-0"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Gallery Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            className="mt-8 bg-card border border-border rounded-xl p-6"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-semibold font-[family-name:var(--font-space-grotesk)]">
+                  Gallery
+                </h2>
+                <Image className="w-5 h-5 text-secondary" />
+              </div>
+              <Link
+                href="/gallery"
+                className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+              >
+                View all photos <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {galleryImages.map((image) => (
+                <Link
+                  key={image.id}
+                  href={`/gallery/${image.id}`}
+                  className="group relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20"
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Image className="w-8 h-8 text-white/50" />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors flex items-end justify-center">
+                    <span className="text-white text-xs font-medium p-2 opacity-0 group-hover:opacity-100 transition-opacity text-center">
+                      {image.title}
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </motion.div>
         </div>
