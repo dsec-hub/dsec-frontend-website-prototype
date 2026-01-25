@@ -1,8 +1,6 @@
 'use client';
 
 import SectionLabel from '@/components/SectionLabel';
-import GradientText from '@/components/GradientText';
-import { bentoColorClasses, themeColors } from '@/lib/theme';
 import type { BaseColor } from '@/types';
 
 interface DetailCardProps {
@@ -12,113 +10,113 @@ interface DetailCardProps {
   description: string;
   color: BaseColor;
   className?: string;
-  large?: boolean;
 }
 
-const eventDetails: Omit<DetailCardProps, 'className' | 'large'>[] = [
+interface ColorStyles {
+  bg: string;
+  text: string;
+  border: string;
+  glow: string;
+}
+
+const colorStyles: Record<BaseColor, ColorStyles> = {
+  primary: {
+    bg: 'bg-primary/10',
+    text: 'text-primary',
+    border: 'hover:border-primary/50',
+    glow: 'group-hover:shadow-primary/10',
+  },
+  secondary: {
+    bg: 'bg-secondary/10',
+    text: 'text-secondary',
+    border: 'hover:border-secondary/50',
+    glow: 'group-hover:shadow-secondary/10',
+  },
+  lime: {
+    bg: 'bg-lime/10',
+    text: 'text-lime',
+    border: 'hover:border-lime/50',
+    glow: 'group-hover:shadow-lime/10',
+  },
+  accent: {
+    bg: 'bg-accent/10',
+    text: 'text-accent',
+    border: 'hover:border-accent/50',
+    glow: 'group-hover:shadow-accent/10',
+  },
+};
+
+const eventDetails: Omit<DetailCardProps, 'className'>[] = [
   {
     icon: <CalendarIcon />,
     title: 'Date',
     value: 'March 28-29, 2026',
-    description: 'A full weekend of hacking, workshops, and collaboration with fellow developers.',
+    description: 'Weekend event',
     color: 'primary',
   },
   {
     icon: <ClockIcon />,
     title: 'Duration',
     value: '36 Hours',
-    description: 'Non-stop innovation from Friday evening through Sunday afternoon.',
+    description: 'Non-stop hacking',
     color: 'secondary',
   },
   {
     icon: <LocationIcon />,
     title: 'Location',
     value: 'Hybrid Event',
-    description: 'Join in-person at Deakin Burwood or participate online from anywhere.',
+    description: 'Melbourne (Burwood) + Online',
     color: 'accent',
   },
   {
     icon: <TeamIcon />,
     title: 'Team Size',
     value: 'Up to 4',
-    description: 'Form a team or fly solo—we welcome all participation styles.',
+    description: 'Solo welcome too',
     color: 'lime',
   },
   {
     icon: <TrophyIcon />,
     title: 'Prizes',
     value: 'Cash + More',
-    description: 'Compete for cash prizes, swag, and exclusive opportunities.',
+    description: 'Details coming soon',
     color: 'primary',
   },
   {
     icon: <TicketIcon />,
     title: 'Cost',
     value: 'FREE',
-    description: 'No entry fee. Open to all Deakin students and community members.',
+    description: 'No entry fee',
     color: 'secondary',
   },
 ];
 
 export default function DetailsSection() {
   return (
-    <section id="details" className="relative py-24 md:py-32 bg-background overflow-hidden">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-0 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-secondary/5 blur-3xl" />
-      </div>
+    <section id="details" className="relative py-24 md:py-32 bg-muted/30 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,188,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,188,212,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="mb-12 md:mb-16">
+      {/* Decorative Orbs */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[150px]" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
+        <div className="text-center mb-16 flex flex-col items-center">
           <SectionLabel>Event Details</SectionLabel>
-          <h2 className="mb-6 font-grotesk text-4xl leading-tight text-foreground md:text-5xl lg:text-6xl flex flex-wrap gap-4">
-            Everything You
-            <GradientText
-              colors={['#e91e63', '#ff6b6b', '#9c27b0', '#00bcd4']}
-              animationSpeed={8}
-              showBorder={false}
-            >
-              Need to Know
-            </GradientText>
+          <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Everything You Need to Know
           </h2>
-          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Mark your calendar and prepare for 36 hours of innovation, collaboration, and code.
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
-          {/* Date - Large card spanning 2 cols */}
-          <DetailCard
-            {...eventDetails[0]}
-            className="lg:col-span-2 lg:row-span-2"
-            large
-          />
-
-          {/* Duration */}
-          <DetailCard
-            {...eventDetails[1]}
-            className="lg:col-span-2"
-          />
-
-          {/* Location */}
-          <DetailCard {...eventDetails[2]} />
-
-          {/* Team Size */}
-          <DetailCard {...eventDetails[3]} />
-
-          {/* Prizes */}
-          <DetailCard
-            {...eventDetails[4]}
-            className="lg:col-span-2"
-          />
-
-          {/* Cost */}
-          <DetailCard
-            {...eventDetails[5]}
-            className="lg:col-span-2"
-          />
+        {/* Details Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {eventDetails.map((detail, index) => (
+            <DetailCard key={index} {...detail} />
+          ))}
         </div>
 
         {/* Venue Info */}
@@ -169,61 +167,28 @@ function DetailCard({
   description,
   color,
   className = '',
-  large,
 }: DetailCardProps) {
-  const styles = bentoColorClasses[color];
+  const styles = colorStyles[color];
 
   return (
     <div
-      className={`group relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 md:p-8 ${styles.bg} ${styles.border} ${styles.glow} hover:shadow-xl ${className} ${large ? 'min-h-70' : 'min-h-50'}`}
+      className={`group bg-card border border-border rounded-xl p-6 transition-all duration-300 ${styles.border} hover:shadow-lg ${styles.glow} ${className}`}
     >
-      {/* Grid pattern on hover */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <GridPattern color={color} />
+      <div
+        className={`w-12 h-12 rounded-xl ${styles.bg} ${styles.text} flex items-center justify-center mb-4`}
+      >
+        {icon}
       </div>
-
-      <div className="relative z-10">
-        <div
-          className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon}`}
-        >
-          {icon}
-        </div>
-        <div className="text-sm text-muted-foreground font-mono uppercase tracking-wider mb-2">
-          {title}
-        </div>
-        <h3
-          className={`mb-3 font-grotesk font-bold text-foreground ${large ? 'text-3xl md:text-4xl' : 'text-2xl'}`}
-        >
-          {value}
-        </h3>
-        <p
-          className={`leading-relaxed text-muted-foreground ${large ? 'max-w-md text-base md:text-lg' : 'text-sm'}`}
-        >
-          {description}
-        </p>
+      <div className="text-sm text-muted-foreground font-mono uppercase tracking-wider mb-1">
+        {title}
+      </div>
+      <div className="font-grotesk text-2xl font-bold text-foreground mb-1">
+        {value}
+      </div>
+      <div className="text-sm text-muted-foreground">
+        {description}
       </div>
     </div>
-  );
-}
-
-function GridPattern({ color }: { color: BaseColor }): React.ReactElement {
-  return (
-    <svg
-      className="absolute inset-0 h-full w-full"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <pattern
-          id={`grid-detail-${color}`}
-          width="20"
-          height="20"
-          patternUnits="userSpaceOnUse"
-        >
-          <circle cx="1" cy="1" r="1" fill={themeColors[color]} opacity="0.3" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#grid-detail-${color})`} />
-    </svg>
   );
 }
 
