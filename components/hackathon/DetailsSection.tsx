@@ -1,117 +1,159 @@
 'use client';
 
 import SectionLabel from '@/components/SectionLabel';
+import GradientText from '@/components/GradientText';
+import { bentoColorClasses, themeColors } from '@/lib/theme';
+import type { BaseColor } from '@/types';
 
-const eventDetails = [
+interface DetailCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description: string;
+  color: BaseColor;
+  className?: string;
+  large?: boolean;
+}
+
+const eventDetails: Omit<DetailCardProps, 'className' | 'large'>[] = [
   {
     icon: <CalendarIcon />,
-    label: 'Date',
+    title: 'Date',
     value: 'March 28-29, 2026',
-    description: 'Weekend event',
-    color: 'primary' as const,
+    description: 'A full weekend of hacking, workshops, and collaboration with fellow developers.',
+    color: 'primary',
   },
   {
     icon: <ClockIcon />,
-    label: 'Duration',
+    title: 'Duration',
     value: '36 Hours',
-    description: 'Non-stop hacking',
-    color: 'coral' as const,
+    description: 'Non-stop innovation from Friday evening through Sunday afternoon.',
+    color: 'secondary',
   },
   {
     icon: <LocationIcon />,
-    label: 'Location',
+    title: 'Location',
     value: 'Hybrid Event',
-    description: 'Melbourne (Burwood) + Online',
-    color: 'secondary' as const,
+    description: 'Join in-person at Deakin Burwood or participate online from anywhere.',
+    color: 'accent',
   },
   {
     icon: <TeamIcon />,
-    label: 'Team Size',
+    title: 'Team Size',
     value: 'Up to 4',
-    description: 'Solo welcome too',
-    color: 'lime' as const,
+    description: 'Form a team or fly solo—we welcome all participation styles.',
+    color: 'lime',
   },
   {
     icon: <TrophyIcon />,
-    label: 'Prizes',
+    title: 'Prizes',
     value: 'Cash + More',
-    description: 'Details coming soon',
-    color: 'accent' as const,
+    description: 'Compete for cash prizes, swag, and exclusive opportunities.',
+    color: 'primary',
   },
   {
     icon: <TicketIcon />,
-    label: 'Cost',
+    title: 'Cost',
     value: 'FREE',
-    description: 'No entry fee',
-    color: 'primary' as const,
+    description: 'No entry fee. Open to all Deakin students and community members.',
+    color: 'secondary',
   },
 ];
 
 export default function DetailsSection() {
   return (
-    <section id="details" className="relative py-24 md:py-32 bg-muted/30 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,188,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,188,212,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <section id="details" className="relative py-24 md:py-32 bg-background overflow-hidden">
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-0 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-secondary/5 blur-3xl" />
+      </div>
 
-      {/* Decorative Orbs */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[150px]" />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-12 md:mb-16">
           <SectionLabel>Event Details</SectionLabel>
-          <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Everything You Need to Know
+          <h2 className="mb-6 font-grotesk text-4xl leading-tight text-foreground md:text-5xl lg:text-6xl flex flex-wrap gap-4">
+            Everything You
+            <GradientText
+              colors={['#e91e63', '#ff6b6b', '#9c27b0', '#00bcd4']}
+              animationSpeed={8}
+              showBorder={false}
+            >
+              Need to Know
+            </GradientText>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Mark your calendar and prepare for 36 hours of innovation, collaboration, and code.
           </p>
         </div>
 
-        {/* Details Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {eventDetails.map((detail, index) => (
-            <DetailCard key={index} {...detail} />
-          ))}
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
+          {/* Date - Large card spanning 2 cols */}
+          <DetailCard
+            {...eventDetails[0]}
+            className="lg:col-span-2 lg:row-span-2"
+            large
+          />
+
+          {/* Duration */}
+          <DetailCard
+            {...eventDetails[1]}
+            className="lg:col-span-2"
+          />
+
+          {/* Location */}
+          <DetailCard {...eventDetails[2]} />
+
+          {/* Team Size */}
+          <DetailCard {...eventDetails[3]} />
+
+          {/* Prizes */}
+          <DetailCard
+            {...eventDetails[4]}
+            className="lg:col-span-2"
+          />
+
+          {/* Cost */}
+          <DetailCard
+            {...eventDetails[5]}
+            className="lg:col-span-2"
+          />
         </div>
 
-        {/* Additional Info Box */}
-        <div className="mt-12 bg-card border border-border rounded-2xl p-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-coral" />
-
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="font-grotesk text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center">
-                  <MapPinIcon />
-                </span>
-                Melbourne In-Person Venue
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                In-person attendees will hack at <span className="text-foreground font-semibold">Deakin University Burwood Campus</span>. Exact building and room details will be shared closer to the event.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <InfoBadge icon={<WifiIcon />} text="Fast WiFi" />
-                <InfoBadge icon={<FoodIcon />} text="Food Provided" />
-                <InfoBadge icon={<PowerIcon />} text="Power Outlets" />
-              </div>
+        {/* Venue Info */}
+        <div className="mt-16 grid md:grid-cols-2 gap-12 md:gap-16">
+          <div>
+            <h3 className="font-grotesk text-xl font-bold text-foreground mb-4 flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center">
+                <MapPinIcon className="w-5 h-5 text-secondary" />
+              </span>
+              Melbourne In-Person Venue
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              In-person attendees will hack at <span className="text-foreground font-semibold">Deakin University Burwood Campus</span>. Exact building and room details will be shared closer to the event.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <InfoBadge icon={<WifiIcon />} text="Fast WiFi" />
+              <InfoBadge icon={<FoodIcon />} text="Food Provided" />
+              <InfoBadge icon={<PowerIcon />} text="Power Outlets" />
             </div>
+          </div>
 
-            <div>
-              <h3 className="font-grotesk text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-lime/20 flex items-center justify-center text-lime">
-                  <OnlineIcon />
-                </span>
-                Online Participation
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Can&apos;t make it to Melbourne? Join from anywhere in Australia through our <span className="text-foreground font-semibold">Discord server</span> with full access to mentors, workshops, and judging.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <InfoBadge icon={<DiscordIcon />} text="Discord Server" />
-                <InfoBadge icon={<MentorIcon />} text="Online Mentors" />
-                <InfoBadge icon={<JudgeIcon />} text="Equal Judging" />
-              </div>
+          <div>
+            <h3 className="font-grotesk text-xl font-bold text-foreground mb-4 flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-lime/20 flex items-center justify-center">
+                <OnlineIcon className="w-5 h-5 text-lime" />
+              </span>
+              Online Participation
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              Can&apos;t make it to Melbourne? Join from anywhere in Australia through our <span className="text-foreground font-semibold">Discord server</span> with full access to mentors, workshops, and judging.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <InfoBadge icon={<DiscordIcon />} text="Discord Server" />
+              <InfoBadge icon={<MentorIcon />} text="Online Mentors" />
+              <InfoBadge icon={<JudgeIcon />} text="Equal Judging" />
             </div>
           </div>
         </div>
@@ -120,79 +162,68 @@ export default function DetailsSection() {
   );
 }
 
-interface DetailCardProps {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  description: string;
-  color: 'primary' | 'secondary' | 'coral' | 'lime' | 'accent';
-}
-
-const colorStyles = {
-  primary: {
-    bg: 'bg-primary/10',
-    text: 'text-primary',
-    border: 'hover:border-primary/50',
-    glow: 'group-hover:shadow-primary/10',
-  },
-  secondary: {
-    bg: 'bg-secondary/10',
-    text: 'text-secondary',
-    border: 'hover:border-secondary/50',
-    glow: 'group-hover:shadow-secondary/10',
-  },
-  coral: {
-    bg: 'bg-coral/10',
-    text: 'text-coral',
-    border: 'hover:border-coral/50',
-    glow: 'group-hover:shadow-coral/10',
-  },
-  lime: {
-    bg: 'bg-lime/10',
-    text: 'text-lime',
-    border: 'hover:border-lime/50',
-    glow: 'group-hover:shadow-lime/10',
-  },
-  accent: {
-    bg: 'bg-accent/10',
-    text: 'text-accent',
-    border: 'hover:border-accent/50',
-    glow: 'group-hover:shadow-accent/10',
-  },
-};
-
-function DetailCard({ icon, label, value, description, color }: DetailCardProps) {
-  const styles = colorStyles[color];
+function DetailCard({
+  icon,
+  title,
+  value,
+  description,
+  color,
+  className = '',
+  large,
+}: DetailCardProps) {
+  const styles = bentoColorClasses[color];
 
   return (
-    <div className={`group bg-card border border-border rounded-xl p-6 transition-all duration-300 ${styles.border} hover:shadow-lg ${styles.glow}`}>
-      <div className={`w-12 h-12 rounded-xl ${styles.bg} ${styles.text} flex items-center justify-center mb-4`}>
-        {icon}
+    <div
+      className={`group relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 md:p-8 ${styles.bg} ${styles.border} ${styles.glow} hover:shadow-xl ${className} ${large ? 'min-h-70' : 'min-h-50'}`}
+    >
+      {/* Grid pattern on hover */}
+      <div className="absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <GridPattern color={color} />
       </div>
-      <div className="text-sm text-muted-foreground font-mono uppercase tracking-wider mb-1">
-        {label}
-      </div>
-      <div className="font-grotesk text-2xl font-bold text-foreground mb-1">
-        {value}
-      </div>
-      <div className="text-sm text-muted-foreground">
-        {description}
+
+      <div className="relative z-10">
+        <div
+          className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon}`}
+        >
+          {icon}
+        </div>
+        <div className="text-sm text-muted-foreground font-mono uppercase tracking-wider mb-2">
+          {title}
+        </div>
+        <h3
+          className={`mb-3 font-grotesk font-bold text-foreground ${large ? 'text-3xl md:text-4xl' : 'text-2xl'}`}
+        >
+          {value}
+        </h3>
+        <p
+          className={`leading-relaxed text-muted-foreground ${large ? 'max-w-md text-base md:text-lg' : 'text-sm'}`}
+        >
+          {description}
+        </p>
       </div>
     </div>
   );
 }
 
-interface InfoBadgeProps {
-  icon: React.ReactNode;
-  text: string;
-}
-
-function InfoBadge({ icon, text }: InfoBadgeProps) {
+function GridPattern({ color }: { color: BaseColor }): React.ReactElement {
   return (
-    <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-sm text-muted-foreground">
-      {icon}
-      {text}
-    </span>
+    <svg
+      className="absolute inset-0 h-full w-full"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          id={`grid-detail-${color}`}
+          width="20"
+          height="20"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle cx="1" cy="1" r="1" fill={themeColors[color]} opacity="0.3" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#grid-detail-${color})`} />
+    </svg>
   );
 }
 
@@ -246,20 +277,34 @@ function TicketIcon() {
   );
 }
 
-function MapPinIcon() {
+function MapPinIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg className="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   );
 }
 
-function OnlineIcon() {
+function OnlineIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
+  );
+}
+
+interface InfoBadgeProps {
+  icon: React.ReactNode;
+  text: string;
+}
+
+function InfoBadge({ icon, text }: InfoBadgeProps) {
+  return (
+    <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-sm text-muted-foreground">
+      {icon}
+      {text}
+    </span>
   );
 }
 

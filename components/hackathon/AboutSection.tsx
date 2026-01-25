@@ -1,6 +1,8 @@
 'use client';
 
 import SectionLabel from '@/components/SectionLabel';
+import DecryptedText from '@/components/DecryptedText';
+import { Terminal, TypingAnimation, AnimatedSpan } from '@/components/ui/terminal';
 
 export default function AboutSection() {
   return (
@@ -16,7 +18,12 @@ export default function AboutSection() {
           <div>
             <SectionLabel>About the Event</SectionLabel>
             <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              What is ACUSYS x DSEC?
+              <DecryptedText
+                text="What is ACUSYS x DSEC?"
+                animateOn="view"
+                sequential
+                speed={40}
+              />
             </h2>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
@@ -42,35 +49,35 @@ export default function AboutSection() {
 
           {/* Right Visual */}
           <div className="relative">
-            {/* Main Card */}
-            <div className="relative bg-card border border-border rounded-2xl p-8 overflow-hidden">
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-primary/50 rounded-tl-2xl" />
-              <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-secondary/50 rounded-br-2xl" />
+            <Terminal className="max-w-full">
+              <TypingAnimation className="text-primary">{`// HACKATHON_CONFIG`}</TypingAnimation>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">name:</span>{' '}
+                <span className="text-lime">&quot;ACUSYS x DSEC 2026&quot;</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">duration:</span>{' '}
+                <span className="text-coral">36</span>{' '}
+                <span className="text-muted-foreground">// hours</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">focus:</span>{' '}
+                <span className="text-secondary">[&quot;software&quot;, &quot;security&quot;]</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">teams:</span>{' '}
+                <span className="text-primary">{`{ max: 4, solo: true }`}</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">prizes:</span>{' '}
+                <span className="text-accent">&quot;cash + sponsor rewards&quot;</span>
+              </AnimatedSpan>
+              <TypingAnimation className="text-muted-foreground">{`// Ready to initialize...`}</TypingAnimation>
+            </Terminal>
 
-              {/* Code-like visualization */}
-              <div className="font-mono text-sm space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">//</span>
-                  <span className="text-primary">HACKATHON_CONFIG</span>
-                </div>
-                <div className="pl-4 space-y-2">
-                  <CodeLine label="name" value='"ACUSYS x DSEC 2026"' color="lime" />
-                  <CodeLine label="duration" value="36" suffix="hours" color="coral" />
-                  <CodeLine label="focus" value='["software", "security"]' color="secondary" />
-                  <CodeLine label="teams" value="{ max: 4, solo: true }" color="primary" />
-                  <CodeLine label="prizes" value='"cash + sponsor rewards"' color="accent" />
-                </div>
-                <div className="flex items-center gap-2 pt-2">
-                  <span className="text-muted-foreground">//</span>
-                  <span className="text-muted-foreground animate-pulse">Ready to initialize...</span>
-                </div>
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold rotate-12 shadow-lg shadow-primary/25">
-                FREE ENTRY
-              </div>
+            {/* Floating badge */}
+            <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold rotate-12 shadow-lg shadow-primary/25 z-10">
+              FREE ENTRY
             </div>
 
             {/* Decorative floating elements */}
@@ -81,31 +88,6 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-interface CodeLineProps {
-  label: string;
-  value: string;
-  suffix?: string;
-  color: 'primary' | 'secondary' | 'coral' | 'lime' | 'accent';
-}
-
-const colorMap = {
-  primary: 'text-primary',
-  secondary: 'text-secondary',
-  coral: 'text-coral',
-  lime: 'text-lime',
-  accent: 'text-accent',
-};
-
-function CodeLine({ label, value, suffix, color }: CodeLineProps) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className="text-muted-foreground">{label}:</span>
-      <span className={colorMap[color]}>{value}</span>
-      {suffix && <span className="text-muted-foreground">// {suffix}</span>}
-    </div>
   );
 }
 

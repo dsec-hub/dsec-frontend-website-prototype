@@ -68,7 +68,7 @@ export default function HackathonHero() {
       {/* DarkVeil Background with Purple Hue */}
       <div className="absolute inset-0 w-full h-[60vh] opacity-60">
         <DarkVeil
-          hueShift={264}
+          hueShift={300}
           noiseIntensity={0.05}
           scanlineIntensity={0.5}
           speed={0.5}
@@ -126,7 +126,7 @@ export default function HackathonHero() {
                   speed={100}
                   sequential={true}
                   revealDirection="start"
-                  animateOn="view"
+                  animateOn="both"
                   className="text-foreground"
                   encryptedClassName="text-foreground/50"
                 />
