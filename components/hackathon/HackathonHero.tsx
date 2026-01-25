@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import SectionLabel from '@/components/SectionLabel';
 import GradientText from '@/components/GradientText';
+import DarkVeil from '@/components/DarkVeil';
+import CountUp from '@/components/CountUp';
+import DecryptedText from '@/components/DecryptedText';
 
 // Countdown target: March 28, 2026 9:00 AM AEDT
 const TARGET_DATE = new Date('2026-03-28T09:00:00+11:00').getTime();
@@ -49,13 +52,30 @@ function useCountdown(targetDate: number): TimeLeft {
 export default function HackathonHero() {
   const timeLeft = useCountdown(TARGET_DATE);
   const [mounted, setMounted] = useState(false);
+  const [animationsReady, setAnimationsReady] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    // Delay animations to match initial page loading
+    const timer = setTimeout(() => {
+      setAnimationsReady(true);
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
+      {/* DarkVeil Background with Purple Hue */}
+      <div className="absolute inset-0 w-full h-[60vh] opacity-60">
+        <DarkVeil
+          hueShift={264}
+          noiseIntensity={0.05}
+          scanlineIntensity={0.5}
+          speed={0.5}
+          scanlineFrequency={1}
+        />
+      </div>
+
       {/* Animated Grid Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(233,30,99,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(233,30,99,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
@@ -95,9 +115,25 @@ export default function HackathonHero() {
 
         {/* Main Headline with Glitch Effect */}
         <div className="relative mb-6">
-          <h1 className="font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold text-center leading-tight tracking-tight">
-            <span className="block text-foreground">36 Hours.</span>
-            <span className="block text-foreground">One Challenge.</span>
+          <h1 className="flex flex-col items-center font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold text-center leading-tight tracking-tight">
+            <span className="block text-foreground">
+              <CountUp to={36} duration={2} delay={3} startWhen={mounted} className="inline-block" /> Hours.
+            </span>
+            <span className="block text-foreground">
+              {animationsReady ? (
+                <DecryptedText
+                  text="One Challenge."
+                  speed={100}
+                  sequential={true}
+                  revealDirection="start"
+                  animateOn="view"
+                  className="text-foreground"
+                  encryptedClassName="text-foreground/50"
+                />
+              ) : (
+                <span className="text-foreground">One Challenge.</span>
+              )}
+            </span>
             <GradientText
               colors={['#e91e63', '#ff6b6b', '#00bcd4', '#e91e63']}
               animationSpeed={4}
@@ -154,14 +190,6 @@ export default function HackathonHero() {
           <QuickStat icon={<LocationIcon />} value="Hybrid" label="Melbourne + Online" />
           <QuickStat icon={<TeamIcon />} value="4" label="Max Team Size" />
           <QuickStat icon={<PrizeIcon />} value="$$$" label="Cash Prizes" />
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-          <span className="text-xs text-muted-foreground mb-2 font-mono">SCROLL</span>
-          <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-1">
-            <div className="w-1.5 h-3 bg-primary rounded-full animate-[scroll-indicator_2s_ease-in-out_infinite]" />
-          </div>
         </div>
       </div>
 
