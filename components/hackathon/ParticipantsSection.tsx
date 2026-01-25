@@ -32,7 +32,7 @@ const targetAudience = [
 
 export default function ParticipantsSection() {
   return (
-    <section id="participants" className="relative py-24 md:py-32 bg-background overflow-hidden">
+    <section id="participants" className="relative py-24 md:py-32 bg-background overflow-x-clip">
       {/* Decorative Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-coral/5 rounded-full blur-[150px]" />
@@ -42,7 +42,7 @@ export default function ParticipantsSection() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left Content */}
-          <div className="lg:sticky lg:top-32">
+          <div className="lg:sticky lg:top-8 self-start">
             <SectionLabel>Who Should Join</SectionLabel>
             <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
               You don&apos;t need to be an expert.
