@@ -50,7 +50,7 @@ export default function FAQSection() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 flex flex-col items-center">
           <SectionLabel>FAQ</SectionLabel>
           <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Frequently Asked Questions

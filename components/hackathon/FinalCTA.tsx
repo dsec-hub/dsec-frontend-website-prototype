@@ -21,7 +21,7 @@ export default function FinalCTA() {
         <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-lime rounded-full animate-float opacity-50" style={{ animationDelay: '0.5s' }} />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
         {/* Headline */}
         <div className="mb-8">
           <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
