@@ -33,40 +33,41 @@ export default function ProjectsHero() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[70vh] max-w-7xl mx-auto">
 						{/* Left Column - Title and Labels */}
 						<div className="flex flex-col justify-center max-w-xl pt-24">
-							{/* Small note */}
-							<div className="inline-flex items-center gap-2 bg-muted/50 border border-border/50 rounded-full px-4 py-2 mb-8 w-fit">
-								<GitHubIcon />
-								<span className="text-sm text-muted-foreground">
-									All projects shown here link directly to GitHub
-								</span>
-							</div>
-
 							<SectionLabel>Student Software Projects</SectionLabel>
 
-							<h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-6">
+							<h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8">
 								Student software projects from DSEC
 							</h1>
 
-							<div className="flex flex-wrap items-center gap-4">
+							{/* Action buttons - prominent on mobile */}
+							<div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-8">
 								<Link
 									href="https://basecamp.dsec.club/"
-									className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center transition-all"
+									className="px-6 py-4 sm:px-8 sm:py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold gap-2 flex items-center justify-center transition-all text-base sm:text-sm"
 								>
 									<SparklesIcon />
 									Join a project
 								</Link>
 								<TransitionLink
 									href="/partnership"
-									className="px-8 py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center transition-all"
+									className="px-6 py-4 sm:px-8 sm:py-3 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold gap-2 flex items-center justify-center transition-all text-base sm:text-sm"
 								>
 									<CodeIcon />
 									Talk to us about student projects
 								</TransitionLink>
 							</div>
+
+							{/* Small note */}
+							<div className="inline-flex items-center gap-2 bg-muted/50 border border-border/50 rounded-full px-4 py-2 w-fit">
+								<GitHubIcon />
+								<span className="text-sm text-muted-foreground">
+									All projects shown here link directly to GitHub
+								</span>
+							</div>
 						</div>
 
 						{/* Right Column - CardSwap */}
-						<div className="relative h-[400px] md:h-[500px] flex items-start justify-center">
+						<div className="relative h-[350px] sm:h-[400px] md:h-[500px] flex items-start justify-center">
 							<CardSwap
 								width={480}
 								height={320}
