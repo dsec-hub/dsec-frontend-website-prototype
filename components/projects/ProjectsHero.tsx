@@ -33,15 +33,16 @@ export default function ProjectsHero() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center min-h-[70vh] max-w-7xl mx-auto">
 						{/* Right Column - CardSwap (appears first on mobile) */}
 						<div className="relative h-[300px] sm:h-[380px] md:h-[450px] lg:h-[500px] flex items-center justify-center lg:order-2 pt-20 lg:pt-0">
-							<CardSwap
-								width={480}
-								height={320}
-								cardDistance={50}
-								verticalDistance={50}
-								delay={4000}
-								pauseOnHover={true}
-								easing="elastic"
-							>
+							<div className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] mx-auto scale-[0.65] sm:scale-[0.8] md:scale-95 lg:scale-100">
+								<CardSwap
+									width={480}
+									height={320}
+									cardDistance={50}
+									verticalDistance={50}
+									delay={4000}
+									pauseOnHover={true}
+									easing="elastic"
+								>
 								{/* Desktop Card 1 - Code Editor */}
 								<Card className="flex flex-col overflow-hidden !p-0 !bg-[#1e1e1e] !border-[#3c3c3c] !rounded-lg shadow-2xl">
 									{/* macOS-style title bar */}
@@ -208,6 +209,7 @@ export default function ProjectsHero() {
 									</div>
 								</Card>
 							</CardSwap>
+							</div>
 						</div>
 
 						{/* Left Column - Title and Labels (appears second on mobile) */}
