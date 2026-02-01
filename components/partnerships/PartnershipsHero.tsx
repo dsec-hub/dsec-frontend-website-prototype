@@ -8,21 +8,6 @@ import LightRays from "../LightRays";
 export default function PartnershipsHero() {
 	return (
 		<section className="relative min-h-[80vh] overflow-hidden bg-background">
-			{/* LightRays Background */}
-			<div className="absolute inset-0 w-full min-h-[70vh] opacity-50">
-				<LightRays
-					raysOrigin="top-center"
-					raysColor="#8b5cf6"
-					raysSpeed={0.8}
-					lightSpread={1.2}
-					rayLength={2.5}
-					pulsating={false}
-					fadeDistance={1.2}
-					saturation={0.8}
-					followMouse={true}
-					mouseInfluence={0.15}
-				/>
-			</div>
 
 			{/* Animated background */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
