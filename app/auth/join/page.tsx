@@ -30,6 +30,8 @@ import FormInput from "@/components/auth/FormInput";
 import PasswordInput from "@/components/auth/PasswordInput";
 import PasswordStrengthIndicator from "@/components/auth/PasswordStrengthIndicator";
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
+import ComingSoon from "@/components/auth/ComingSoon";
+import AuthLayout from "@/components/auth/AuthLayout";
 import {
   signUpWithEmail,
   signInWithGoogle,
@@ -39,6 +41,7 @@ import {
   profileSchema,
   type ProfileFormData,
 } from "@/lib/auth-schemas";
+import { featureFlags } from "@/lib/feature-flags";
 
 // Dynamically import Lanyard to avoid SSR issues with Three.js
 const Lanyard = dynamic(() => import("@/components/ui/Lanyard/Lanyard"), {
@@ -56,6 +59,19 @@ type MembershipType = "member" | "browsing" | null;
 type SignUpMethod = "google" | "github" | "email" | null;
 
 export default function JoinPage() {
+  // Show coming soon page if auth is disabled
+  if (featureFlags.AUTH_DISABLED) {
+    return (
+      <AuthLayout>
+        <ComingSoon type="join" />
+      </AuthLayout>
+    );
+  }
+
+  return <JoinForm />;
+}
+
+function JoinForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [studentStatus, setStudentStatus] = useState<StudentStatus>(null);
   const [campus, setCampus] = useState<Campus>(null);

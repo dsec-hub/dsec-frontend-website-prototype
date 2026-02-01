@@ -12,12 +12,14 @@ import AuthLayout from "@/components/auth/AuthLayout";
 import FormInput from "@/components/auth/FormInput";
 import PasswordInput from "@/components/auth/PasswordInput";
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
+import ComingSoon from "@/components/auth/ComingSoon";
 import {
   signInWithEmail,
   signInWithGoogle,
   signInWithGitHub,
 } from "@/lib/auth-client";
 import { loginSchema, type LoginFormData } from "@/lib/auth-schemas";
+import { featureFlags } from "@/lib/feature-flags";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -252,6 +254,15 @@ function LoginForm() {
 }
 
 export default function LoginPage() {
+  // Show coming soon page if auth is disabled
+  if (featureFlags.AUTH_DISABLED) {
+    return (
+      <AuthLayout>
+        <ComingSoon type="login" />
+      </AuthLayout>
+    );
+  }
+
   return (
     <Suspense fallback={
       <AuthLayout>
