@@ -4,6 +4,7 @@ import EventsCTA from '@/components/events/EventsCTA';
 import EventsHero from '@/components/events/EventsHero';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import SmoothScroll from '@/components/SmoothScroll';
 
 import type { Metadata } from 'next';
 
@@ -29,13 +30,15 @@ export const metadata: Metadata = {
 
 export default function EventsPage() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
-      <EventsHero />
-      <EventCardsGrid />
-      <AccessibilitySection />
-      <EventsCTA />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <EventsHero />
+        <EventCardsGrid />
+        <AccessibilitySection />
+        <EventsCTA />
+        <Footer />
+      </main>
+    </SmoothScroll>
   );
 }

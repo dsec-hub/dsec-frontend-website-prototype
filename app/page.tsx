@@ -6,18 +6,21 @@ import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
 import NewsletterSection from '@/components/NewsletterSection';
 import PartnersSection from '@/components/PartnersSection';
+import SmoothScroll from '@/components/SmoothScroll';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
-      <Hero />
-      <AnimatedMarquee />
-      <AboutSection />
-      <BentoGrid />
-      <PartnersSection />
-      <NewsletterSection />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <Hero />
+        <AnimatedMarquee />
+        <AboutSection />
+        <BentoGrid />
+        <PartnersSection />
+        <NewsletterSection />
+        <Footer />
+      </main>
+    </SmoothScroll>
   );
 }

@@ -6,6 +6,7 @@ import PartnershipTiers from '@/components/partnerships/PartnershipTiers';
 import SuccessStories from '@/components/partnerships/SuccessStories';
 import PartnershipProcess from '@/components/partnerships/PartnershipProcess';
 import PartnershipsCTA from '@/components/partnerships/PartnershipsCTA';
+import SmoothScroll from '@/components/SmoothScroll';
 
 import type { Metadata } from 'next';
 
@@ -33,15 +34,17 @@ export const metadata: Metadata = {
 
 export default function PartnershipsPage() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
-      <PartnershipsHero />
-      <PartnershipBenefits />
-      <PartnershipTiers />
-      <SuccessStories />
-      <PartnershipProcess />
-      <PartnershipsCTA />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <PartnershipsHero />
+        <PartnershipBenefits />
+        <PartnershipTiers />
+        <SuccessStories />
+        <PartnershipProcess />
+        <PartnershipsCTA />
+        <Footer />
+      </main>
+    </SmoothScroll>
   );
 }
