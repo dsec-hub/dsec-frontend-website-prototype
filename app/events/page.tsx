@@ -2,9 +2,11 @@ import AccessibilitySection from '@/components/events/AccessibilitySection';
 import EventCardsGrid from '@/components/events/EventCardsGrid';
 import EventsCTA from '@/components/events/EventsCTA';
 import EventsHero from '@/components/events/EventsHero';
+import ComingSoon from '@/components/auth/ComingSoon';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import SmoothScroll from '@/components/SmoothScroll';
+import { featureFlags } from '@/lib/feature-flags';
 
 import type { Metadata } from 'next';
 
@@ -29,6 +31,17 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
+  // Show coming soon page if content pages are disabled
+  if (featureFlags.CONTENT_PAGES_DISABLED) {
+    return (
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <ComingSoon type="events" />
+        <Footer />
+      </main>
+    );
+  }
+
   return (
     <SmoothScroll>
       <main className="min-h-screen bg-background">

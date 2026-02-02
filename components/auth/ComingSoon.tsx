@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface ComingSoonProps {
-  type: "login" | "join";
+  type: "login" | "join" | "blog" | "events" | "projects" | "partnerships";
 }
 
 export default function ComingSoon({ type }: ComingSoonProps) {
@@ -173,10 +173,12 @@ export default function ComingSoon({ type }: ComingSoonProps) {
           transition={{ delay: 0.4 }}
           className="text-xl text-muted-foreground mb-4"
         >
-          {type === "login"
-            ? "Member portal is getting ready for liftoff"
-            : "Registration is preparing for launch"
-          }
+          {type === "login" && "Member portal is getting ready for liftoff"}
+          {type === "join" && "Registration is preparing for launch"}
+          {type === "blog" && "Our blog is getting ready for liftoff"}
+          {type === "events" && "Events page is preparing for launch"}
+          {type === "projects" && "Projects showcase is getting ready"}
+          {type === "partnerships" && "Partnerships page is preparing for launch"}
         </motion.p>
 
         {/* Description */}
@@ -186,10 +188,12 @@ export default function ComingSoon({ type }: ComingSoonProps) {
           transition={{ delay: 0.5 }}
           className="text-muted-foreground mb-8 max-w-md mx-auto"
         >
-          {type === "login"
-            ? "We're building something amazing for DSEC members. The login feature will be available soon."
-            : "We're putting the finishing touches on our membership system. Join the waitlist to be the first to know when we launch."
-          }
+          {type === "login" && "We're building something amazing for DSEC members. The login feature will be available soon."}
+          {type === "join" && "We're putting the finishing touches on our membership system. Join the waitlist to be the first to know when we launch."}
+          {type === "blog" && "We're crafting insightful articles and tutorials for the DSEC community. Join the waitlist to be notified when we launch."}
+          {type === "events" && "We're preparing an exciting lineup of events for you. Join the waitlist to be the first to know when registration opens."}
+          {type === "projects" && "We're curating an amazing showcase of student projects. Join the waitlist to be notified when we launch."}
+          {type === "partnerships" && "We're building exciting partnership opportunities. Join the waitlist to be the first to know when this page goes live."}
         </motion.p>
 
         {/* Feature badges */}
