@@ -10,11 +10,23 @@ import {
   BlogCategories,
   BlogCTA,
 } from "@/components/blog";
+import ComingSoon from "@/components/auth/ComingSoon";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { featureFlags } from "@/lib/feature-flags";
 import type { BlogPost, BlogCategory, BlogCategoryInfo, BlogListResponse } from "@/types";
 
 export default function BlogPage() {
+  // Show coming soon page if content pages are disabled
+  if (featureFlags.CONTENT_PAGES_DISABLED) {
+    return (
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <ComingSoon type="blog" />
+        <Footer />
+      </main>
+    );
+  }
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategoryInfo[]>([]);

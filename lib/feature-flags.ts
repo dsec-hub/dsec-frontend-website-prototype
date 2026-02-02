@@ -11,6 +11,12 @@ export const featureFlags = {
    * and users will see a "Coming Soon" message instead.
    */
   AUTH_DISABLED: true,
+
+  /**
+   * When true, content pages (blog, events, projects, partnerships)
+   * will be disabled and users will see a "Coming Soon" message instead.
+   */
+  CONTENT_PAGES_DISABLED: true,
 } as const;
 
 export type FeatureFlags = typeof featureFlags;

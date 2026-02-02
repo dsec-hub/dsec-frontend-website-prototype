@@ -1,3 +1,4 @@
+import ComingSoon from '@/components/auth/ComingSoon';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PartnershipsHero from '@/components/partnerships/PartnershipsHero';
@@ -6,6 +7,7 @@ import PartnershipTiers from '@/components/partnerships/PartnershipTiers';
 import SuccessStories from '@/components/partnerships/SuccessStories';
 import PartnershipProcess from '@/components/partnerships/PartnershipProcess';
 import PartnershipsCTA from '@/components/partnerships/PartnershipsCTA';
+import { featureFlags } from '@/lib/feature-flags';
 
 import type { Metadata } from 'next';
 
@@ -32,6 +34,17 @@ export const metadata: Metadata = {
 };
 
 export default function PartnershipsPage() {
+  // Show coming soon page if content pages are disabled
+  if (featureFlags.CONTENT_PAGES_DISABLED) {
+    return (
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <ComingSoon type="partnerships" />
+        <Footer />
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
