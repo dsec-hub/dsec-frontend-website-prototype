@@ -1,3 +1,4 @@
+import ComingSoon from '@/components/auth/ComingSoon';
 import ContactHero from '@/components/contact/ContactHero';
 import GeneralContactForm from '@/components/contact/GeneralContactForm';
 import MembershipInfo from '@/components/contact/MembershipInfo';
@@ -6,6 +7,7 @@ import SuggestionForm from '@/components/contact/SuggestionForm';
 import WorkWithUs from '@/components/contact/WorkWithUs';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { featureFlags } from '@/lib/feature-flags';
 
 import type { Metadata } from 'next';
 
@@ -34,6 +36,17 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  // Show coming soon page if content pages are disabled
+  if (featureFlags.CONTENT_PAGES_DISABLED) {
+    return (
+      <main className="min-h-screen bg-background">
+        <Navbar />
+        <ComingSoon type="contact" />
+        <Footer />
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
