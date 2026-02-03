@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/events',
     '/contact',
     '/hackathon',
+    '/socials',
     '/search',
     '/status',
     '/privacy',
