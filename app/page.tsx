@@ -1,6 +1,7 @@
 import AboutSection from '@/components/AboutSection';
 import AnimatedMarquee from '@/components/AnimatedMarquee';
 import BentoGrid from '@/components/BentoGrid';
+import FeaturedEventsSection from '@/components/FeaturedEventsSection';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
@@ -17,6 +18,7 @@ export default function Home() {
         <AnimatedMarquee />
         <AboutSection />
         <BentoGrid />
+        <FeaturedEventsSection />
         <PartnersSection />
         <NewsletterSection />
         <Footer />
