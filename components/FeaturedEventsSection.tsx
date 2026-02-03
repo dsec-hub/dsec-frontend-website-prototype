@@ -91,7 +91,7 @@ export default function FeaturedEventsSection(): React.ReactElement {
 function T1StallCard(): React.ReactElement {
   return (
     <TransitionLink
-      href="/events"
+      href="/stall"
       className="group relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 md:p-8 bg-secondary/10 hover:bg-secondary/15 border-secondary/20 hover:border-secondary/40 hover:shadow-lg hover:shadow-secondary/10 min-h-[320px]"
     >
       {/* Grid Pattern Background */}
