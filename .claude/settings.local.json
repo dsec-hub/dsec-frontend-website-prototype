@@ -6,7 +6,9 @@
       "Bash(npx tsc:*)",
       "Bash(npm run lint)",
       "Bash(npm run lint:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:docs.buttondown.com)",
+      "WebFetch(domain:buttondown.com)"
     ]
   }
 }

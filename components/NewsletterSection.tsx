@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Image from "next/image";
 
-import GradientText from "@/components/GradientText";
+import { subscribeToNewsletter } from "@/app/actions/newsletter";
 import {
   ArrowRightIcon,
   LoadingSpinner,
@@ -39,13 +39,26 @@ export default function NewsletterSection(): React.ReactElement {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setMessage("");
+    setIsError(false);
+
+    const result = await subscribeToNewsletter(email);
+
     setIsSubmitting(false);
-    setIsSubmitted(true);
+
+    if (result.success) {
+      setIsSubmitted(true);
+      setMessage(result.message);
+    } else {
+      setIsError(true);
+      setMessage(result.message);
+    }
   };
 
   return (
@@ -88,7 +101,7 @@ export default function NewsletterSection(): React.ReactElement {
 					<div className="inline-flex items-center gap-3 rounded-2xl border border-lime/20 bg-lime/10 px-6 py-4">
 						<SparklesIcon className="text-lime" />
 						<span className="font-medium text-foreground">
-							You&apos;re on the list! Check your inbox soon.
+							{message || "You're on the list! Check your inbox soon."}
 						</span>
 					</div>
 				) : (
@@ -122,6 +135,9 @@ export default function NewsletterSection(): React.ReactElement {
 								)}
 							</button>
 						</div>
+						{isError && message && (
+							<p className="mt-4 text-sm text-red-500">{message}</p>
+						)}
 						<p className="mt-4 text-sm text-muted-foreground">
 							By subscribing, you agree to receive club updates. Unsubscribe
 							anytime.
