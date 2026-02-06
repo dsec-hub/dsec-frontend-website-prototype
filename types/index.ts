@@ -22,7 +22,7 @@ export type ContactTopic =
   | "other";
 
 // Social platform types
-export type SocialPlatform = "Discord" | "Instagram" | "LinkedIn" | "GitHub";
+export type SocialPlatform = "Discord" | "Instagram" | "LinkedIn" | "GitHub" | "Facebook";
 
 // Shape types for decorative elements
 export type ShapeType = "circle" | "square" | "triangle";
