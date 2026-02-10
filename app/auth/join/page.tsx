@@ -32,6 +32,8 @@ import PasswordStrengthIndicator from "@/components/auth/PasswordStrengthIndicat
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
 import ComingSoon from "@/components/auth/ComingSoon";
 import AuthLayout from "@/components/auth/AuthLayout";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   signUpWithEmail,
   signInWithGoogle,
@@ -57,6 +59,9 @@ type StudentStatus = "deakin" | "external" | null;
 type Campus = "burwood" | "waurn-ponds" | "waterfront" | "online" | null;
 type MembershipType = "member" | "browsing" | null;
 type SignUpMethod = "google" | "github" | "email" | null;
+
+// Feature flag to control account creation visibility
+const ACCOUNT_CREATION_ENABLED = false;
 
 export default function JoinPage() {
   // Show coming soon page if auth is disabled
@@ -211,9 +216,11 @@ function JoinForm() {
   const canProceedStep2 = membershipType !== null;
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-background">
+        {/* Hero Section */}
+        <section className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <motion.h1
@@ -321,13 +328,36 @@ function JoinForm() {
                 </motion.div>
               )}
 
+              {/* Coming Soon Message */}
+              {!ACCOUNT_CREATION_ENABLED && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden p-12 text-center"
+                >
+                  <div className="max-w-md mx-auto space-y-6">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+                      <Sparkles className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-[family-name:var(--font-space-grotesk)]">
+                      Will Be Launching Soon
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Our online registration system is almost ready. In the meantime, you can become a member through our student association.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
               {/* Multi-Step Form */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden"
-              >
+              {ACCOUNT_CREATION_ENABLED && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden"
+                >
                 <Stepper
                   currentStep={currentStep}
                   onStepChange={setCurrentStep}
@@ -806,6 +836,38 @@ function JoinForm() {
                   </Link>
                 </div>
               </motion.div>
+              )}
+
+              {/* Student Association Membership Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-8 bg-gradient-to-br from-primary/10 via-secondary/10 to-lime/10 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 text-center"
+              >
+                <div className="max-w-2xl mx-auto space-y-6">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center">
+                    <Users className="w-8 h-8 text-primary" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-[family-name:var(--font-space-grotesk)]">
+                    Become a Member Through Our Student Association
+                  </h2>
+                  <p className="text-muted-foreground text-lg">
+                    Join DSEC through the Deakin University Student Association (DUSA) to get full access to all our events, workshops, and exclusive member benefits.
+                  </p>
+                  <a
+                    href="https://www.dusa.org.au/clubs/deakin-software-engineering-club-dsec"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    Join via DUSA <ArrowRight className="w-5 h-5" />
+                  </a>
+                  <p className="text-sm text-muted-foreground">
+                    You&apos;ll be redirected to the DUSA club membership page
+                  </p>
+                </div>
+              </motion.div>
 
               {/* Why Create Account */}
               <motion.div
@@ -897,7 +959,9 @@ function JoinForm() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
