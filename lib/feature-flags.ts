@@ -10,7 +10,7 @@ export const featureFlags = {
    * When true, login and join functionality will be disabled
    * and users will see a "Coming Soon" message instead.
    */
-  AUTH_DISABLED: true,
+  AUTH_DISABLED: false,
 
   /**
    * When true, content pages (blog, events, projects, partnerships)
