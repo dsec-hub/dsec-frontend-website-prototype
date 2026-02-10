@@ -3,6 +3,7 @@
 import { Rocket, Clock, Bell, ArrowRight, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { subscribeToNewsletter } from "@/app/actions/newsletter";
 
 interface ComingSoonProps {
   type: "login" | "join" | "blog" | "events" | "projects" | "partnerships" | "contact";
@@ -31,12 +32,29 @@ const descriptions: Record<ComingSoonProps["type"], string> = {
 export default function ComingSoon({ type }: ComingSoonProps) {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  const handleNotify = (e: React.FormEvent) => {
+  const handleNotify = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setIsSubmitting(true);
+    setMessage("");
+    setIsError(false);
+
+    const result = await subscribeToNewsletter(email);
+
+    setIsSubmitting(false);
+
+    if (result.success) {
       setIsSubscribed(true);
+      setMessage(result.message);
       setEmail("");
+    } else {
+      setIsError(true);
+      setMessage(result.message);
     }
   };
 
@@ -101,23 +119,38 @@ export default function ComingSoon({ type }: ComingSoonProps) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email for updates"
-                    className="w-full pl-12 pr-4 py-4 bg-card/80 backdrop-blur-sm border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-foreground placeholder:text-muted-foreground"
+                    required
+                    disabled={isSubmitting}
+                    className="w-full pl-12 pr-4 py-4 bg-card/80 backdrop-blur-sm border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-foreground placeholder:text-muted-foreground disabled:opacity-70"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors flex items-center gap-2"
+                  disabled={isSubmitting}
+                  className="px-6 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Notify Me
-                  <ArrowRight className="w-4 h-4" />
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
+                      Subscribing...
+                    </>
+                  ) : (
+                    <>
+                      Notify Me
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
+              {isError && message && (
+                <p className="mt-4 text-sm text-red-500 text-center">{message}</p>
+              )}
             </form>
           ) : (
             <div className="p-6 bg-green-500/10 border border-green-500/20 rounded-xl">
               <div className="flex items-center justify-center gap-3 text-green-500">
                 <Sparkles className="w-5 h-5" />
-                <span className="font-medium">You&apos;re on the list! We&apos;ll notify you when we launch.</span>
+                <span className="font-medium">{message || "You're on the list! We'll notify you when we launch."}</span>
               </div>
             </div>
           )}
