@@ -1,10 +1,3 @@
-import StallHero from '@/components/stall/StallHero';
-import WhatYoullFindSection from '@/components/stall/WhatYoullFindSection';
-import CoinSystemSection from '@/components/stall/CoinSystemSection';
-import LiveDemosSection from '@/components/stall/LiveDemosSection';
-import WhoCanJoinSection from '@/components/stall/WhoCanJoinSection';
-import AfterYouJoinSection from '@/components/stall/AfterYouJoinSection';
-import FollowUsSection from '@/components/stall/FollowUsSection';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
@@ -33,55 +26,20 @@ export default function StallPage() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <StallHero />
-      <WhatYoullFindSection />
-      <CoinSystemSection />
-      <LiveDemosSection />
-      <WhoCanJoinSection />
-      <AfterYouJoinSection />
-      <FollowUsSection />
-      <Footer />
 
-      {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Event",
-            "name": "DSEC T1 Market Day 2026",
-            "description": "Meet the Deakin Software Engineering Club at Trimester 1 Market Day. Free giveaways, limited merch, membership sign-ups, and live project demos.",
-            "startDate": "2026-02-23T11:30:00+11:00",
-            "endDate": "2026-02-24T14:30:00+11:00",
-            "eventStatus": "https://schema.org/EventScheduled",
-            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-            "location": {
-              "@type": "Place",
-              "name": "Sports Hall, Deakin University Burwood Campus",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "221 Burwood Highway",
-                "addressLocality": "Burwood",
-                "addressRegion": "VIC",
-                "postalCode": "3125",
-                "addressCountry": "AU"
-              }
-            },
-            "organizer": {
-              "@type": "Organization",
-              "name": "Deakin Software Engineering Club",
-              "url": "https://dsec.club"
-            },
-            "offers": {
-              "@type": "Offer",
-              "price": "5.00",
-              "priceCurrency": "AUD",
-              "availability": "https://schema.org/InStock",
-              "validFrom": "2026-02-23T11:30:00+11:00"
-            }
-          })
-        }}
-      />
+      {/* Launching Soon Section */}
+      <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
+        <div className="text-center px-4">
+          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+            Launching Soon
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground">
+            DSEC T1 Market Day 2026
+          </p>
+        </div>
+      </div>
+
+      <Footer />
     </main>
   );
 }
