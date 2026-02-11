@@ -1,21 +1,11 @@
-import HackathonHero from '@/components/hackathon/HackathonHero';
-import AboutSection from '@/components/hackathon/AboutSection';
-import DetailsSection from '@/components/hackathon/DetailsSection';
-import ParticipantsSection from '@/components/hackathon/ParticipantsSection';
-import ChallengeSection from '@/components/hackathon/ChallengeSection';
-import PartnersSection from '@/components/hackathon/PartnersSection';
-import SponsorSection from '@/components/hackathon/SponsorSection';
-import FAQSection from '@/components/hackathon/FAQSection';
-import PartnerFormSection from '@/components/hackathon/PartnerFormSection';
-import FinalCTA from '@/components/hackathon/FinalCTA';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ACUSYS x DSEC Hackathon 2026 | 36-Hour Australia-Wide Event',
-  description: "Join Australia's cross-university hackathon. 36 hours. Software + Security. March 28-29, 2026. In-person Melbourne or online nationwide. Register now.",
+  title: 'ACUSYS x DSEC Hackathon 2026 | Launching Soon',
+  description: "Australia's premier cross-university hackathon is launching soon. Stay tuned for registration details.",
   keywords: [
     'hackathon australia 2026',
     'cybersecurity hackathon melbourne',
@@ -28,8 +18,8 @@ export const metadata: Metadata = {
     'DSEC hackathon',
   ],
   openGraph: {
-    title: 'ACUSYS x DSEC Hackathon 2026 | 36-Hour Australia-Wide Event',
-    description: "Join Australia's cross-university hackathon. 36 hours. Software + Security. March 28-29, 2026. In-person Melbourne or online nationwide.",
+    title: 'ACUSYS x DSEC Hackathon 2026 | Launching Soon',
+    description: "Australia's premier cross-university hackathon is launching soon. Stay tuned for registration details.",
     type: 'website',
   },
 };
@@ -38,16 +28,19 @@ export default function HackathonPage() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <HackathonHero />
-      <AboutSection />
-      <DetailsSection />
-      <ParticipantsSection />
-      <ChallengeSection />
-      <PartnersSection />
-      <SponsorSection />
-      <FAQSection />
-      <PartnerFormSection />
-      <FinalCTA />
+
+      {/* Launching Soon Section */}
+      <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
+        <div className="text-center px-4">
+          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+            Launching Soon
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground">
+            ACUSYS x DSEC Hackathon 2026
+          </p>
+        </div>
+      </div>
+
       <Footer />
     </main>
   );
