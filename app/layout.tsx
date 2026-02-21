@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import PageTransition from "@/components/PageTransition";
 import ClickSpark from "@/components/ClickSpark";
@@ -40,6 +41,9 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
