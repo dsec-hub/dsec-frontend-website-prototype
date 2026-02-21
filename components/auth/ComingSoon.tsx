@@ -6,7 +6,7 @@ import { useState } from "react";
 import { subscribeToNewsletter } from "@/app/actions/newsletter";
 
 interface ComingSoonProps {
-  type: "login" | "join" | "blog" | "events" | "projects" | "partnerships" | "contact";
+  type: "login" | "join" | "blog" | "events" | "projects" | "partnerships" | "contact" | "about";
 }
 
 const subtitles: Record<ComingSoonProps["type"], string> = {
@@ -17,6 +17,7 @@ const subtitles: Record<ComingSoonProps["type"], string> = {
   projects: "Projects showcase is getting ready",
   partnerships: "Partnerships page is preparing for launch",
   contact: "Contact page is preparing for launch",
+  about: "About page is getting ready for liftoff",
 };
 
 const descriptions: Record<ComingSoonProps["type"], string> = {
@@ -27,6 +28,7 @@ const descriptions: Record<ComingSoonProps["type"], string> = {
   projects: "We're curating an amazing showcase of student projects. Join the waitlist to be notified when we launch.",
   partnerships: "We're building exciting partnership opportunities. Join the waitlist to be the first to know when this page goes live.",
   contact: "We're setting up our contact channels. Join the waitlist to be notified when we launch.",
+  about: "We're crafting our story and team information. Join the waitlist to be notified when the about page goes live.",
 };
 
 export default function ComingSoon({ type }: ComingSoonProps) {
