@@ -385,10 +385,10 @@ export function SparklesIcon(props: IconProps): ReactElement {
   );
 }
 
-export function LoadingSpinner(props: IconProps): ReactElement {
+export function LoadingSpinner({ className, ...props }: IconProps): ReactElement {
   return (
     <svg
-      className="w-5 h-5 animate-spin"
+      className={`w-5 h-5 animate-spin${className ? ` ${className}` : ''}`}
       fill="none"
       viewBox="0 0 24 24"
       {...props}
