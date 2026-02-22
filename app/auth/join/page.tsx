@@ -310,7 +310,7 @@ function JoinForm() {
           )}
 
           {/* Multi-Step Form */}
-          <div className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden">
+          <div className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden px-4">
             <Stepper
               currentStep={currentStep}
               onStepChange={setCurrentStep}
