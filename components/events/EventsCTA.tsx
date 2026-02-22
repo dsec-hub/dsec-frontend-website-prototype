@@ -1,6 +1,7 @@
 'use client';
 
 import SectionLabel from '@/components/SectionLabel';
+import { socials } from '@/lib/socials';
 import TransitionLink from '../TransitionLink';
 
 export default function EventsCTA() {
@@ -51,7 +52,7 @@ export default function EventsCTA() {
               </p>
 
               <a
-                href="https://discord.gg/dsec"
+                href={socials.discord}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-6 py-3 bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl font-semibold gap-2 flex items-center justify-center transition-all"
@@ -84,7 +85,7 @@ export default function EventsCTA() {
               </p>
 
               <a
-                href="https://instagram.com/dsec.deakin"
+                href={socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-6 py-3 border border-coral text-coral hover:bg-coral hover:text-coral-foreground rounded-xl font-semibold gap-2 flex items-center justify-center transition-all"
@@ -117,7 +118,7 @@ export default function EventsCTA() {
               </p>
 
               <a
-                href="https://linkedin.com/company/dsec"
+                href={socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-6 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground rounded-xl font-semibold gap-2 flex items-center justify-center transition-all"

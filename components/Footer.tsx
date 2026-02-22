@@ -2,13 +2,14 @@
 
 import { SocialIcon } from "@/components/icons";
 import TransitionLink from "@/components/TransitionLink";
+import { socials } from "@/lib/socials";
 import type { NavLink, ResourceLink, SocialLink } from "@/types";
 
 const socialLinks: SocialLink[] = [
-  { name: "Discord", href: "https://discord.gg/dsec" },
-  { name: "Instagram", href: "https://instagram.com/dsec.deakin" },
-  { name: "LinkedIn", href: "https://linkedin.com/company/dsec" },
-  { name: "GitHub", href: "https://github.com/dsec-deakin" },
+  { name: "Discord", href: socials.discord },
+  { name: "Instagram", href: socials.instagram },
+  { name: "LinkedIn", href: socials.linkedin },
+  { name: "GitHub", href: socials.github },
 ];
 
 const quickLinks: NavLink[] = [
@@ -23,10 +24,10 @@ const quickLinks: NavLink[] = [
 const resourceLinks: ResourceLink[] = [
   {
     name: "DUSA club listing",
-    href: "https://www.dusa.org.au/clubs/deakin-software-engineering-club-dsec",
+    href: socials.dusa,
     external: true,
   },
-  { name: "Discord server", href: "https://discord.gg/dsec", external: true },
+  { name: "Discord server", href: socials.discord, external: true },
   { name: "Partner with us", href: "/partners" },
   { name: "FAQ", href: "/faq" },
 ];

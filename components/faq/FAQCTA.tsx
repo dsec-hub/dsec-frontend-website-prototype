@@ -1,4 +1,5 @@
 import TransitionLink from '@/components/TransitionLink';
+import { socials } from '@/lib/socials';
 
 export default function FAQCTA() {
   return (
@@ -26,7 +27,7 @@ export default function FAQCTA() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href="https://discord.gg/dsec"
+            href={socials.discord}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"

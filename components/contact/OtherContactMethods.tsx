@@ -1,6 +1,7 @@
 'use client';
 
 import SectionLabel from '@/components/SectionLabel';
+import { socials } from '@/lib/socials';
 import TransitionLink from '../TransitionLink';
 
 export default function OtherContactMethods() {
@@ -9,7 +10,7 @@ export default function OtherContactMethods() {
       name: 'Discord',
       description: 'Our main community space for chat, help, and project teams',
       icon: <DiscordIcon />,
-      href: 'https://discord.gg/dsec',
+      href: socials.discord,
       color: 'accent',
       buttonText: 'Join Discord',
     },
@@ -17,7 +18,7 @@ export default function OtherContactMethods() {
       name: 'Instagram',
       description: 'Event announcements, recaps, and behind the scenes',
       icon: <InstagramIcon />,
-      href: 'https://instagram.com/_deakinsec',
+      href: socials.instagram,
       color: 'coral',
       buttonText: 'Follow us',
     },
@@ -25,7 +26,7 @@ export default function OtherContactMethods() {
       name: 'LinkedIn',
       description: 'More formal updates and highlights for industry and alumni',
       icon: <LinkedInIcon />,
-      href: 'https://au.linkedin.com/company/deakin-software-engineering-club',
+      href: socials.linkedin,
       color: 'secondary',
       buttonText: 'Connect',
     },
@@ -33,7 +34,7 @@ export default function OtherContactMethods() {
       name: 'DUSA',
       description: 'Our official listing on the DUSA website with membership links',
       icon: <DUSAIcon />,
-      href: 'https://www.dusa.org.au/clubs/deakin-software-engineering-club-dsec',
+      href: socials.dusa,
       color: 'lime',
       buttonText: 'View profile',
     },

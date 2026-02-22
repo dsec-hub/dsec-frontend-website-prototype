@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import SectionLabel from '@/components/SectionLabel';
+import { socials } from '@/lib/socials';
 
 const faqs = [
   {
@@ -81,7 +82,7 @@ export default function FAQSection() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.gg/dsec"
+              href={socials.discord}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border rounded-full text-sm font-medium text-foreground hover:bg-muted transition-colors"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { socials } from "@/lib/socials";
 import {
   DiscordIcon,
   LinkedInIcon,
@@ -45,7 +46,7 @@ interface SitemapSection {
 const socialLinks: SocialLinkItem[] = [
   {
     name: "Discord",
-    href: "https://discord.gg/dsec",
+    href: socials.discord,
     icon: <DiscordIcon className="w-8 h-8" />,
     color: "from-[#5865F2] to-[#7289DA]",
     hoverBg: "hover:bg-[#5865F2]/20",
@@ -53,7 +54,7 @@ const socialLinks: SocialLinkItem[] = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/dsec",
+    href: socials.linkedin,
     icon: <LinkedInIcon className="w-8 h-8" />,
     color: "from-[#0A66C2] to-[#0077B5]",
     hoverBg: "hover:bg-[#0A66C2]/20",
@@ -61,7 +62,7 @@ const socialLinks: SocialLinkItem[] = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/dsec.deakin",
+    href: socials.instagram,
     icon: <InstagramIcon className="w-8 h-8" />,
     color: "from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
     hoverBg: "hover:bg-[#DD2A7B]/20",
@@ -69,7 +70,7 @@ const socialLinks: SocialLinkItem[] = [
   },
   {
     name: "Facebook",
-    href: "https://facebook.com/dsec.deakin",
+    href: socials.facebook,
     icon: <FacebookIcon className="w-8 h-8" />,
     color: "from-[#1877F2] to-[#4267B2]",
     hoverBg: "hover:bg-[#1877F2]/20",
@@ -77,7 +78,7 @@ const socialLinks: SocialLinkItem[] = [
   },
   {
     name: "GitHub",
-    href: "https://github.com/dsec-deakin",
+    href: socials.github,
     icon: <GitHubIcon className="w-8 h-8" />,
     color: "from-[#6e5494] to-[#24292e]",
     hoverBg: "hover:bg-[#6e5494]/20",
