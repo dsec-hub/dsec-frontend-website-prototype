@@ -8,6 +8,10 @@ import { NextResponse, type NextRequest } from "next/server";
  * 2. Auth route guards (redirects authenticated users away from login/join)
  * 3. Open-redirect prevention on callbackUrl parameters
  * 4. Auth endpoint rate-limit signaling headers
+ *
+ * Note: Route aliases (e.g. /signup → /auth/join) are handled by permanent
+ * redirects in next.config.ts (see route-aliases.ts). The redirects fire
+ * before middleware, so alias paths don't need to be duplicated here.
  */
 
 // Routes that require authentication

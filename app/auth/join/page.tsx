@@ -290,30 +290,33 @@ function JoinForm() {
       <MembershipInfo />
 
       {/* Account Creation Form */}
-      <section id="join-form" className="py-12 px-4 sm:px-6 lg:px-8">
+      <section id="join-form" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 font-[family-name:var(--font-space-grotesk)]">
+              Create your account
+            </h2>
+            <p className="text-muted-foreground">
+              Set up your DSEC profile to start attending events, joining projects, and connecting with the community.
+            </p>
+          </div>
 
-              {/* Error Alert */}
-              {error && (
-                <div
-                  className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 flex items-start gap-3"
-                >
-                  <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-500">{error}</p>
-                </div>
-              )}
+          {/* Error Alert */}
+          {error && (
+            <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+              <p className="text-sm text-red-500">{error}</p>
+            </div>
+          )}
 
-              {/* Multi-Step Form */}
-              <div
-                className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden"
-              >
-                <Stepper
-                  currentStep={currentStep}
-                  onStepChange={setCurrentStep}
-                  hideNavigation
-                  disableStepIndicators
-                  stepContainerClassName="bg-card/50 border-b border-border"
-                >
+          {/* Multi-Step Form */}
+          <div className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden">
+            <Stepper
+              currentStep={currentStep}
+              onStepChange={setCurrentStep}
+              hideNavigation
+              disableStepIndicators
+            >
                   {/* Step 1: Your Status */}
                   <Step>
                     <div className="space-y-6">
@@ -772,19 +775,19 @@ function JoinForm() {
                       </form>
                     </div>
                   </Step>
-                </Stepper>
+            </Stepper>
 
-                {/* Login Link */}
-                <div className="p-6 border-t border-border text-center text-sm">
-                  <span className="text-muted-foreground">Already have an account? </span>
-                  <Link
-                    href="/auth/login"
-                    className="text-primary hover:text-primary/80 transition-colors font-medium"
-                  >
-                    Log in
-                  </Link>
-                </div>
-              </div>
+            {/* Login Link */}
+            <div className="p-6 border-t border-border text-center text-sm">
+              <span className="text-muted-foreground">Already have an account? </span>
+              <Link
+                href="/auth/login"
+                className="text-primary hover:text-primary/80 transition-colors font-medium"
+              >
+                Log in
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { generateRouteAliases } from "./route-aliases";
 
 const nextConfig: NextConfig = {
   /**
@@ -66,6 +67,16 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+
+  /**
+   * Route Aliases (Redirects)
+   *
+   * Maps alternative URLs (e.g. /signup, /login, /about-us) to their
+   * canonical routes using permanent 301 redirects. Defined in route-aliases.ts.
+   */
+  async redirects() {
+    return generateRouteAliases();
   },
 
   /**
