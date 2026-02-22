@@ -18,7 +18,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Sparkles,
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
@@ -33,6 +32,7 @@ import ComingSoon from "@/components/auth/ComingSoon";
 import AuthLayout from "@/components/auth/AuthLayout";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MembershipInfo from "@/components/contact/MembershipInfo";
 import { Terminal, TypingAnimation, AnimatedSpan } from "@/components/ui/terminal";
 import {
   signUpWithEmail,
@@ -286,53 +286,12 @@ function JoinForm() {
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Membership Info */}
+      <MembershipInfo />
+
+      {/* Account Creation Form */}
       <section id="join-form" className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-              {/* Who Can Join */}
-              <div
-                className="mb-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
-              >
-                <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
-                  Who can join?
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[
-                    "Deakin students (any campus, any degree)",
-                    "External members (other universities, self-taught devs, bootcamp grads)",
-                    "Beginners and experienced developers",
-                    "Anyone who wants to build real software projects",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* What You Get */}
-              <div
-                className="mb-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
-              >
-                <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
-                  What you get
-                </h2>
-                <div className="space-y-3">
-                  {[
-                    "Access to hands-on workshops (web dev, app dev, robotics, game dev)",
-                    "Real projects for your GitHub portfolio",
-                    "Industry panels and career events",
-                    "Exclusive member rewards system (coin-based perks)",
-                    "Collaboration with other tech clubs (DUCA, ACUSYS network)",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <Sparkles className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               {/* Error Alert */}
               {error && (
@@ -826,42 +785,6 @@ function JoinForm() {
                   </Link>
                 </div>
               </div>
-
-              {/* Why Create Account */}
-              <div
-                className="mt-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
-              >
-                <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
-                  Why create an account?
-                </h2>
-                <p className="text-sm text-muted-foreground mb-4">Creating an account lets you:</p>
-                <div className="space-y-2">
-                  {[
-                    "Register for events and workshops",
-                    "Track your project contributions",
-                    "Earn coins for event attendance",
-                    "Access member-only resources",
-                    "Get featured in our showcase gallery",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-secondary" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* External Members Note */}
-              <div
-                className="mt-6 bg-secondary/10 border border-secondary/20 rounded-2xl p-6"
-              >
-                <h2 className="text-lg font-semibold mb-2 font-[family-name:var(--font-space-grotesk)]">
-                  Not a Deakin student? No problem.
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  DSEC welcomes external members. You&apos;ll have the same access to workshops, projects, and events as Deakin students. Our goal is to help you ship real software—not gatekeep who gets to learn.
-                </p>
-              </div>
         </div>
       </section>
 
@@ -877,21 +800,28 @@ function JoinForm() {
           <div className="space-y-4">
             {[
               {
-                question: "Do I need to be a Deakin student?",
-                answer: "No. We welcome anyone interested in software engineering.",
+                question: "What's the difference between a community member and a full member?",
+                answer: "A community member creates an account on our website and can attend events, join projects, and participate in our Discord. A full official member also signs up through DUSA, which gives you voting rights, eligibility for executive roles, and full access to partnership perks.",
               },
               {
-                question: "Is there a membership fee?",
-                answer: "No. Membership is completely free.",
+                question: "Do I need to be a Deakin student?",
+                answer: "Anyone can create an account and join as a community member. Full DUSA membership requires current Deakin enrolment, but non-Deakin members can often join as associates.",
+              },
+              {
+                question: "Is there a fee to join?",
+                answer: "Creating a DSEC account is completely free. DUSA club membership may have a small fee — check the DUSA website for current pricing.",
               },
               {
                 question: "What if I'm a complete beginner?",
-                answer:
-                  "Perfect. Our workshops are designed for all skill levels, and you'll work on real projects with support from experienced members.",
+                answer: "Perfect. Our workshops are designed for all skill levels, and you'll work on real projects with support from experienced members.",
               },
               {
                 question: "Can I join mid-year?",
-                answer: "Yes. You can join anytime and participate in ongoing projects and events.",
+                answer: "Yes. You can create an account and join anytime. DUSA membership is rolling and usually lasts twelve months from signup.",
+              },
+              {
+                question: "I have more questions — how do I reach you?",
+                answer: "Drop us a message through our contact form, send us a DM on any of our socials, or ask in our Discord community. We'll get back to you as soon as we can.",
               },
             ].map((faq, i) => (
               <FAQItem key={i} question={faq.question} answer={faq.answer} />

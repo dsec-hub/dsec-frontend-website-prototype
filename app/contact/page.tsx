@@ -1,6 +1,5 @@
 import ContactHero from "@/components/contact/ContactHero";
 import GeneralContactForm from "@/components/contact/GeneralContactForm";
-import MembershipInfo from "@/components/contact/MembershipInfo";
 import OtherContactMethods from "@/components/contact/OtherContactMethods";
 import WorkWithUs from "@/components/contact/WorkWithUs";
 import Footer from "@/components/Footer";
@@ -43,7 +42,7 @@ export default function ContactPage() {
 				<ContactHero />
 				<GeneralContactForm />
 				<WorkWithUs />
-				<MembershipInfo />
+
 				<OtherContactMethods />
 				<Footer />
 			</SmoothScroll>
