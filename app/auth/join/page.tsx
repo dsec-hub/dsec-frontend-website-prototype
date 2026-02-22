@@ -22,7 +22,6 @@ import {
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 
 import Stepper, { Step } from "@/components/ui/Stepper/Stepper";
@@ -32,6 +31,9 @@ import PasswordStrengthIndicator from "@/components/auth/PasswordStrengthIndicat
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
 import ComingSoon from "@/components/auth/ComingSoon";
 import AuthLayout from "@/components/auth/AuthLayout";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Terminal, TypingAnimation, AnimatedSpan } from "@/components/ui/terminal";
 import {
   signUpWithEmail,
   signInWithGoogle,
@@ -42,16 +44,6 @@ import {
   type ProfileFormData,
 } from "@/lib/auth-schemas";
 import { featureFlags } from "@/lib/feature-flags";
-
-// Dynamically import Lanyard to avoid SSR issues with Three.js
-const Lanyard = dynamic(() => import("@/components/ui/Lanyard/Lanyard"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-    </div>
-  ),
-});
 
 type StudentStatus = "deakin" | "external" | null;
 type Campus = "burwood" | "waurn-ponds" | "waterfront" | "online" | null;
@@ -212,57 +204,93 @@ function JoinForm() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-[family-name:var(--font-space-grotesk)]"
-          >
-            <span className="gradient-text">Ship Real Projects.</span>{" "}
-            <span className="text-foreground">Build Your Portfolio.</span>{" "}
-            <span className="text-foreground">Join DSEC.</span>
-          </motion.h1>
+      <Navbar />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
-          >
-            Open to Deakin students and anyone passionate about software engineering.
-            Free to join, no experience required.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <a
-              href="#join-form"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors"
+      {/* Hero Section — side-by-side layout */}
+      <section className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-[60vh] grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
+          {/* Left — text + CTA */}
+          <div className="py-32 lg:py-0 flex flex-col justify-center">
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-normal mb-6 font-[family-name:var(--font-space-grotesk)]"
             >
-              Get Started <ArrowRight className="w-4 h-4" />
-            </a>
-          </motion.div>
+              <span className="gradient-text">Ship Real Projects.</span>{" "}
+              <span className="text-foreground">Build Your Portfolio.</span>{" "}
+              <span className="text-foreground">Join DSEC.</span>
+            </h1>
+
+            <p
+              className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-10"
+            >
+              Open to Deakin students and anyone passionate about software engineering.
+              Free to join, no experience required.
+            </p>
+          </div>
+
+          {/* Right — Terminal */}
+          <div className="hidden lg:flex items-center justify-center">
+            <div
+              className="w-full max-w-lg"
+            >
+              <Terminal className="max-h-[480px] shadow-2xl shadow-primary/10 border-border/50">
+                <TypingAnimation>
+                  &gt; npx create-dsec-member@latest
+                </TypingAnimation>
+
+                <AnimatedSpan className="text-green-400">
+                  <span>✔</span> <span>Initializing your DSEC journey...</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-muted-foreground">
+                  <span>  ├─</span> <span>Loading workshops: web dev, app dev, robotics, game dev</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-muted-foreground">
+                  <span>  ├─</span> <span>Connecting to project teams...</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-muted-foreground">
+                  <span>  ├─</span> <span>Syncing GitHub portfolio...</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-green-400">
+                  <span>✔</span> <span>Real projects configured. No tutorials. Real code.</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-green-400">
+                  <span>✔</span> <span>Industry connections established.</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-blue-400">
+                  <span>ℹ</span> <span>Membership fee: $0.00 — always free.</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-blue-400">
+                  <span>ℹ</span> <span>Experience required: none.</span>
+                </AnimatedSpan>
+
+                <AnimatedSpan className="text-yellow-400">
+                  <span>⚡</span> <span>Ready to ship. Scroll down to join.</span>
+                </AnimatedSpan>
+
+                <TypingAnimation>
+                  &gt; echo &quot;Welcome to DSEC 🚀&quot;
+                </TypingAnimation>
+
+                <AnimatedSpan className="text-green-400 font-semibold">
+                  <span>Welcome to DSEC 🚀</span>
+                </AnimatedSpan>
+              </Terminal>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Main Content - 2 Column Layout */}
+      {/* Main Content */}
       <section id="join-form" className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-            {/* Left Column - Form */}
-            <div className="order-2 lg:order-1">
+        <div className="max-w-3xl mx-auto">
               {/* Who Can Join */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+              <div
                 className="mb-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
               >
                 <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
@@ -281,13 +309,10 @@ function JoinForm() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* What You Get */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+              <div
                 className="mb-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
               >
                 <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
@@ -307,25 +332,20 @@ function JoinForm() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Error Alert */}
               {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <div
                   className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 flex items-start gap-3"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-500">{error}</p>
-                </motion.div>
+                </div>
               )}
 
               {/* Multi-Step Form */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+              <div
                 className="bg-card/80 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden"
               >
                 <Stepper
@@ -805,13 +825,10 @@ function JoinForm() {
                     Log in
                   </Link>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Why Create Account */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+              <div
                 className="mt-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6"
               >
                 <h2 className="text-lg font-semibold mb-4 font-[family-name:var(--font-space-grotesk)]">
@@ -832,13 +849,10 @@ function JoinForm() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* External Members Note */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+              <div
                 className="mt-6 bg-secondary/10 border border-secondary/20 rounded-2xl p-6"
               >
                 <h2 className="text-lg font-semibold mb-2 font-[family-name:var(--font-space-grotesk)]">
@@ -847,30 +861,18 @@ function JoinForm() {
                 <p className="text-sm text-muted-foreground">
                   DSEC welcomes external members. You&apos;ll have the same access to workshops, projects, and events as Deakin students. Our goal is to help you ship real software—not gatekeep who gets to learn.
                 </p>
-              </motion.div>
-            </div>
-
-            {/* Right Column - Lanyard (Desktop Only) */}
-            <div className="order-1 lg:order-2 hidden lg:block lg:sticky lg:top-24">
-              <div className="h-[600px] w-full">
-                <Lanyard />
               </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-border">
         <div className="max-w-3xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-2xl sm:text-3xl font-bold text-center mb-12 font-[family-name:var(--font-space-grotesk)]"
           >
             Frequently Asked Questions
-          </motion.h2>
+          </h2>
 
           <div className="space-y-4">
             {[
@@ -897,6 +899,8 @@ function JoinForm() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
@@ -905,10 +909,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div
       className="border border-border rounded-xl overflow-hidden"
     >
       <button
@@ -934,6 +935,6 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
