@@ -1,4 +1,6 @@
 import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { db, client } from "@/lib/mongodb";
 
 /**
  * Better Auth Server Configuration
@@ -7,11 +9,7 @@ import { betterAuth } from "better-auth";
  * - Email/password authentication
  * - Google OAuth
  * - GitHub OAuth
- *
- * IMPORTANT: This setup is designed for frontend-only authentication.
- * The actual database/user storage is handled by an external API.
- * The `database` option uses a custom adapter pattern that should be
- * connected to your backend API.
+ * - MongoDB for user/session storage
  */
 export const auth = betterAuth({
   /**
@@ -26,14 +24,27 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
 
   /**
+   * MongoDB Database Adapter
+   *
+   * Stores users, sessions, accounts, and verification tokens.
+   * Collections are created automatically on first use.
+   *
+   * Set `transaction: false` if your MongoDB instance is a standalone
+   * server without a replica set (e.g. local dev with plain `mongod`).
+   */
+  database: mongodbAdapter(db, {
+    client,
+    transaction: false,
+  }),
+
+  /**
    * Email and Password Authentication
    */
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
     maxPasswordLength: 128,
-    // Password requirements enforced on client with Zod
-    requireEmailVerification: false, // Set to true when email service is configured
+    requireEmailVerification: false,
   },
 
   /**
@@ -120,11 +131,9 @@ export const auth = betterAuth({
    * Advanced Options
    */
   advanced: {
-    // Cross-site cookie settings for OAuth
     crossSubDomainCookies: {
-      enabled: false, // Enable if using subdomains
+      enabled: false,
     },
-    // Generate secure session tokens
     generateId: () => crypto.randomUUID(),
   },
 
@@ -139,22 +148,9 @@ export const auth = betterAuth({
    * Rate Limiting
    */
   rateLimit: {
-    window: 60, // 1 minute
-    max: 100, // 100 requests per window
+    window: 60,
+    max: 100,
   },
-
-  /**
-   * Database Adapter Placeholder
-   *
-   * IMPORTANT: This is a placeholder. In production, you'll need to:
-   * 1. Connect to your backend API
-   * 2. Implement custom database adapter
-   * 3. Or use Better Auth's built-in database adapters
-   *
-   * For now, we're using the memory adapter for development.
-   * Replace this with your actual database configuration.
-   */
-  // database: yourDatabaseAdapter,
 });
 
 // Export auth types for use in other files
