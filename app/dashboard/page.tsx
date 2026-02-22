@@ -50,7 +50,6 @@ import Footer from "@/components/Footer";
  * - Quick actions
  */
 export default function DashboardPage() {
-  // TEMPORARILY DISABLED - Authentication check removed
   const { user, isLoading, isAuthenticated, signOut } = useAuth();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
@@ -59,21 +58,20 @@ export default function DashboardPage() {
     await signOut();
   };
 
-  // TEMPORARILY DISABLED - Loading and authentication checks removed
-  // if (isLoading) {
-  //   return (
-  //     <div className="min-h-screen bg-background flex items-center justify-center">
-  //       <div className="flex flex-col items-center gap-4">
-  //         <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-  //         <p className="text-muted-foreground">Loading your dashboard...</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+          <p className="text-muted-foreground">Loading your dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
-  // if (!isAuthenticated || !user) {
-  //   return null;
-  // }
+  if (!isAuthenticated || !user) {
+    return null;
+  }
 
   // Mock data for dashboard (replace with actual API calls)
   const stats = [
