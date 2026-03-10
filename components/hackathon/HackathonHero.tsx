@@ -166,7 +166,9 @@ export default function HackathonHero() {
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
           <a
-            href="#register"
+            href="https://forms.gle/2kvrRcp46fJfw6v3A"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold transition-all flex items-center gap-2 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">

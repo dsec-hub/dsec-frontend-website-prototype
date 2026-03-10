@@ -49,7 +49,9 @@ export default function FinalCTA() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <a
-            href="#"
+            href="https://forms.gle/2kvrRcp46fJfw6v3A"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative px-10 py-5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-bold text-lg transition-all overflow-hidden flex items-center gap-3"
           >
             <span className="relative z-10 flex items-center gap-3">
