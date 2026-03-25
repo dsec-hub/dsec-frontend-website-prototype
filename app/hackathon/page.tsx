@@ -12,7 +12,7 @@ import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ACUCys Hackathon 2026 | Securing Critical Infrastructure',
+  title: 'DSEC X ACUCys Hackathon 2026 | Securing Critical Infrastructure',
   description: "36-hour hackathon securing critical infrastructure. Power grids, healthcare, transport, water systems. March 28-29, 2026. In-person Melbourne Docklands or online Australia-wide. Free entry.",
   keywords: [
     'hackathon australia 2026',
