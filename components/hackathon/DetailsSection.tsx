@@ -51,7 +51,7 @@ const eventDetails: Omit<DetailCardProps, 'className'>[] = [
     icon: <CalendarIcon />,
     title: 'Date',
     value: 'March 28-29, 2026',
-    description: 'Weekend event',
+    description: 'Saturday 9AM - Sunday 9PM',
     color: 'primary',
   },
   {
@@ -65,21 +65,21 @@ const eventDetails: Omit<DetailCardProps, 'className'>[] = [
     icon: <LocationIcon />,
     title: 'Location',
     value: 'Hybrid Event',
-    description: 'Melbourne (Burwood) + Online',
+    description: 'Docklands (VIC) + Online',
     color: 'accent',
   },
   {
     icon: <TeamIcon />,
     title: 'Team Size',
-    value: 'Up to 4',
+    value: '1-4 Members',
     description: 'Solo welcome too',
     color: 'lime',
   },
   {
     icon: <TrophyIcon />,
     title: 'Prizes',
-    value: 'Cash + More',
-    description: 'Details coming soon',
+    value: 'Cash + Trophies',
+    description: '1st $100, 2nd $50, 3rd $25 per person',
     color: 'primary',
   },
   {
@@ -119,6 +119,19 @@ export default function DetailsSection() {
           ))}
         </div>
 
+        {/* Prizes Breakdown */}
+        <div className="mt-16 bg-card border border-border rounded-2xl p-8 md:p-10">
+          <h3 className="font-grotesk text-xl font-bold text-foreground mb-6 text-center">Prizes</h3>
+          <div className="grid sm:grid-cols-3 gap-6 mb-6">
+            <PrizeCard place="1st Place" amount="$100/person" reward="+ Trophy" color="coral" />
+            <PrizeCard place="2nd Place" amount="$50/person" reward="+ Medal" color="secondary" />
+            <PrizeCard place="3rd Place" amount="$25/person" reward="+ Medal" color="primary" />
+          </div>
+          <p className="text-center text-sm text-muted-foreground">
+            All other participants receive a custom participation certificate. Student membership proof only required if you win a prize.
+          </p>
+        </div>
+
         {/* Venue Info */}
         <div className="mt-16 grid md:grid-cols-2 gap-12 md:gap-16">
           <div>
@@ -129,11 +142,10 @@ export default function DetailsSection() {
               Melbourne In-Person Venue
             </h3>
             <p className="text-muted-foreground mb-4">
-              In-person attendees will hack at <span className="text-foreground font-semibold">Deakin University Burwood Campus</span>. Exact building and room details will be shared closer to the event.
+              In-person attendees will hack at <span className="text-foreground font-semibold">Natural Velocity, Star Cres, Docklands</span>. A bonus co-working space for Victorian participants.
             </p>
             <div className="flex flex-wrap gap-3">
               <InfoBadge icon={<WifiIcon />} text="Fast WiFi" />
-              <InfoBadge icon={<FoodIcon />} text="Food Provided" />
               <InfoBadge icon={<PowerIcon />} text="Power Outlets" />
             </div>
           </div>
@@ -146,12 +158,27 @@ export default function DetailsSection() {
               Online Participation
             </h3>
             <p className="text-muted-foreground mb-4">
-              Can&apos;t make it to Melbourne? Join from anywhere in Australia through our <span className="text-foreground font-semibold">Discord server</span> with full access to mentors, workshops, and judging.
+              Everything runs online via <span className="text-foreground font-semibold">Discord</span>. The Melbourne space is a bonus for VIC participants — all judging, mentorship, and support happens online.
             </p>
             <div className="flex flex-wrap gap-3">
               <InfoBadge icon={<DiscordIcon />} text="Discord Server" />
-              <InfoBadge icon={<MentorIcon />} text="Online Mentors" />
+              <InfoBadge icon={<MentorIcon />} text="Live Mentors" />
               <InfoBadge icon={<JudgeIcon />} text="Equal Judging" />
+            </div>
+          </div>
+        </div>
+
+        {/* Live Support */}
+        <div className="mt-12 bg-gradient-to-r from-primary/10 via-secondary/10 to-coral/10 rounded-xl p-6 border border-border">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center shrink-0">
+              <SupportIcon />
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground mb-2">Live Support for 36 Hours</h4>
+              <p className="text-sm text-muted-foreground">
+                Mentors and judges are available in voice chat and support channels throughout the entire event. You&apos;re never on your own.
+              </p>
             </div>
           </div>
         </div>
@@ -188,6 +215,29 @@ function DetailCard({
       <div className="text-sm text-muted-foreground">
         {description}
       </div>
+    </div>
+  );
+}
+
+interface PrizeCardProps {
+  place: string;
+  amount: string;
+  reward: string;
+  color: 'coral' | 'secondary' | 'primary';
+}
+
+const prizeColors = {
+  coral: 'border-coral/30 bg-coral/5',
+  secondary: 'border-secondary/30 bg-secondary/5',
+  primary: 'border-primary/30 bg-primary/5',
+};
+
+function PrizeCard({ place, amount, reward, color }: PrizeCardProps) {
+  return (
+    <div className={`text-center p-6 rounded-xl border ${prizeColors[color]}`}>
+      <div className="font-mono text-sm text-muted-foreground uppercase tracking-wider mb-2">{place}</div>
+      <div className="font-grotesk text-2xl font-bold text-foreground">{amount}</div>
+      <div className="text-sm text-muted-foreground mt-1">{reward}</div>
     </div>
   );
 }
@@ -281,14 +331,6 @@ function WifiIcon() {
   );
 }
 
-function FoodIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-    </svg>
-  );
-}
-
 function PowerIcon() {
   return (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -317,6 +359,14 @@ function JudgeIcon() {
   return (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  );
+}
+
+function SupportIcon() {
+  return (
+    <svg className="w-5 h-5 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
     </svg>
   );
 }

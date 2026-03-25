@@ -7,25 +7,25 @@ const targetAudience = [
   {
     icon: <SoftwareIcon />,
     title: 'Software Engineering Students',
-    description: 'Want hands-on security experience while building real applications.',
+    description: 'Build dashboards, monitoring tools, and security applications.',
     color: 'primary' as const,
   },
   {
     icon: <SecurityIcon />,
     title: 'Cybersecurity Students',
-    description: 'Ready to ship working code and build security tools.',
+    description: 'Apply your security knowledge to protect real-world systems.',
     color: 'secondary' as const,
   },
   {
     icon: <DeveloperIcon />,
-    title: 'Developers',
-    description: 'Looking to expand into security tooling and secure development practices.',
+    title: 'Developers & Makers',
+    description: 'Ship working prototypes — web apps, software, or hardware.',
     color: 'coral' as const,
   },
   {
     icon: <PortfolioIcon />,
     title: 'Portfolio Builders',
-    description: 'Want portfolio-ready projects and industry exposure.',
+    description: 'Walk away with a portfolio-ready project and industry exposure.',
     color: 'lime' as const,
   },
 ];
@@ -57,10 +57,10 @@ export default function ParticipantsSection() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
               <p>
-                This hackathon is designed for students who want to learn by doing. Whether you&apos;ve been coding for years or just started, if you&apos;re ready to put in the work, you belong here.
+                This hackathon is designed for anyone who wants to learn by doing. Whether you&apos;ve been coding for years or just started — beginners and high school students welcome.
               </p>
               <p>
-                Teams of up to 4 members. Solo participants are welcome — we&apos;ll help you find teammates before the event.
+                Teams of 1-4 members. Solo participants are welcome — we&apos;ll help you find teammates before the event.
               </p>
             </div>
 
@@ -91,7 +91,7 @@ export default function ParticipantsSection() {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">All Skill Levels Welcome</h4>
                   <p className="text-sm text-muted-foreground">
-                    Beginner, intermediate, or advanced — the hackathon is structured so everyone can contribute and learn. Mentors will be available to guide you throughout the event.
+                    Beginner, intermediate, or advanced — the hackathon is structured so everyone can contribute and learn. Mentors will be available throughout the entire 36-hour event.
                   </p>
                 </div>
               </div>

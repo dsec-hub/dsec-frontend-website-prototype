@@ -110,19 +110,19 @@ export default function HackathonHero() {
       <div className="relative z-10 px-6 md:px-12 pt-32 pb-20 max-w-6xl mx-auto min-h-screen flex flex-col items-center justify-center">
         {/* Event Badge */}
         <div className="mb-6">
-          <SectionLabel>ACUSYS x DSEC Hackathon 2026</SectionLabel>
+          <SectionLabel>ACUCys X DSEC Hackathon 2026</SectionLabel>
         </div>
 
         {/* Main Headline with Glitch Effect */}
         <div className="relative mb-6">
           <h1 className="flex flex-col items-center font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold text-center leading-tight tracking-tight">
             <span className="block text-foreground">
-              <CountUp to={36} duration={2} delay={3} startWhen={mounted} className="inline-block" /> Hours.
+              <CountUp to={36} duration={2} startWhen={mounted} className="inline-block" /> Hours.
             </span>
             <span className="block text-foreground">
               {animationsReady ? (
                 <DecryptedText
-                  text="One Challenge."
+                  text="Secure the Grid."
                   speed={100}
                   sequential={true}
                   revealDirection="start"
@@ -131,7 +131,7 @@ export default function HackathonHero() {
                   encryptedClassName="text-foreground/50"
                 />
               ) : (
-                <span className="text-foreground">One Challenge.</span>
+                <span className="text-foreground">Secure the Grid.</span>
               )}
             </span>
             <GradientText
@@ -139,14 +139,14 @@ export default function HackathonHero() {
               animationSpeed={4}
               className="font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold"
             >
-              Build Something Real.
+              Protect What Matters.
             </GradientText>
           </h1>
         </div>
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-muted-foreground text-center max-w-2xl mb-8 leading-relaxed">
-          Australia&apos;s cross-university hackathon bridging software engineering and cybersecurity.
+          A 36-hour hackathon focused on securing critical infrastructure — power grids, healthcare, transport, water systems, and emergency services.
           <span className="block mt-2 text-foreground font-semibold">March 28-29, 2026</span>
         </p>
 
@@ -178,20 +178,20 @@ export default function HackathonHero() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-coral to-primary bg-[length:200%_100%] opacity-0 group-hover:opacity-100 transition-opacity animate-[gradient-shift_2s_ease-in-out_infinite]" />
           </a>
           <a
-            href="#partner"
+            href="#details"
             className="px-8 py-4 border border-foreground/20 text-foreground hover:bg-foreground/10 rounded-full font-semibold transition-all flex items-center gap-2"
           >
-            <HandshakeIcon />
-            Become a Partner
+            <InfoIcon />
+            Learn More
           </a>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 w-full max-w-3xl">
           <QuickStat icon={<ClockIcon />} value="36h" label="Non-Stop Hacking" />
-          <QuickStat icon={<LocationIcon />} value="Hybrid" label="Melbourne + Online" />
-          <QuickStat icon={<TeamIcon />} value="4" label="Max Team Size" />
-          <QuickStat icon={<PrizeIcon />} value="$$$" label="Cash Prizes" />
+          <QuickStat icon={<LocationIcon />} value="Hybrid" label="Docklands + Online" />
+          <QuickStat icon={<TeamIcon />} value="1-4" label="Team Size" />
+          <QuickStat icon={<PrizeIcon />} value="$$$" label="Cash + Trophies" />
         </div>
       </div>
 
@@ -274,10 +274,10 @@ function RocketIcon() {
   );
 }
 
-function HandshakeIcon() {
+function InfoIcon() {
   return (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   );
 }

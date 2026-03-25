@@ -4,6 +4,7 @@
  */
 export const socials = {
 	discord: "https://discord.gg/h8K6yxQuKb",
+	acucys_discord: "https://discord.gg/CdxrTfwBrz",
 	instagram: "https://instagram.com/_deakinsec",
 	linkedin: "https://au.linkedin.com/company/deakin-software-engineering-club",
 	github: "https://github.com/dsec-hub",

@@ -23,18 +23,18 @@ export default function FinalCTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
         {/* Headline */}
-        <div className="mb-8">
+        <div className="mb-8 flex flex-col items-center">
           <h2 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
             36 hours.
             <br />
-            Real problems.
+            Critical infrastructure.
           </h2>
           <GradientText
             colors={['#e91e63', '#ff6b6b', '#00bcd4', '#c6ff00']}
             animationSpeed={4}
             className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold"
           >
-            Ship something.
+            Build the defence.
           </GradientText>
         </div>
 
@@ -42,7 +42,7 @@ export default function FinalCTA() {
         <div className="inline-flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-full mb-10">
           <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
           <span className="font-mono text-lg text-foreground">
-            March 28-29, 2026 — Melbourne + Online
+            March 28-29, 2026 — Docklands + Online
           </span>
         </div>
 
@@ -65,7 +65,7 @@ export default function FinalCTA() {
 
         {/* Additional Info */}
         <p className="text-muted-foreground mb-8">
-          Spots are limited for in-person participation.
+          In-person spots limited at Natural Velocity, Docklands.
           <br />
           Online participation open Australia-wide.
         </p>
@@ -74,8 +74,8 @@ export default function FinalCTA() {
         <div className="flex flex-wrap items-center justify-center gap-6">
           <TrustBadge icon={<FreeIcon />} text="Free Entry" />
           <TrustBadge icon={<TeamIcon />} text="Solo or Team" />
-          <TrustBadge icon={<SupportIcon />} text="Mentorship" />
-          <TrustBadge icon={<PrizeIcon />} text="Cash Prizes" />
+          <TrustBadge icon={<SupportIcon />} text="36h Mentorship" />
+          <TrustBadge icon={<PrizeIcon />} text="Cash + Trophies" />
         </div>
       </div>
 

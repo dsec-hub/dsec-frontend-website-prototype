@@ -19,7 +19,7 @@ export default function AboutSection() {
             <SectionLabel>About the Event</SectionLabel>
             <h2 className="font-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
               <DecryptedText
-                text="What is ACUSYS x DSEC?"
+                text="What is ACUCys Hackathon?"
                 animateOn="view"
                 sequential
                 speed={40}
@@ -28,32 +28,40 @@ export default function AboutSection() {
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p className="text-lg">
-                ACUSYS x DSEC is a <span className="text-foreground font-semibold">36-hour hackathon</span> bringing together students from universities across Australia to solve real-world problems at the intersection of software development and cybersecurity.
+                ACUCys Hackathon 2026 is a <span className="text-foreground font-semibold">36-hour hackathon</span> bringing together students from universities across Australia to build solutions that protect the systems we all depend on.
               </p>
               <p>
-                Whether you&apos;re a developer who wants to understand security, a security enthusiast who wants to build tools, or somewhere in between — <span className="text-coral">this is your event</span>.
+                A collaboration between <span className="text-foreground font-semibold">DSEC</span> and <span className="text-foreground font-semibold">ACUCys</span> — whether you&apos;re a developer, a security enthusiast, or just getting started, <span className="text-coral">this is your event</span>.
               </p>
               <p>
-                In-person participation available in Melbourne. Online participation open Australia-wide.
+                In-person participation in Melbourne Docklands. Online participation open Australia-wide via Discord.
               </p>
             </div>
 
             {/* Feature Tags */}
             <div className="flex flex-wrap gap-3 mt-8">
-              <FeatureTag icon={<CodeIcon />} text="Software Dev" color="primary" />
-              <FeatureTag icon={<ShieldIcon />} text="Cybersecurity" color="secondary" />
+              <FeatureTag icon={<ShieldIcon />} text="Critical Infrastructure" color="primary" />
+              <FeatureTag icon={<CodeIcon />} text="Software + Security" color="secondary" />
               <FeatureTag icon={<BridgeIcon />} text="Cross-University" color="coral" />
               <FeatureTag icon={<AustraliaIcon />} text="Australia-Wide" color="lime" />
             </div>
           </div>
 
-          {/* Right Visual */}
+          {/* Right Visual - Terminal */}
           <div className="relative">
             <Terminal className="max-w-full">
-              <TypingAnimation className="text-primary">{`// HACKATHON_CONFIG`}</TypingAnimation>
+              <TypingAnimation className="text-primary">{`> acucys-hackathon --info`}</TypingAnimation>
               <AnimatedSpan className="text-muted-foreground">
                 <span className="text-muted-foreground">name:</span>{' '}
-                <span className="text-lime">&quot;ACUSYS x DSEC 2026&quot;</span>
+                <span className="text-lime">&quot;ACUCys Hackathon 2026&quot;</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">theme:</span>{' '}
+                <span className="text-coral">&quot;Securing Critical Infrastructure&quot;</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">sectors:</span>{' '}
+                <span className="text-secondary">[&quot;power grids&quot;, &quot;healthcare&quot;, &quot;transport&quot;, &quot;water&quot;, &quot;emergency&quot;]</span>
               </AnimatedSpan>
               <AnimatedSpan className="text-muted-foreground">
                 <span className="text-muted-foreground">duration:</span>{' '}
@@ -61,18 +69,22 @@ export default function AboutSection() {
                 <span className="text-muted-foreground">// hours</span>
               </AnimatedSpan>
               <AnimatedSpan className="text-muted-foreground">
-                <span className="text-muted-foreground">focus:</span>{' '}
-                <span className="text-secondary">[&quot;software&quot;, &quot;security&quot;]</span>
-              </AnimatedSpan>
-              <AnimatedSpan className="text-muted-foreground">
                 <span className="text-muted-foreground">teams:</span>{' '}
-                <span className="text-primary">{`{ max: 4, solo: true }`}</span>
+                <span className="text-primary">{`{ min: 1, max: 4, solo: true }`}</span>
               </AnimatedSpan>
               <AnimatedSpan className="text-muted-foreground">
-                <span className="text-muted-foreground">prizes:</span>{' '}
-                <span className="text-accent">&quot;cash + sponsor rewards&quot;</span>
+                <span className="text-muted-foreground">venue:</span>{' '}
+                <span className="text-lime">&quot;Natural Velocity, Docklands&quot;</span>
               </AnimatedSpan>
-              <TypingAnimation className="text-muted-foreground">{`// Ready to initialize...`}</TypingAnimation>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">online:</span>{' '}
+                <span className="text-secondary">&quot;Discord — Australia-wide&quot;</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="text-muted-foreground">
+                <span className="text-muted-foreground">orgs:</span>{' '}
+                <span className="text-accent">[&quot;DSEC&quot;, &quot;ACUCys&quot;]</span>
+              </AnimatedSpan>
+              <TypingAnimation className="text-lime">{`// Ready to defend critical systems...`}</TypingAnimation>
             </Terminal>
 
             {/* Floating badge */}

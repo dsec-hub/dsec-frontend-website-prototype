@@ -8,7 +8,10 @@
       "Bash(npm run lint:*)",
       "Bash(ls:*)",
       "WebFetch(domain:docs.buttondown.com)",
-      "WebFetch(domain:buttondown.com)"
+      "WebFetch(domain:buttondown.com)",
+      "Bash(grep -l export /Users/clupa/Documents/projects/dsec-frontend-website-prototype/components/*.tsx)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(npx next:*)"
     ]
   }
 }
